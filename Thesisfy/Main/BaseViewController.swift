@@ -10,82 +10,30 @@ import ExytePopupView
 
 struct BaseViewController: View {
     @State private var selectedTab = "main" // 현재 선택된 탭 관리 변수
-    @State private var showSideMenu = false // 사이드 메뉴 상태를 관리하는 변수
     
     var body: some View {
-        ZStack {
-            VStack(spacing: 0) {
-                // 헤더
-                HeaderView(showSideMenu: $showSideMenu)
-                
-                Divider()
-                
-                // 선택된 탭에 따른 뷰 전환
-                Group {
-                    switch selectedTab {
-                    case "find":
-                        FindViewController()
-                    case "main":
-                        MainViewController()
-                    case "myPage":
-                        MyPageViewController()
-                    default:
-                        MainViewController()
-                    }
+        VStack(spacing: 0) {
+            // 선택된 탭에 따른 뷰 전환
+            Group {
+                switch selectedTab {
+                case "find":
+                    FindViewController()
+                case "main":
+                    MainViewController()
+                case "myPage":
+                    MyPageViewController()
+                default:
+                    MainViewController()
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                // 하단 탭바
-                TabBarView(selectedTab: $selectedTab)
-                    .frame(maxWidth: .infinity, maxHeight: 100, alignment: .bottom)
             }
-            .edgesIgnoringSafeArea(.bottom)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            // 사이드 메뉴
-            if showSideMenu {
-                SideMenu(isSidebarVisible: $showSideMenu)
-                    .zIndex(1) // 사이드 메뉴를 최상위로 배치
-            }
+            // 하단 탭바
+            TabBarView(selectedTab: $selectedTab)
+                .frame(maxWidth: .infinity, maxHeight: 100, alignment: .bottom)
         }
+        .edgesIgnoringSafeArea(.bottom)
         .navigationBarBackButtonHidden()
-    }
-}
-
-struct HeaderView: View {
-    @Binding var showSideMenu: Bool
-    
-    var body: some View {
-        HStack {
-            // 사이드 메뉴 버튼
-            Button(action: {
-                withAnimation(.spring()) {
-                    showSideMenu.toggle()
-                }
-            }) {
-                Image("sideMenu")
-                    .resizable()
-                    .frame(width: 48, height: 48)
-            }
-            
-            Spacer()
-            
-            VStack {
-                Image("Logo")
-                    .resizable()
-                    .frame(width: 28, height: 28)
-                
-                Text("Thesisfy")
-                    .font(.custom("Pretendard", size: 12))
-                    .foregroundStyle(Color.blue) // 예시로 색상 지정
-            }
-            
-            Spacer()
-            
-            Image("bell")
-                .resizable()
-                .frame(width: 48, height: 48)
-        }
-        .padding(.horizontal, 24)
     }
 }
 
