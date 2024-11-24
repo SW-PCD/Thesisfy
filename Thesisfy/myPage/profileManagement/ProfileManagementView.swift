@@ -17,7 +17,6 @@ struct ProfileManagementView: View {
             Spacer()
                 .frame(height: 24)
             
-            
             if currentTab == 0 {
                 EditProfileView(
                     selectedJob: $selectedJob,
@@ -46,13 +45,13 @@ struct ProfileManagementView: View {
     }
     
     struct ProfileManagementTopView: View {
-        @Environment(\.presentationMode) var presentationMode // 네비게이션 스택 상위 뷰로 이동을 위한 환경 변수
+        @Environment(\.dismiss) var dismiss // dismiss 환경 변수를 선언
         
         var body: some View {
             HStack {
                 // 사용자 정의 back 버튼
                 Button(action: {
-                    presentationMode.wrappedValue.dismiss() // 네비게이션 스택 상위 뷰로 돌아가기
+                    dismiss() // 버튼 클릭 시 이전 화면으로 돌아감
                 }) {
                     Image("backArrow")
                         .frame(width: 48, height: 48)

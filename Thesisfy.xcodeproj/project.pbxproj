@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A10677512CEF2C21001E2B29 /* BeingWrittenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10677502CEF2C21001E2B29 /* BeingWrittenView.swift */; };
+		A10677532CF066E3001E2B29 /* AIRecommendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10677522CF066E3001E2B29 /* AIRecommendView.swift */; };
 		A12161EA2CDA818200DC3301 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A12161E92CDA818200DC3301 /* PopupView */; };
 		A12161F12CDA85D100DC3301 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A12161F02CDA85D100DC3301 /* PopupView */; };
+		A12CAA8F2CF1DAA700554794 /* CompleteThesisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12CAA8E2CF1DAA700554794 /* CompleteThesisView.swift */; };
+		A12CAA912CF1DF9A00554794 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12CAA902CF1DF9A00554794 /* SearchView.swift */; };
 		A137E5BF2CDB0C2100B04588 /* ProfileManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A137E5BE2CDB0C2100B04588 /* ProfileManagementView.swift */; };
 		A13E43362CD6399B0002C5D7 /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E43352CD6399B0002C5D7 /* ThesisfyApp.swift */; };
 		A13E43382CD6399B0002C5D7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13E43372CD6399B0002C5D7 /* ContentView.swift */; };
@@ -27,6 +31,7 @@
 		A1A9F6DA2CDA4CAF00C1CD9A /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A1A9F6D12CDA4CAF00C1CD9A /* Pretendard-Medium.otf */; };
 		A1C7576B2CDF97EA00B1C012 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C7576A2CDF97EA00B1C012 /* NotificationView.swift */; };
 		A1C7576E2CDFA53B00B1C012 /* ThesisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C7576D2CDFA53B00B1C012 /* ThesisView.swift */; };
+		A1DBDA5A2CF2260100D8289E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1DBDA592CF2260100D8289E /* Route.swift */; };
 		A1E958FE2CDE16CC001EDE20 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A1E958FD2CDE16CC001EDE20 /* PopupView */; };
 		A1E959002CDE1702001EDE20 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A1E958FF2CDE1702001EDE20 /* PopupView */; };
 		A1E959022CDE1B0E001EDE20 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = A1E959012CDE1B0E001EDE20 /* PopupView */; };
@@ -35,6 +40,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A10677502CEF2C21001E2B29 /* BeingWrittenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeingWrittenView.swift; sourceTree = "<group>"; };
+		A10677522CF066E3001E2B29 /* AIRecommendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIRecommendView.swift; sourceTree = "<group>"; };
+		A12CAA8E2CF1DAA700554794 /* CompleteThesisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteThesisView.swift; sourceTree = "<group>"; };
+		A12CAA902CF1DF9A00554794 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		A137E5BE2CDB0C2100B04588 /* ProfileManagementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManagementView.swift; sourceTree = "<group>"; };
 		A13E43322CD6399B0002C5D7 /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A13E43352CD6399B0002C5D7 /* ThesisfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisfyApp.swift; sourceTree = "<group>"; };
@@ -55,6 +64,7 @@
 		A1A9F6DB2CDA4DC700C1CD9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A1C7576A2CDF97EA00B1C012 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		A1C7576D2CDFA53B00B1C012 /* ThesisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisView.swift; sourceTree = "<group>"; };
+		A1DBDA592CF2260100D8289E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		A1FA12B82CD77721000127D2 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +85,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A106774E2CEF2B97001E2B29 /* thesisManagement */ = {
+			isa = PBXGroup;
+			children = (
+				A10677502CEF2C21001E2B29 /* BeingWrittenView.swift */,
+				A10677522CF066E3001E2B29 /* AIRecommendView.swift */,
+				A12CAA8E2CF1DAA700554794 /* CompleteThesisView.swift */,
+			);
+			path = thesisManagement;
+			sourceTree = "<group>";
+		};
 		A137E5BD2CDB0BE500B04588 /* profileManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +131,7 @@
 				A13E43392CD6399C0002C5D7 /* Assets.xcassets */,
 				A13E433B2CD6399C0002C5D7 /* Preview Content */,
 				A19765FD2CD77C5100D5FE3B /* Constants.swift */,
+				A1DBDA592CF2260100D8289E /* Route.swift */,
 			);
 			path = Thesisfy;
 			sourceTree = "<group>";
@@ -128,6 +149,7 @@
 			children = (
 				A170B4062CDDB57F00CC729B /* PaperSearchView.swift */,
 				A1C7576D2CDFA53B00B1C012 /* ThesisView.swift */,
+				A12CAA902CF1DF9A00554794 /* SearchView.swift */,
 			);
 			path = papaerSearch;
 			sourceTree = "<group>";
@@ -159,6 +181,7 @@
 		A1FA12B52CD776C9000127D2 /* myPage */ = {
 			isa = PBXGroup;
 			children = (
+				A106774E2CEF2B97001E2B29 /* thesisManagement */,
 				A1C757692CDF97D100B1C012 /* notification */,
 				A137E5BD2CDB0BE500B04588 /* profileManagement */,
 				A1FA12B82CD77721000127D2 /* MyPageView.swift */,
@@ -252,9 +275,14 @@
 				A1FA12B92CD77721000127D2 /* MyPageView.swift in Sources */,
 				A1C7576B2CDF97EA00B1C012 /* NotificationView.swift in Sources */,
 				A13E43362CD6399B0002C5D7 /* ThesisfyApp.swift in Sources */,
+				A1DBDA5A2CF2260100D8289E /* Route.swift in Sources */,
+				A12CAA912CF1DF9A00554794 /* SearchView.swift in Sources */,
 				A19765FE2CD77C5100D5FE3B /* Constants.swift in Sources */,
+				A10677532CF066E3001E2B29 /* AIRecommendView.swift in Sources */,
 				A137E5BF2CDB0C2100B04588 /* ProfileManagementView.swift in Sources */,
 				A1C7576E2CDFA53B00B1C012 /* ThesisView.swift in Sources */,
+				A12CAA8F2CF1DAA700554794 /* CompleteThesisView.swift in Sources */,
+				A10677512CEF2C21001E2B29 /* BeingWrittenView.swift in Sources */,
 				A170B4072CDDB57F00CC729B /* PaperSearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
