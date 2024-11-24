@@ -176,12 +176,10 @@ code_sign_if_enabled() {
 }
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/OpenAI/OpenAI.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/OpenAISwift/OpenAISwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ExytePopupView/ExytePopupView.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "${BUILT_PRODUCTS_DIR}/OpenAI/OpenAI.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/OpenAISwift/OpenAISwift.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/ExytePopupView/ExytePopupView.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

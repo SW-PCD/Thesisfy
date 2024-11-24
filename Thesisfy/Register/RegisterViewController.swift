@@ -120,6 +120,7 @@ struct SetNickNameView: View {
     }
 }
 
+// MARK: - ZStack으로 드롭다운 메뉴 구현 해보기
 struct SetJobView: View {
     @State private var selectedJob = "대학생"
     let jobOptions = ["대학생", "대학원생", "교수", "교직원", "학생", "기타"]

@@ -6,6 +6,7 @@ target 'Thesisfy' do
   use_frameworks!
 
   # Pods for Thesisfy
+  pod 'ExytePopupView'
   # pod 'OpenAISwift'
   # pod 'OpenAI'
   # pod 'Alamofire'

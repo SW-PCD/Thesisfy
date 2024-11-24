@@ -124,7 +124,7 @@ struct LoginButtonView: View {
         Button(action: {
             print("로그인 버튼 클릭")
         }) {
-            NavigationLink(destination: MainViewController()) {
+            NavigationLink(destination: BaseViewController()) {
                 HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
                     Text("로그인")
                         .font(.system(size: Constants.fontSizeM, weight: Constants.fontWeightBold))

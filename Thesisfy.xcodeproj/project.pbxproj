@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7B0762722CC4E3BE00DE8C68 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B07626F2CC4E3BE00DE8C68 /* ContentView.swift */; };
-		7B0762732CC4E3BE00DE8C68 /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0762702CC4E3BE00DE8C68 /* ThesisfyApp.swift */; };
 		7B0762742CC4E3BE00DE8C68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B07626C2CC4E3BE00DE8C68 /* Preview Assets.xcassets */; };
 		7B0762752CC4E3BE00DE8C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */; };
 		7B0762782CC4E3F400DE8C68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0762772CC4E3F400DE8C68 /* LoginViewController.swift */; };
@@ -19,10 +17,10 @@
 		7B71ACA32CCE3401000E8466 /* SecondTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA22CCE3401000E8466 /* SecondTipsViewController.swift */; };
 		7B71ACA52CCE3739000E8466 /* ThirdTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA42CCE3739000E8466 /* ThirdTipsViewController.swift */; };
 		7B71ACA82CCE388E000E8466 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA72CCE388E000E8466 /* MainViewController.swift */; };
-		7BC194992CED9CCE00731413 /* TabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194982CED9CCE00731413 /* TabButton.swift */; };
-		7BC1949B2CED9E2900731413 /* SideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1949A2CED9E2900731413 /* SideView.swift */; };
-		7BC1949D2CED9E5200731413 /* CustomCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1949C2CED9E5200731413 /* CustomCorners.swift */; };
-		7BC1949F2CED9E6200731413 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC1949E2CED9E6200731413 /* HomeView.swift */; };
+		7BA4D72E2CEDEAA200696905 /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */; };
+		7BC194A42CEDE11600731413 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A32CEDE11600731413 /* BaseViewController.swift */; };
+		7BC194A62CEDE1D800731413 /* MyPageViewControlelr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */; };
+		7BC194A82CEDE1DE00731413 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A72CEDE1DE00731413 /* FindViewController.swift */; };
 		C6756A965B1061C787DDD7DA /* Pods_Thesisfy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7303A9A2713206E85059923 /* Pods_Thesisfy.framework */; };
 /* End PBXBuildFile section */
 
@@ -31,8 +29,6 @@
 		7B07625B2CC4E3B400DE8C68 /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B07626C2CC4E3BE00DE8C68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7B07626F2CC4E3BE00DE8C68 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		7B0762702CC4E3BE00DE8C68 /* ThesisfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisfyApp.swift; sourceTree = "<group>"; };
 		7B0762772CC4E3F400DE8C68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7B0762792CC4E4DF00DE8C68 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7B07627C2CC4EAD500DE8C68 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -41,10 +37,10 @@
 		7B71ACA22CCE3401000E8466 /* SecondTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTipsViewController.swift; sourceTree = "<group>"; };
 		7B71ACA42CCE3739000E8466 /* ThirdTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTipsViewController.swift; sourceTree = "<group>"; };
 		7B71ACA72CCE388E000E8466 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		7BC194982CED9CCE00731413 /* TabButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabButton.swift; sourceTree = "<group>"; };
-		7BC1949A2CED9E2900731413 /* SideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideView.swift; sourceTree = "<group>"; };
-		7BC1949C2CED9E5200731413 /* CustomCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorners.swift; sourceTree = "<group>"; };
-		7BC1949E2CED9E6200731413 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisfyApp.swift; sourceTree = "<group>"; };
+		7BC194A32CEDE11600731413 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewControlelr.swift; sourceTree = "<group>"; };
+		7BC194A72CEDE1DE00731413 /* FindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
 		E7303A9A2713206E85059923 /* Pods_Thesisfy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thesisfy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F304C1FD903140BC15EEADF9 /* Pods-Thesisfy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.debug.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,12 +100,7 @@
 				7B71ACA62CCE387F000E8466 /* Main */,
 				7B07626D2CC4E3BE00DE8C68 /* Preview Content */,
 				7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */,
-				7B07626F2CC4E3BE00DE8C68 /* ContentView.swift */,
-				7BC1949C2CED9E5200731413 /* CustomCorners.swift */,
-				7BC1949E2CED9E6200731413 /* HomeView.swift */,
-				7BC1949A2CED9E2900731413 /* SideView.swift */,
-				7BC194982CED9CCE00731413 /* TabButton.swift */,
-				7B0762702CC4E3BE00DE8C68 /* ThesisfyApp.swift */,
+				7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */,
 			);
 			path = Thesisfy;
 			sourceTree = "<group>";
@@ -137,7 +128,10 @@
 		7B71ACA62CCE387F000E8466 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7BC194A32CEDE11600731413 /* BaseViewController.swift */,
 				7B71ACA72CCE388E000E8466 /* MainViewController.swift */,
+				7BC194A72CEDE1DE00731413 /* FindViewController.swift */,
+				7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -162,6 +156,7 @@
 				7B0762572CC4E3B400DE8C68 /* Sources */,
 				7B0762582CC4E3B400DE8C68 /* Frameworks */,
 				7B0762592CC4E3B400DE8C68 /* Resources */,
+				4858ACC8AB878F0D6AB3E63E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -219,6 +214,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4858ACC8AB878F0D6AB3E63E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		DC1BBD3AA3A7052DE90D8B5E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -249,17 +261,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B71ACA52CCE3739000E8466 /* ThirdTipsViewController.swift in Sources */,
-				7BC1949F2CED9E6200731413 /* HomeView.swift in Sources */,
-				7BC1949D2CED9E5200731413 /* CustomCorners.swift in Sources */,
 				7B0762782CC4E3F400DE8C68 /* LoginViewController.swift in Sources */,
+				7BC194A82CEDE1DE00731413 /* FindViewController.swift in Sources */,
 				7B07627D2CC4EAD500DE8C68 /* RegisterViewController.swift in Sources */,
+				7BC194A42CEDE11600731413 /* BaseViewController.swift in Sources */,
 				7B71ACA12CCE32D4000E8466 /* FirstTipsViewController.swift in Sources */,
-				7B0762722CC4E3BE00DE8C68 /* ContentView.swift in Sources */,
+				7BC194A62CEDE1D800731413 /* MyPageViewControlelr.swift in Sources */,
 				7B71ACA32CCE3401000E8466 /* SecondTipsViewController.swift in Sources */,
+				7BA4D72E2CEDEAA200696905 /* ThesisfyApp.swift in Sources */,
 				7B71AC9F2CCE3135000E8466 /* TermsAgreementViewController.swift in Sources */,
-				7B0762732CC4E3BE00DE8C68 /* ThesisfyApp.swift in Sources */,
-				7BC1949B2CED9E2900731413 /* SideView.swift in Sources */,
-				7BC194992CED9CCE00731413 /* TabButton.swift in Sources */,
 				7B07627A2CC4E4DF00DE8C68 /* Constants.swift in Sources */,
 				7B71ACA82CCE388E000E8466 /* MainViewController.swift in Sources */,
 			);
@@ -397,6 +407,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -426,6 +437,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
