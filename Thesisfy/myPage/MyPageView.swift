@@ -5,7 +5,6 @@
 //  Created by 황필호 on 11/3/24.
 //
 import SwiftUI
-
 import PopupView
 
 // Bottom Sheet 모서리 설정 확장
@@ -34,43 +33,93 @@ struct MyPageView: View {
     @State private var isShowLogoutPopup = false // 로그아웃 팝업 상태 변수
     @State private var isShowWithdrawPopup = false // 탈퇴 팝업 상태 변수
     @State private var isShowNotificationSheet = false // 알림 시트 상태 변수
-    @State private var showNotificationView = false // NotificationView로 가는 상태 변수 추가
-    @State private var showThesisView = false // ThesisView로 네비게이션 상태 변수 추가
+    
+    @State private var progress: Double = 0.3 // 논문 진행 상태
+    @State private var isEditingbeingWrittenView: Bool = false // 작성중인 논문 편집 모드 상태 변수
+    @State private var isEditingCompletedThesisView: Bool = false // 작성 완료된 편집 모드 상태 변수
+    @State private var paper: String? = "한성대 서강준 황필호" // 작성 중인 논문 상태
+    
+    @State private var path: [Route] = [] // 네비게이션 스택을 MyPageView에서 선언
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) { // NavigationStack 추가
             VStack(spacing: 0) {
                 myPageTopView(isShowNotificationSheet: $isShowNotificationSheet)
                 
                 Divider()
                 
-                profileView() // profileView 내부에 수정 버튼을 네비게이션 링크로 변경
+                ScrollView {
+                    profileView(path: $path) // profileView 내부에 수정 버튼을 네비게이션 링크로 변경
+                        .padding(.top, 24)
+                        .padding(.horizontal, 24)
+                    
+                    Spacer()
+                        .frame(height: 24)
+                    
+                    bookMarkView(
+                        path: $path,
+                        isPresentedBottomSheet: $isPresentedBottomSheet)
+                        .padding(.top, 24)
+                        .padding(.horizontal, 24)
+                    
+                    Spacer()
+                        .frame(height: 30)
+                    
+                    Divider()
+                    
+                    Spacer()
+                        .frame(height: 24)
+                    
+                    beingWrittenView(
+                        path: $path, // 네비게이션 스택 전달
+                        paper: $paper,
+                        progress: $progress,
+                        isEditing: $isEditingbeingWrittenView,
+                        onDeletebeingWrittenView: { self.paper = nil },
+                        onAdd: { self.paper = "한성대 서강준 황필호" }
+                    )
+                    
+                    Spacer()
+                        .frame(height: 24)
+                    
+                    CompletedThesisView(
+                        path: $path, // 네비게이션 경로 전달
+                        isEditingCompletedThesisView: $isEditingCompletedThesisView
+                    )
+                    
+                    Spacer()
+                    
+                    setManagementButtonView(
+                        isShowLogoutPopup: $isShowLogoutPopup,
+                        isShowWithdrawPopup: $isShowWithdrawPopup
+                    )
                     .padding(.top, 24)
-                    .padding(.horizontal, 24)
-                
-                bookMarkView(isPresentedBottomSheet: $isPresentedBottomSheet)
-                    .padding(.top, 24)
-                    .padding(.horizontal, 24)
-                
-                Spacer()
-                
-                setManagementButtonView(
-                    isShowLogoutPopup: $isShowLogoutPopup,
-                    isShowWithdrawPopup: $isShowWithdrawPopup
-                )
-                .padding(.top, 24)
-                .padding(.horizontal, 16)
-                
-                Spacer()
+                    .padding(.horizontal, 16)
+                    
+                    Spacer()
+                }
             }
-            .navigationDestination(isPresented: $showNotificationView) {
-                NotificationView()
+            .navigationDestination(for: Route.self) { route in
+                switch route {
+                case .beingWrittenView:
+                    BeingWrittenView(path: $path) // BeingWrittenView로 네비게이션
+                case .completeThesisView:
+                        CompleteThesisView(path: $path) // CompleteThesisView로 네비게이션
+                case .aiRecommendView:
+                    AIRecommendView(path: $path) // AIRecommendView로 네비게이션
+                case .thesisView:  // ThesisView로 이동
+                        ThesisView()
+                case .profileManagementView:
+                    ProfileManagementView()
+                case .notificationView:
+                    NotificationView(path: $path)
+                default:
+                    Text("Route not handled")
+                }
             }
-            .navigationDestination(isPresented: $showThesisView) { // ThesisView 네비게이션 설정
-                ThesisView()
-            }
+            
             .popup(isPresented: $isPresentedBottomSheet) {
-                bookMarkSheetView(showThesisView: $showThesisView) // ThesisView로 가는 바인딩 추가
+                bookMarkSheetView(path: $path)
             } customize: {
                 $0
                     .type(.toast)
@@ -111,7 +160,7 @@ struct MyPageView: View {
                     .isOpaque(true) //아마 버튼만 클릭되게
             }
             .popup(isPresented: $isShowNotificationSheet) {
-                notificationSheetView(showNotificationView: $showNotificationView)
+                notificationSheetView(path: $path)
             } customize: {
                 $0
                     .type(.toast)
@@ -155,6 +204,8 @@ struct myPageTopView: View {
 }
 
 struct profileView: View {
+    @Binding var path: [Route] //네비게이션 스택 바인딩 추가
+    
     var body: some View {
         HStack {
             Image("logo image")
@@ -193,7 +244,9 @@ struct profileView: View {
             
             Spacer()
             
-            NavigationLink(destination: ProfileManagementView()) {
+            Button(action: {
+                path.append(.profileManagementView)
+            }) {
                 Text("수정하기")
                     .font(
                         Font.custom("Pretendard", size: Constants.fontSizeXxs)
@@ -217,7 +270,9 @@ struct profileView: View {
 }
 
 struct bookMarkView: View {
+    @Binding var path: [Route] //네비게이션 스택 바인딩 추가
     @Binding var isPresentedBottomSheet: Bool
+    
     var body: some View {
         VStack {
             HStack {
@@ -231,7 +286,7 @@ struct bookMarkView: View {
                 Spacer()
                 
                 Button(action: {
-                    isPresentedBottomSheet.toggle()
+                            isPresentedBottomSheet.toggle()
                 }) {
                     Text("더보기")
                         .font(
@@ -247,6 +302,131 @@ struct bookMarkView: View {
             
             VStack(spacing: 8) {
                 ForEach(0..<2) { _ in
+                    Button(action: {
+                        path.append(.thesisView) // ThesisView로 이동
+                    }) {
+                        HStack {
+                            Image("logo image")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .background(Circle().fill(Constants.GrayColorWhite))
+                                .overlay(
+                                    Circle()
+                                        .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                                )
+                                .clipShape(Circle())
+                                .padding(.leading, 16)
+                            
+                            Spacer()
+                                .frame(width: 12)
+                            
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
+                                    Text("인공지능")
+                                        .font(
+                                            Font.custom("Pretendard", size: Constants.fontSizeXs)
+                                                .weight(Constants.fontWeightSemibold)
+                                        )
+                                        .foregroundColor(Constants.PrimaryColorPrimary600)
+                                }
+                                .padding(.horizontal, 6)
+                                .padding(.vertical, 3)
+                                .background(Constants.PrimaryColorPrimary50)
+                                .cornerRadius(6)
+                                
+                                Spacer()
+                                    .frame(height: 7)
+                                
+                                Text("인공지능과 딥러닝")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeS)
+                                            .weight(Constants.fontWeightSemibold)
+                                    )
+                                    .foregroundColor(Constants.GrayColorGray900)
+                                
+                                HStack {
+                                    Text("서울대학교 인공지능학부")
+                                        .font(
+                                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                                .weight(Constants.fontWeightSemibold)
+                                        )
+                                        .foregroundColor(Constants.GrayColorGray800)
+                                    
+                                    Text("홍길동 학생")
+                                        .font(
+                                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                                .weight(Constants.fontWeightMedium)
+                                        )
+                                        .foregroundColor(Constants.GrayColorGray600)
+                                }
+                                .padding(.top, 8)
+                            }
+                            
+                            Spacer()
+                            
+                            VStack { // 북마크 이미지를 상단으로 배치하기 위해 VStack 추가
+                                Image("bookMark")
+                                    .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
+                                    .padding(.trailing, 16)
+                                
+                                Spacer() // 하단에 Spacer를 추가하여 북마크 이미지가 상단으로 올라가도록 함
+                            }
+                            .padding(.top, 16)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 100)
+                        .background(Constants.GrayColorGray50)
+                        .cornerRadius(6)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 6)
+                                .inset(by: 0.5)
+                                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct beingWrittenView: View {
+    @Binding var path: [Route] //네비게이션 스택 바인딩 추가
+    
+    @Binding var paper: String? // 작성 중인 논문 상태
+    @Binding var progress: Double // 진행률
+    @Binding var isEditing: Bool // 편집 모드 상태
+    
+    var onDeletebeingWrittenView: () -> Void // 논문 삭제 동작
+    var onAdd: () -> Void // 논문 추가 동작
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Text("작성중인 논문")
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeL)
+                            .weight(Constants.fontWeightSemibold)
+                    )
+                    .foregroundColor(Constants.GrayColorGray900)
+                
+                Spacer()
+                
+                Button(action: {
+                    isEditing.toggle() // 편집 상태 토글
+                }) {
+                    Text(isEditing ? "완료" : "편집")
+                        .font(
+                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                .weight(Constants.fontWeightMedium)
+                        )
+                        .foregroundColor(isEditing ? .blue : Constants.GrayColorGray400)
+                }
+            }
+            
+            if let paper = paper {
+                Button(action: {
+                    path.append(.beingWrittenView) // 네비게이션 경로 추가
+                }) {
                     HStack {
                         Image("logo image")
                             .resizable()
@@ -263,57 +443,72 @@ struct bookMarkView: View {
                             .frame(width: 12)
                         
                         VStack(alignment: .leading, spacing: 0) {
-                            HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                                Text("인공지능")
-                                    .font(
-                                        Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                            .weight(Constants.fontWeightSemibold)
-                                    )
-                                    .foregroundColor(Constants.PrimaryColorPrimary600)
-                            }
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 3)
-                            .background(Constants.PrimaryColorPrimary50)
-                            .cornerRadius(6)
-                            
-                            Spacer()
-                                .frame(height: 7)
-                            
-                            Text("인공지능과 딥러닝")
+                            Text(paper)
                                 .font(
                                     Font.custom("Pretendard", size: Constants.fontSizeS)
                                         .weight(Constants.fontWeightSemibold)
                                 )
                                 .foregroundColor(Constants.GrayColorGray900)
                             
+                            Spacer()
+                                .frame(height: 2)
+                            
                             HStack {
-                                Text("서울대학교 인공지능학부")
+                                Text("업데이트")
                                     .font(
                                         Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                             .weight(Constants.fontWeightSemibold)
                                     )
                                     .foregroundColor(Constants.GrayColorGray800)
                                 
-                                Text("홍길동 학생")
+                                Text("2024년 12월 6일 12시 03분")
                                     .font(
                                         Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                             .weight(Constants.fontWeightMedium)
                                     )
                                     .foregroundColor(Constants.GrayColorGray600)
                             }
-                            .padding(.top, 8)
+                            
+                            Spacer()
+                                .frame(height: 8)
+                            
+                            HStack {
+                                Text("진행률")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                            .weight(Constants.fontWeightSemibold)
+                                    )
+                                    .foregroundColor(Constants.GrayColorGray800)
+                                
+                                ProgressView(value: progress)
+                                    .progressViewStyle(LinearProgressViewStyle(tint: .red))
+                                    .frame(width: 105)
+                                
+                                Spacer()
+                                    .frame(width: 5)
+                                
+                                Text("\(Int(progress * 100))%")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                            .weight(Constants.fontWeightSemibold)
+                                    )
+                                    .foregroundColor(Constants.GrayColorGray800)
+                            }
                         }
                         
                         Spacer()
                         
-                        VStack { // 북마크 이미지를 상단으로 배치하기 위해 VStack 추가
-                            Image("bookMark")
-                                .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
-                                .padding(.trailing, 16)
-                            
-                            Spacer() // 하단에 Spacer를 추가하여 북마크 이미지가 상단으로 올라가도록 함
+                        VStack {
+                            if isEditing {
+                                Button(action: onDeletebeingWrittenView) {
+                                    Image(systemName: "trash")
+                                        .foregroundColor(.red)
+                                }
+                            }
+                            Spacer()
                         }
                         .padding(.top, 16)
+                        .padding(.trailing, 16)
                     }
                     .frame(maxWidth: .infinity)
                     .frame(height: 100)
@@ -321,12 +516,186 @@ struct bookMarkView: View {
                     .cornerRadius(6)
                     .overlay(
                         RoundedRectangle(cornerRadius: 6)
-                            .inset(by: 0.5)
                             .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                    )
+                }
+            } else {
+                Button(action: onAdd) {
+                    HStack {
+                        Image(systemName: "plus")
+                            .foregroundColor(Constants.PrimaryColorPrimary500)
+                        Text("추가")
+                            .foregroundColor(Constants.PrimaryColorPrimary500)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 100)
+                    .background(Color.white)
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(style: StrokeStyle(lineWidth: 2, dash: [5, 3]))
+                            .foregroundColor(Constants.PrimaryColorPrimary500)
                     )
                 }
             }
         }
+        .padding(.horizontal, 24)
+    }
+}
+
+// 추가 버튼 UI
+struct AddButtonView: View {
+    var onAdd: () -> Void
+    
+    var body: some View {
+        Button(action: onAdd) {
+            HStack {
+                Image(systemName: "plus")
+                    .font(.system(size: 15, weight: .bold, design: .default))
+                    .foregroundColor(Constants.PrimaryColorPrimary500)
+                
+                Text("추가")
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeL)
+                            .weight(Constants.fontWeightSemibold)
+                    )
+                    .foregroundColor(Constants.PrimaryColorPrimary500)
+            }
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
+            .background(.white)
+            .cornerRadius(6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(style: StrokeStyle(lineWidth: 3, dash: [5, 3])) // 점선 패턴
+                    .foregroundColor(Constants.PrimaryColorPrimary500) // 선 색상
+            )
+        }
+    }
+}
+
+struct CompletedThesisView: View {
+    @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
+    
+    @Binding var isEditingCompletedThesisView: Bool // 편집 모드 상태
+    @State private var isSectionOpen = true // 섹션 열림/닫힘 상태
+    
+    var body: some View {
+        VStack(spacing: 8) {
+            HStack {
+                Button(action: {
+                    isSectionOpen.toggle() // 열림/닫힘 상태 토글
+                }) {
+                    HStack {
+                        Text("작성 완료된 논문")
+                            .font(
+                                Font.custom("Pretendard", size: Constants.fontSizeL)
+                                    .weight(Constants.fontWeightSemibold)
+                            )
+                            .foregroundColor(Constants.GrayColorGray900)
+                        
+                        Spacer()
+                        
+                        if isSectionOpen {
+                            Button(action: {
+                                isEditingCompletedThesisView.toggle() // 편집 상태 토글
+                            }) {
+                                Text(isEditingCompletedThesisView ? "완료" : "편집")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                            .weight(Constants.fontWeightMedium)
+                                    )
+                                    .foregroundColor(isEditingCompletedThesisView ? .blue : Constants.GrayColorGray400)
+                            }
+                        }
+                        
+                        Spacer()
+                            .frame(width: 14)
+                        
+                        Image(systemName: isSectionOpen ? "chevron.up" : "chevron.down")
+                            .foregroundColor(Constants.GrayColorGray900)
+                    }
+                }
+                .buttonStyle(PlainButtonStyle())
+            }
+            
+            if isSectionOpen {
+                ForEach(0..<3) { _ in
+                    Button(action: {
+                        path.append(.completeThesisView) // CompleteThesisView로 이동
+                    }) {
+                        HStack {
+                            Image("logo image")
+                                .resizable()
+                                .frame(width: 60, height: 60)
+                                .background(Circle().fill(Constants.GrayColorWhite))
+                                .overlay(
+                                    Circle()
+                                        .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                                )
+                                .clipShape(Circle())
+                                .padding(.leading, 16)
+                            
+                            Spacer()
+                                .frame(width: 12)
+                            
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text("한성대 차은우 황필호")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeS)
+                                            .weight(Constants.fontWeightSemibold)
+                                    )
+                                    .foregroundColor(Constants.GrayColorGray900)
+                                
+                                HStack {
+                                    Text("업데이트")
+                                        .font(
+                                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                                .weight(Constants.fontWeightSemibold)
+                                        )
+                                        .foregroundColor(Constants.GrayColorGray800)
+                                    
+                                    Text("2024년 12월 6일 12시 03분")
+                                        .font(
+                                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                                .weight(Constants.fontWeightMedium)
+                                        )
+                                        .foregroundColor(Constants.GrayColorGray600)
+                                }
+                                .padding(.top, 8)
+                            }
+                            
+                            Spacer()
+                            
+                            // 삭제 버튼 (편집 모드에서만 표시)
+                            VStack {
+                                if isEditingCompletedThesisView {
+                                    Button(action: {
+                                        print("논문 삭제 동작")
+                                    }) {
+                                        Image(systemName: "trash")
+                                            .foregroundColor(.red)
+                                            .padding()
+                                    }
+                                }
+                                Spacer()
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 100)
+                        .background(Constants.GrayColorGray50)
+                        .cornerRadius(6)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 6)
+                                .inset(by: 0.5)
+                                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                        )
+                    }
+                }
+            }
+        }
+        .padding(.horizontal, 24)
+        .padding(.vertical, 24)
     }
 }
 
@@ -450,17 +819,16 @@ struct LogoutPopupView: View {
     }
 }
 
-
 // 탈퇴 팝업 뷰
 struct withdrawPopup: View {
     @Binding var isShowWithdrawPopup: Bool
-    @State private var newNickname: String = "" // 닉네임 입력 변수
-    private let currentNickname = "홍길동" // 예제용 기존 닉네임
-    
+    @State private var inputPassword: String = "" // 비밀번호 입력 변수
+    private let correctPassword = "1234" // 임의 설정된 비밀번호
+
     var body: some View {
         VStack {
             VStack {
-                //상단 뷰
+                // 상단 뷰
                 VStack {
                     Text("정말 탈퇴할까요?")
                         .font(
@@ -473,7 +841,7 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 20)
                     
-                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 닉네임 입력이 필요합니다.")
+                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 비밀번호 입력이 필요합니다.")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightMedium)
@@ -485,9 +853,9 @@ struct withdrawPopup: View {
                 Spacer()
                     .frame(height: 20)
                 
-                //닉네임 입력 뷰
+                // 비밀번호 입력 뷰
                 VStack(alignment: .leading) {
-                    Text("닉네임 입력")
+                    Text("비밀번호 입력")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeM)
                                 .weight(Constants.fontWeightSemibold)
@@ -498,7 +866,7 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 8)
                     
-                    TextField("닉네임을 입력해 주세요", text: $newNickname)
+                    SecureField("비밀번호를 입력해 주세요", text: $inputPassword) // SecureField로 수정
                         .padding(.horizontal, Constants.fontSizeXs)
                         .padding(.vertical, Constants.fontSizeS)
                         .background(Constants.GrayColorWhite)
@@ -514,22 +882,25 @@ struct withdrawPopup: View {
                     .frame(height: 28)
                 
                 HStack(spacing: 6) {
-                    // 탈퇴하기 버튼 - 닉네임 일치 시 색상 변경
+                    // 탈퇴하기 버튼 - 비밀번호 일치 시 색상 변경
                     Button(action: {
-                        isShowWithdrawPopup = false // 팝업 닫기
+                        if inputPassword == correctPassword {
+                            isShowWithdrawPopup = false // 팝업 닫기
+                            // 탈퇴 로직 추가 가능
+                        }
                     }) {
                         Text("탈퇴하기")
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeM)
                                     .weight(Constants.fontWeightMedium)
                             )
-                            .foregroundColor(newNickname == currentNickname ? .white : Constants.GrayColorGray400)
+                            .foregroundColor(inputPassword == correctPassword ? .white : Constants.GrayColorGray400)
                     }
                     .padding(.horizontal, Constants.fontSizeXs)
                     .padding(.vertical, Constants.fontSizeM)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .frame(height: 48)
-                    .background(newNickname == currentNickname ? Color.red : Constants.GrayColorGray100) // 조건에 따른 배경색 변경
+                    .background(inputPassword == correctPassword ? Color.red : Constants.GrayColorGray100) // 조건에 따른 배경색 변경
                     .cornerRadius(8)
                     
                     HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
@@ -566,9 +937,8 @@ struct withdrawPopup: View {
     }
 }
 
-
 struct bookMarkSheetView: View {
-    @Binding var showThesisView: Bool
+    @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
     
     var body: some View {
         VStack {
@@ -602,9 +972,9 @@ struct bookMarkSheetView: View {
                 ScrollView {
                     VStack(spacing: 8) {
                         ForEach(0..<7, id: \.self) { index in
-                            bookMarkListView(showThesisView: $showThesisView)
-                                .padding(.horizontal, 24)
-                        }
+                            bookMarkListView(path: $path)
+                                    .padding(.horizontal, 24)
+                            }
                     }
                 }
             }
@@ -618,11 +988,11 @@ struct bookMarkSheetView: View {
 
 //북마크 리스트 나중에 모델이랑 연결을 편하게 하기 위해 나눠서 코딩 함
 struct bookMarkListView: View {
-    @Binding var showThesisView: Bool // ThesisView로 가기 위한 상태 바인딩
+    @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
     
     var body: some View {
         Button(action: {
-            showThesisView = true // ThesisView로 네비게이션 트리거
+            path.append(.thesisView) // Route에 thesisView 추가
         }) {
             HStack {
                 Image("logo image")
@@ -710,7 +1080,7 @@ struct bookMarkListView: View {
 }
 
 struct notificationSheetView: View {
-    @Binding var showNotificationView: Bool // NotificationView로 가는 바인딩 추가
+    @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
     
     var body: some View {
         VStack {
@@ -769,7 +1139,7 @@ struct notificationSheetView: View {
                 ScrollView {
                     VStack(spacing: 8) {
                         ForEach(0..<7, id: \.self) { index in
-                            notificationListView()
+                            notificationListView(path: $path)
                         }
                     }
                 }
@@ -780,7 +1150,7 @@ struct notificationSheetView: View {
             
             // 더보기 버튼
             Button(action: {
-                showNotificationView = true // NotificationView로 이동
+                path.append(.notificationView)
             }) {
                 HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
                     Text("알림 더보기")
@@ -817,102 +1187,106 @@ struct notificationSheetView: View {
 
 //알림 리스트 나중에 모델이랑 연결을 편하게 하기 위해 나눠서 코딩 함
 struct notificationListView: View {
+    @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
+    
     var body: some View {
-        HStack {
+        
+        Button(action: {
+            path.append(.thesisView) // Route에 thesisView 추가
+        }) {
             HStack {
-                Image("logo image")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-                    .background(Circle().fill(Constants.GrayColorWhite))
-                    .overlay(
-                        Circle()
-                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                    )
-                    .clipShape(Circle())
-                
-                Spacer()
-                    .frame(width: 12)
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("논문 검색 결과 알림")
-                        .font(
-                            Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                .weight(Constants.fontWeightSemibold)
+                HStack {
+                    Image("logo image")
+                        .resizable()
+                        .frame(width: 60, height: 60)
+                        .background(Circle().fill(Constants.GrayColorWhite))
+                        .overlay(
+                            Circle()
+                                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                         )
-                        .foregroundColor(Constants.PrimaryColorPrimary600)
+                        .clipShape(Circle())
                     
                     Spacer()
-                        .frame(height: 4)
+                        .frame(width: 12)
                     
-                    HStack {
-                        HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                            Text("딥러닝")
-                                .font(
-                                    Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                        .weight(Constants.fontWeightSemibold)
-                                )
-                                .foregroundColor(Constants.PrimaryColorPrimary600)
-                        }
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 3)
-                        .background(Constants.PrimaryColorPrimary50)
-                        .cornerRadius(6)
-                        
-                        Spacer()
-                            .frame(width: 4)
-                        
-                        Text("GPT와 LLM의 관계")
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text("논문 검색 결과 알림")
                             .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeS)
+                                Font.custom("Pretendard", size: Constants.fontSizeXs)
                                     .weight(Constants.fontWeightSemibold)
                             )
-                            .foregroundColor(Constants.GrayColorGray900)
+                            .foregroundColor(Constants.PrimaryColorPrimary600)
+                        
+                        Spacer()
+                            .frame(height: 4)
+                        
+                        HStack {
+                            HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
+                                Text("딥러닝")
+                                    .font(
+                                        Font.custom("Pretendard", size: Constants.fontSizeXs)
+                                            .weight(Constants.fontWeightSemibold)
+                                    )
+                                    .foregroundColor(Constants.PrimaryColorPrimary600)
+                            }
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 3)
+                            .background(Constants.PrimaryColorPrimary50)
+                            .cornerRadius(6)
+                            
+                            Spacer()
+                                .frame(width: 4)
+                            
+                            Text("GPT와 LLM의 관계")
+                                .font(
+                                    Font.custom("Pretendard", size: Constants.fontSizeS)
+                                        .weight(Constants.fontWeightSemibold)
+                                )
+                                .foregroundColor(Constants.GrayColorGray900)
+                        }
+                        
+                        Spacer()
+                            .frame(height: 6)
+                        
+                        Text("서울대학교 홍길동 교수의 논문을 바로 확인해 보세요!")
+                            .font(
+                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                    .weight(Constants.fontWeightMedium)
+                            )
+                            .foregroundColor(Constants.GrayColorGray600)
                     }
-                    
-                    Spacer()
-                        .frame(height: 6)
-                    
-                    Text("서울대학교 홍길동 교수의 논문을 바로 확인해 보세요!")
-                        .font(
-                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                .weight(Constants.fontWeightMedium)
-                        )
-                        .foregroundColor(Constants.GrayColorGray600)
                 }
-            }
-            .padding(.leading, 16)
-            
-            Spacer()
-            
-            VStack { // 포인트 이미지를 상단으로 배치하기 위해 VStack 추가
-                Image("point")
-                    .frame(width: 6, height: 6)
-                    .background(Constants.PrimaryColorPrimary600)
-                    .overlay(
-                        Circle()
-                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                    )
-                    .clipShape(Circle())
+                .padding(.leading, 16)
                 
-                Spacer() // 하단에 Spacer를 추가하여 북마크 이미지가 상단으로 올라가도록 함
+                Spacer()
+                
+                VStack { // 포인트 이미지를 상단으로 배치하기 위해 VStack 추가
+                    Image("point")
+                        .frame(width: 6, height: 6)
+                        .background(Constants.PrimaryColorPrimary600)
+                        .overlay(
+                            Circle()
+                                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                        )
+                        .clipShape(Circle())
+                    
+                    Spacer() // 하단에 Spacer를 추가하여 북마크 이미지가 상단으로 올라가도록 함
+                }
+                .padding(.top, 12)
+                .padding(.trailing, 12)
             }
-            .padding(.top, 12)
-            .padding(.trailing, 12)
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
+            .background(Constants.GrayColorGray50)
+            .cornerRadius(6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .inset(by: 0.5)
+                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+            )
         }
-        .frame(maxWidth: .infinity)
-        .frame(height: 100)
-        .background(Constants.GrayColorGray50)
-        .cornerRadius(6)
-        .overlay(
-            RoundedRectangle(cornerRadius: 6)
-                .inset(by: 0.5)
-                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-        )
     }
 }
-
-
-
 
 #Preview {
     MyPageView()

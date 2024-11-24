@@ -48,7 +48,7 @@ struct setTopThesisView: View {
         HStack {
             // 사용자 정의 back 버튼
             Button(action: {
-                dismiss() // 버튼 클릭 시 이전 화면으로 돌아감
+                dismiss()
             }) {
                 Image("backArrow")
                     .frame(width: 48, height: 48)
