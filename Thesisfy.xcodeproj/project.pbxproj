@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B0762742CC4E3BE00DE8C68 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B07626C2CC4E3BE00DE8C68 /* Preview Assets.xcassets */; };
+		7B0762752CC4E3BE00DE8C68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */; };
+		7B0762782CC4E3F400DE8C68 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0762772CC4E3F400DE8C68 /* LoginViewController.swift */; };
+		7B07627A2CC4E4DF00DE8C68 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0762792CC4E4DF00DE8C68 /* Constants.swift */; };
+		7B07627D2CC4EAD500DE8C68 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B07627C2CC4EAD500DE8C68 /* RegisterViewController.swift */; };
+		7B71AC9F2CCE3135000E8466 /* TermsAgreementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71AC9E2CCE3135000E8466 /* TermsAgreementViewController.swift */; };
+		7B71ACA12CCE32D4000E8466 /* FirstTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA02CCE32D4000E8466 /* FirstTipsViewController.swift */; };
+		7B71ACA32CCE3401000E8466 /* SecondTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA22CCE3401000E8466 /* SecondTipsViewController.swift */; };
+		7B71ACA52CCE3739000E8466 /* ThirdTipsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA42CCE3739000E8466 /* ThirdTipsViewController.swift */; };
+		7B71ACA82CCE388E000E8466 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B71ACA72CCE388E000E8466 /* MainViewController.swift */; };
+		7BA4D72E2CEDEAA200696905 /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */; };
+		7BC194A42CEDE11600731413 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A32CEDE11600731413 /* BaseViewController.swift */; };
+		7BC194A62CEDE1D800731413 /* MyPageViewControlelr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */; };
+		7BC194A82CEDE1DE00731413 /* FindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC194A72CEDE1DE00731413 /* FindViewController.swift */; };
+		C6756A965B1061C787DDD7DA /* Pods_Thesisfy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7303A9A2713206E85059923 /* Pods_Thesisfy.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6356D037C98D2694D6488906 /* Pods-Thesisfy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.release.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.release.xcconfig"; sourceTree = "<group>"; };
+		7B07625B2CC4E3B400DE8C68 /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B07626C2CC4E3BE00DE8C68 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B0762772CC4E3F400DE8C68 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		7B0762792CC4E4DF00DE8C68 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		7B07627C2CC4EAD500DE8C68 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7B71AC9E2CCE3135000E8466 /* TermsAgreementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAgreementViewController.swift; sourceTree = "<group>"; };
+		7B71ACA02CCE32D4000E8466 /* FirstTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTipsViewController.swift; sourceTree = "<group>"; };
+		7B71ACA22CCE3401000E8466 /* SecondTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTipsViewController.swift; sourceTree = "<group>"; };
+		7B71ACA42CCE3739000E8466 /* ThirdTipsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTipsViewController.swift; sourceTree = "<group>"; };
+		7B71ACA72CCE388E000E8466 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisfyApp.swift; sourceTree = "<group>"; };
+		7BC194A32CEDE11600731413 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewControlelr.swift; sourceTree = "<group>"; };
+		7BC194A72CEDE1DE00731413 /* FindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindViewController.swift; sourceTree = "<group>"; };
+		E7303A9A2713206E85059923 /* Pods_Thesisfy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thesisfy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F304C1FD903140BC15EEADF9 /* Pods-Thesisfy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.debug.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B0762582CC4E3B400DE8C68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6756A965B1061C787DDD7DA /* Pods_Thesisfy.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F72AF7304535B034E1B1978 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7303A9A2713206E85059923 /* Pods_Thesisfy.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B0762522CC4E3B400DE8C68 = {
+			isa = PBXGroup;
+			children = (
+				7B0762712CC4E3BE00DE8C68 /* Thesisfy */,
+				7B07625C2CC4E3B400DE8C68 /* Products */,
+				B1F3AB5D3F09A2135D2C3DA4 /* Pods */,
+				2F72AF7304535B034E1B1978 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		7B07625C2CC4E3B400DE8C68 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B07625B2CC4E3B400DE8C68 /* Thesisfy.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B07626D2CC4E3BE00DE8C68 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7B07626C2CC4E3BE00DE8C68 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7B0762712CC4E3BE00DE8C68 /* Thesisfy */ = {
+			isa = PBXGroup;
+			children = (
+				7B0762792CC4E4DF00DE8C68 /* Constants.swift */,
+				7B0762762CC4E3DC00DE8C68 /* Login */,
+				7B07627B2CC4EAC800DE8C68 /* Register */,
+				7B71ACA62CCE387F000E8466 /* Main */,
+				7B07626D2CC4E3BE00DE8C68 /* Preview Content */,
+				7B07626E2CC4E3BE00DE8C68 /* Assets.xcassets */,
+				7BA4D72D2CEDEAA200696905 /* ThesisfyApp.swift */,
+			);
+			path = Thesisfy;
+			sourceTree = "<group>";
+		};
+		7B0762762CC4E3DC00DE8C68 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				7B0762772CC4E3F400DE8C68 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		7B07627B2CC4EAC800DE8C68 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				7B07627C2CC4EAD500DE8C68 /* RegisterViewController.swift */,
+				7B71AC9E2CCE3135000E8466 /* TermsAgreementViewController.swift */,
+				7B71ACA02CCE32D4000E8466 /* FirstTipsViewController.swift */,
+				7B71ACA22CCE3401000E8466 /* SecondTipsViewController.swift */,
+				7B71ACA42CCE3739000E8466 /* ThirdTipsViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		7B71ACA62CCE387F000E8466 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7BC194A32CEDE11600731413 /* BaseViewController.swift */,
+				7B71ACA72CCE388E000E8466 /* MainViewController.swift */,
+				7BC194A72CEDE1DE00731413 /* FindViewController.swift */,
+				7BC194A52CEDE1D800731413 /* MyPageViewControlelr.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B1F3AB5D3F09A2135D2C3DA4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F304C1FD903140BC15EEADF9 /* Pods-Thesisfy.debug.xcconfig */,
+				6356D037C98D2694D6488906 /* Pods-Thesisfy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B07625A2CC4E3B400DE8C68 /* Thesisfy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B0762692CC4E3B500DE8C68 /* Build configuration list for PBXNativeTarget "Thesisfy" */;
+			buildPhases = (
+				DC1BBD3AA3A7052DE90D8B5E /* [CP] Check Pods Manifest.lock */,
+				7B0762572CC4E3B400DE8C68 /* Sources */,
+				7B0762582CC4E3B400DE8C68 /* Frameworks */,
+				7B0762592CC4E3B400DE8C68 /* Resources */,
+				4858ACC8AB878F0D6AB3E63E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Thesisfy;
+			productName = Thesisfy;
+			productReference = 7B07625B2CC4E3B400DE8C68 /* Thesisfy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B0762532CC4E3B400DE8C68 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					7B07625A2CC4E3B400DE8C68 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 7B0762562CC4E3B400DE8C68 /* Build configuration list for PBXProject "Thesisfy" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7B0762522CC4E3B400DE8C68;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7B07625C2CC4E3B400DE8C68 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B07625A2CC4E3B400DE8C68 /* Thesisfy */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B0762592CC4E3B400DE8C68 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0762742CC4E3BE00DE8C68 /* Preview Assets.xcassets in Resources */,
+				7B0762752CC4E3BE00DE8C68 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4858ACC8AB878F0D6AB3E63E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC1BBD3AA3A7052DE90D8B5E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Thesisfy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B0762572CC4E3B400DE8C68 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B71ACA52CCE3739000E8466 /* ThirdTipsViewController.swift in Sources */,
+				7B0762782CC4E3F400DE8C68 /* LoginViewController.swift in Sources */,
+				7BC194A82CEDE1DE00731413 /* FindViewController.swift in Sources */,
+				7B07627D2CC4EAD500DE8C68 /* RegisterViewController.swift in Sources */,
+				7BC194A42CEDE11600731413 /* BaseViewController.swift in Sources */,
+				7B71ACA12CCE32D4000E8466 /* FirstTipsViewController.swift in Sources */,
+				7BC194A62CEDE1D800731413 /* MyPageViewControlelr.swift in Sources */,
+				7B71ACA32CCE3401000E8466 /* SecondTipsViewController.swift in Sources */,
+				7BA4D72E2CEDEAA200696905 /* ThesisfyApp.swift in Sources */,
+				7B71AC9F2CCE3135000E8466 /* TermsAgreementViewController.swift in Sources */,
+				7B07627A2CC4E4DF00DE8C68 /* Constants.swift in Sources */,
+				7B71ACA82CCE388E000E8466 /* MainViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7B0762672CC4E3B500DE8C68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7B0762682CC4E3B500DE8C68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B07626A2CC4E3B500DE8C68 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F304C1FD903140BC15EEADF9 /* Pods-Thesisfy.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KKM.Thesisfy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7B07626B2CC4E3B500DE8C68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6356D037C98D2694D6488906 /* Pods-Thesisfy.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.KKM.Thesisfy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B0762562CC4E3B400DE8C68 /* Build configuration list for PBXProject "Thesisfy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B0762672CC4E3B500DE8C68 /* Debug */,
+				7B0762682CC4E3B500DE8C68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B0762692CC4E3B500DE8C68 /* Build configuration list for PBXNativeTarget "Thesisfy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B07626A2CC4E3B500DE8C68 /* Debug */,
+				7B07626B2CC4E3B500DE8C68 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7B0762532CC4E3B400DE8C68 /* Project object */;
+}
