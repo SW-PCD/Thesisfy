@@ -1,0 +1,1081 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01DD24C53F5BC8F168E21682B04B59E6 /* IntrospectionSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7001C092EB4A85C669A39E704ECE5FA /* IntrospectionSelector.swift */; };
+		076A724978365E9FD314B0ACEB57FA31 /* Form.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51A91094B3A59446FE8F887769445E7 /* Form.swift */; };
+		0CEB82B5FF5A7F25BF7B1833D0A876A1 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F809DFF8D253040FDDD70CB3A1DD60 /* Window.swift */; };
+		0EC082C76AEA98AD903CAA0C5203B4E7 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759DFFD46BE6455025197CA303DFCBBB /* PageControl.swift */; };
+		111FAA163DABAD035E2490DCFE6C22E6 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEDE3E267C395A30CF47E365E287D26 /* View.swift */; };
+		13426A00E163C7530B13F1743ED11A31 /* ToggleWithSwitchStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674FF110B3A4EBC89D638752AAE44AA4 /* ToggleWithSwitchStyle.swift */; };
+		15AF9D4DFEAA4D599C22B0B95819260B /* FullscreenPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3227A198DB0CD61F212CDBEAD9BB20 /* FullscreenPopup.swift */; };
+		18D6BDD3E7C5B253FE4E0E591C9DBCCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		199DD3E6E490230CBA5ECB347A4EF9BC /* SwiftUIIntrospect-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 604B4556E4A11CEF4C2417CFA920AB2D /* SwiftUIIntrospect-dummy.m */; };
+		1B25922F468E8AA08BCA211164AA5304 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159302DB3191AED5B82C0663443EFA22 /* ListCell.swift */; };
+		1C33DBC4CA582D0DA5AFF11753BA3DDE /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF6E0B509BDB3817CD1641A37374775F /* VideoPlayer.swift */; };
+		2E1DCCB4B40113F544A202AA34C2950D /* Toggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545B4E33C91D43FECB13FA392BE67872 /* Toggle.swift */; };
+		322D619F8D5776F3EE13AD62BDB0B334 /* NavigationViewWithColumnsStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA8ADF79AA4FD7A9D2F2F2EF17EB3B2 /* NavigationViewWithColumnsStyle.swift */; };
+		32A9B5594D54E77C265536959D301F96 /* DatePickerWithWheelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D107EE9B162777E2EDACA5A363E9A /* DatePickerWithWheelStyle.swift */; };
+		32EC6B97E3C3661D6DAFFBEDC23E0CEC /* PopupScrollViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE78681ECD705E09D896A623A719DCEF /* PopupScrollViewDelegate.swift */; };
+		3437354B2179B2F687F7845DFCFA76CB /* DatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0C9056A9BB830246E3D49721E111AB /* DatePicker.swift */; };
+		41C67A1E0C33674485257AF84B98913F /* ListWithSidebarStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D691748B08FE447E10F3270FF9F2FFF /* ListWithSidebarStyle.swift */; };
+		44D3F832660EF5CF97DFC790BD60E384 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		45DB7A0A5F1FB54FA84B9FFD78CB66EE /* Pods-Thesisfy-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6BA89F1422A84CA11BEC7E367E2A1AAC /* Pods-Thesisfy-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		472AA3D26506A400317EA88F8708BF0D /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4445E8C4AD0685B130F35DA734397641 /* ColorPicker.swift */; };
+		4A3F72B52A18373934622A2759603250 /* TextFieldWithVerticalAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE1CFEB43629B1412275A29EE702319 /* TextFieldWithVerticalAxis.swift */; };
+		4A7942CDCB17739AEF39B49069BC8B06 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1203D0D792CEB6C008BAE02F10D7226 /* Utils.swift */; };
+		54D334DD8ED3A9D834262B4470E1F0EE /* Slider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA33B9F2F61E1B5AAF052D96DDCCA115 /* Slider.swift */; };
+		5C2696FE574C5E06556D4E0513BC90DA /* DatePickerWithFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A913C9E53A75B5DF25B15D76A8BF91D /* DatePickerWithFieldStyle.swift */; };
+		5D83DC654ECBA557B83971CBB39F3EE5 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75FBC3274C52033BB3A451AE3F7571B /* Table.swift */; };
+		5E9825B5B0AB9E2633F4B2D21C2EF516 /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09823889626094907893467F4405528 /* ScrollView.swift */; };
+		60F688CA8354A04F81C804D32519EFC5 /* Sheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4510428E9CE510213CE5D28097E07045 /* Sheet.swift */; };
+		681F1D1EFA955B298742C3A5402A054A /* SwiftUIIntrospect-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E33960E6F06EEE80D32C7094EBB971DC /* SwiftUIIntrospect-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		688EFFE15E3DC43CACB6DF0893167129 /* ListWithInsetGroupedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F16DCA9CA81F984DF2F92D54A4F165E7 /* ListWithInsetGroupedStyle.swift */; };
+		692C21403539FC61A212747967568062 /* DatePickerWithCompactStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E2F695B50B2715043FF28EF3665855 /* DatePickerWithCompactStyle.swift */; };
+		69AE2B82DDC143E52785FA62488B0A56 /* NavigationSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA9493CA4837A1AB703A7687F16D8F2A /* NavigationSplitView.swift */; };
+		6B559DF783BD6FD67F7CDBBB6A6ABE95 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EEE03AC4C94AA7DE6BDB1CFF9F7916C /* Weak.swift */; };
+		6C6C280CCC277673D027A02D7431B1FC /* PickerWithMenuStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 281A16AD89C0AD136385A6505C737F76 /* PickerWithMenuStyle.swift */; };
+		7004D08F8F5C5688F4FA072F98B894C7 /* IntrospectableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4703DDA7309EF9947C3F8D0423EC64E8 /* IntrospectableViewType.swift */; };
+		7217DFEBD85F490BDFA0397D8C73E080 /* DatePickerWithStepperFieldStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94216EC60DE776A1E0B2264F5CF2D22D /* DatePickerWithStepperFieldStyle.swift */; };
+		7439903B16EEBFA59E1B28B89B63D9B1 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936C4E8C0CA62A90AAE9C9FC525E9839 /* TabView.swift */; };
+		7579892C2FF0A667E4C67DE41624093C /* FormWithGroupedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB2E755FEFBC7119C90E6E973FED1365 /* FormWithGroupedStyle.swift */; };
+		76690CD850E7CD4550F565E3FCFFF164 /* SecureField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A6A49CD3667F84504C07F31F6B1B7F /* SecureField.swift */; };
+		770A9E072398271F92588CA7DF0AFF66 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E090891A8A9DA991585669B7D5352DBF /* PopupView.swift */; };
+		772C58B78FF3DA159E0E30B84028D42E /* ProgressViewWithLinearStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF364970F115DA2D1C8F54C0DF3B3539 /* ProgressViewWithLinearStyle.swift */; };
+		7983F05B902567355A991B4DC83894FA /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEA38E313AF6A21AD8A3E1B1F09DF6A /* Utils.swift */; };
+		7C87E4ABABABA37FCD381E003681D0E7 /* IntrospectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9211EF3FDCF74DCC5D47D5D28FA28FA4 /* IntrospectionView.swift */; };
+		7F0FF6CC2D6C475FAB36A3696655B685 /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA36928C71C69D33D6E4ACAEC0327C7 /* SignInWithAppleButton.swift */; };
+		8051E9280E71B1E77AABEE0E130F4181 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189B53D61A58E3AF3032D7B76783A9B8 /* ViewController.swift */; };
+		8258B26E866A04CFCD55EAF792362D0C /* ExytePopupView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D429F9C4BC6836324212F030A0911993 /* ExytePopupView-dummy.m */; };
+		8A55E8FB5E00F19043C0F59000E65F1E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F67A81850EB78F8CDA38422BE627AC /* Button.swift */; };
+		8CFAF8FFBD2555F0A5BC660D6176502E /* PickerWithWheelStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7088A3170ECB05B98823F875B7CE75BF /* PickerWithWheelStyle.swift */; };
+		8D9EFA86320D280FCB330F9328C57C7C /* TabViewWithPageStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380A9F1270B0F304732A62CBE408070 /* TabViewWithPageStyle.swift */; };
+		8DCD39A7FBC65DB009E8949BA8365275 /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F8BE8959AB467D63B9E90BD0E1651 /* Map.swift */; };
+		8DDD7B4E628CACA859610A6C0C72843F /* DatePickerWithGraphicalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448983DD14DF0028B9BEDAB991660137 /* DatePickerWithGraphicalStyle.swift */; };
+		926B033D364F8D9E72F6F4C66A237A6E /* ExytePopupView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FD3007EB2CC95CE9EA46617BC2320FBA /* ExytePopupView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		93F2F7053A462FB5CE0A6B4BBD373D3A /* PlatformViewVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B74BC4BD83739CA3FCF08E7734F2534 /* PlatformViewVersion.swift */; };
+		9565063E733ECE2A75B398997EB070EA /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CDCF470FEDC73478FD6853B9F99BD1B /* Stepper.swift */; };
+		9BACA80BD6A69B8F5290F934F61BE42C /* ToggleWithCheckboxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66BFE80CE2F704AEC1F9A8208F43B031 /* ToggleWithCheckboxStyle.swift */; };
+		9E446B0171EBEE09110F385429B09CC9 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C38EB58039EBE1FD8AE5A8177570D9F /* Popover.swift */; };
+		A0904038C4AC59AB4BDB5B5F2DA6B97C /* ListWithGroupedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 728CBC80D1139EDD871E7A4E794D1E64 /* ListWithGroupedStyle.swift */; };
+		A9EB48205721D7DB15B1A52350BBE6F7 /* Pods-Thesisfy-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D103431928C2FBF5A7E8AC7534C9BAD /* Pods-Thesisfy-dummy.m */; };
+		AFA69AB12BD69959719B9ED9F8CC7F65 /* FullScreenCover.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98B1148439EFB2B5A2809B83FA4B478 /* FullScreenCover.swift */; };
+		B062FE353066EC8F69DEA9B6559B3184 /* ProgressViewWithCircularStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAFE90D05FF1A50549F294E315176BCB /* ProgressViewWithCircularStyle.swift */; };
+		B5E8D1FEF4457580167E30846DE19160 /* PickerWithSegmentedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C7CF21DA4BF24F24FB04A1B26400C9 /* PickerWithSegmentedStyle.swift */; };
+		B6356A4E6355767E65E1752D75CDF7A9 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2EBFB161F4CBF18D36759CBC4B4D0A /* Modifiers.swift */; };
+		BA1248277B69ABF69E49AFBD84D801FF /* PlatformView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A235CE1698DCF0389FE2AE61E682B8D9 /* PlatformView.swift */; };
+		BCFDAD54FCF55892F6E7E1698B406943 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */; };
+		C2E6C2947C9DF3170C3DAB25ECA5C71F /* SearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28A623C442423927733C6456F7A2498E /* SearchField.swift */; };
+		C423335F1933A37F35EAD4F17903888D /* ToggleWithButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52C7EC96DE2FED65562FF4DA572B734 /* ToggleWithButtonStyle.swift */; };
+		C44FF33C4E7BEBB1B454639A9BE71AB6 /* NavigationStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEF61C7C88D0D5E9264AD32E4341D9B /* NavigationStack.swift */; };
+		CBDDCC2545954365F1D3EDD5A0559D17 /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF07D5D2B7C8D7727AEB2DBC078E4004 /* List.swift */; };
+		D0EC343AA5A8BAAEF5591A3CA300060E /* ListWithInsetStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAB4B99C16223D1D3AC25091BEA08742 /* ListWithInsetStyle.swift */; };
+		DC412401B525471EE26C9509E169E487 /* ListWithBorderedStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77338313CA3BB5BE486A932FAF7895F9 /* ListWithBorderedStyle.swift */; };
+		DE8F4823A7ABDE9EA29389A733665930 /* PlatformVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 264C28A5FAAB77C34D56F3E471ECE092 /* PlatformVersion.swift */; };
+		DF06DA45383C5D176C05B4A7D637005A /* Introspect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946F8160746E0B21D5C4E21AB5C0CEC1 /* Introspect.swift */; };
+		E3C5B9BF94C85F1B0EBEAE96B80DB84E /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CEABF1FC24F2ED3C86C3765D48EFAF5 /* TextField.swift */; };
+		E74B9F5AA6D31BD475873BE9D6D57CEB /* TextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC889AF1F263E643A20C6F79E9A137E9 /* TextEditor.swift */; };
+		FB1F8A0E09DFEBBF2BF00E44200F4B4A /* NavigationViewWithStackStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA652CFE4DA00CAE7BC4B343F2D58AF9 /* NavigationViewWithStackStyle.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		28536276BB22675886C373F922C50A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF94F6BC609DB21F0194205C23064AFC;
+			remoteInfo = SwiftUIIntrospect;
+		};
+		E8CF64C2C4F75855C645486339E3B321 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FF94F6BC609DB21F0194205C23064AFC;
+			remoteInfo = SwiftUIIntrospect;
+		};
+		F8CBE15BCA96799CCFCF791CC899A8C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E3BF7971BE024EA2CBC58C6A22E7F7CD;
+			remoteInfo = ExytePopupView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		01A8D11F609D0870829B483CC3B8B4DE /* Pods-Thesisfy.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Thesisfy.modulemap"; sourceTree = "<group>"; };
+		04D736206F07AEAC8DD0A0C0377E079D /* Pods-Thesisfy-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Thesisfy-Info.plist"; sourceTree = "<group>"; };
+		05A6A49CD3667F84504C07F31F6B1B7F /* SecureField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureField.swift; path = Sources/ViewTypes/SecureField.swift; sourceTree = "<group>"; };
+		064265C60BCC01D9670ED5D9D1112244 /* SwiftUIIntrospect-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SwiftUIIntrospect-Info.plist"; sourceTree = "<group>"; };
+		0C38EB58039EBE1FD8AE5A8177570D9F /* Popover.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Popover.swift; path = Sources/ViewTypes/Popover.swift; sourceTree = "<group>"; };
+		0E26E1DC860522C500B5505E055EDB95 /* SwiftUIIntrospect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftUIIntrospect.release.xcconfig; sourceTree = "<group>"; };
+		159302DB3191AED5B82C0663443EFA22 /* ListCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListCell.swift; path = Sources/ViewTypes/ListCell.swift; sourceTree = "<group>"; };
+		189B53D61A58E3AF3032D7B76783A9B8 /* ViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = Sources/ViewTypes/ViewController.swift; sourceTree = "<group>"; };
+		1A3D107EE9B162777E2EDACA5A363E9A /* DatePickerWithWheelStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerWithWheelStyle.swift; path = Sources/ViewTypes/DatePickerWithWheelStyle.swift; sourceTree = "<group>"; };
+		1A913C9E53A75B5DF25B15D76A8BF91D /* DatePickerWithFieldStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerWithFieldStyle.swift; path = Sources/ViewTypes/DatePickerWithFieldStyle.swift; sourceTree = "<group>"; };
+		1C8031220F7ECC04F0D76F050E0655F4 /* SwiftUIIntrospect */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftUIIntrospect; path = SwiftUIIntrospect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1CDCF470FEDC73478FD6853B9F99BD1B /* Stepper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Stepper.swift; path = Sources/ViewTypes/Stepper.swift; sourceTree = "<group>"; };
+		1E2EBFB161F4CBF18D36759CBC4B4D0A /* Modifiers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Modifiers.swift; path = Sources/PopupView/Modifiers.swift; sourceTree = "<group>"; };
+		1EEF61C7C88D0D5E9264AD32E4341D9B /* NavigationStack.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationStack.swift; path = Sources/ViewTypes/NavigationStack.swift; sourceTree = "<group>"; };
+		1FEDE3E267C395A30CF47E365E287D26 /* View.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = View.swift; path = Sources/ViewTypes/View.swift; sourceTree = "<group>"; };
+		24F67A81850EB78F8CDA38422BE627AC /* Button.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Sources/ViewTypes/Button.swift; sourceTree = "<group>"; };
+		264C28A5FAAB77C34D56F3E471ECE092 /* PlatformVersion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlatformVersion.swift; path = Sources/PlatformVersion.swift; sourceTree = "<group>"; };
+		281A16AD89C0AD136385A6505C737F76 /* PickerWithMenuStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerWithMenuStyle.swift; path = Sources/ViewTypes/PickerWithMenuStyle.swift; sourceTree = "<group>"; };
+		28A623C442423927733C6456F7A2498E /* SearchField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchField.swift; path = Sources/ViewTypes/SearchField.swift; sourceTree = "<group>"; };
+		2C8029C8AED80179625DF212D33DB14C /* SwiftUIIntrospect-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftUIIntrospect-prefix.pch"; sourceTree = "<group>"; };
+		35F809DFF8D253040FDDD70CB3A1DD60 /* Window.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Window.swift; path = Sources/ViewTypes/Window.swift; sourceTree = "<group>"; };
+		384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3D691748B08FE447E10F3270FF9F2FFF /* ListWithSidebarStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListWithSidebarStyle.swift; path = Sources/ViewTypes/ListWithSidebarStyle.swift; sourceTree = "<group>"; };
+		4445E8C4AD0685B130F35DA734397641 /* ColorPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = Sources/ViewTypes/ColorPicker.swift; sourceTree = "<group>"; };
+		448983DD14DF0028B9BEDAB991660137 /* DatePickerWithGraphicalStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerWithGraphicalStyle.swift; path = Sources/ViewTypes/DatePickerWithGraphicalStyle.swift; sourceTree = "<group>"; };
+		4510428E9CE510213CE5D28097E07045 /* Sheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Sheet.swift; path = Sources/ViewTypes/Sheet.swift; sourceTree = "<group>"; };
+		46DD59DE759324C7920A8447CD4B0D72 /* ExytePopupView */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ExytePopupView; path = ExytePopupView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4703DDA7309EF9947C3F8D0423EC64E8 /* IntrospectableViewType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntrospectableViewType.swift; path = Sources/IntrospectableViewType.swift; sourceTree = "<group>"; };
+		4D103431928C2FBF5A7E8AC7534C9BAD /* Pods-Thesisfy-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Thesisfy-dummy.m"; sourceTree = "<group>"; };
+		4F0F8BE8959AB467D63B9E90BD0E1651 /* Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Map.swift; path = Sources/ViewTypes/Map.swift; sourceTree = "<group>"; };
+		515B82B7ED9E10681A1AE2E4ECDE518B /* Pods-Thesisfy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Thesisfy.release.xcconfig"; sourceTree = "<group>"; };
+		5380A9F1270B0F304732A62CBE408070 /* TabViewWithPageStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabViewWithPageStyle.swift; path = Sources/ViewTypes/TabViewWithPageStyle.swift; sourceTree = "<group>"; };
+		545B4E33C91D43FECB13FA392BE67872 /* Toggle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Toggle.swift; path = Sources/ViewTypes/Toggle.swift; sourceTree = "<group>"; };
+		604B4556E4A11CEF4C2417CFA920AB2D /* SwiftUIIntrospect-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftUIIntrospect-dummy.m"; sourceTree = "<group>"; };
+		66BFE80CE2F704AEC1F9A8208F43B031 /* ToggleWithCheckboxStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleWithCheckboxStyle.swift; path = Sources/ViewTypes/ToggleWithCheckboxStyle.swift; sourceTree = "<group>"; };
+		674FF110B3A4EBC89D638752AAE44AA4 /* ToggleWithSwitchStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleWithSwitchStyle.swift; path = Sources/ViewTypes/ToggleWithSwitchStyle.swift; sourceTree = "<group>"; };
+		6BA89F1422A84CA11BEC7E367E2A1AAC /* Pods-Thesisfy-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Thesisfy-umbrella.h"; sourceTree = "<group>"; };
+		7088A3170ECB05B98823F875B7CE75BF /* PickerWithWheelStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerWithWheelStyle.swift; path = Sources/ViewTypes/PickerWithWheelStyle.swift; sourceTree = "<group>"; };
+		728CBC80D1139EDD871E7A4E794D1E64 /* ListWithGroupedStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListWithGroupedStyle.swift; path = Sources/ViewTypes/ListWithGroupedStyle.swift; sourceTree = "<group>"; };
+		746158D76CFDD40C52B70D35A50F7DC6 /* ExytePopupView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = ExytePopupView.modulemap; sourceTree = "<group>"; };
+		74C8AD1DE023E82E4FAE4C82655A8A55 /* SwiftUIIntrospect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftUIIntrospect.debug.xcconfig; sourceTree = "<group>"; };
+		759DFFD46BE6455025197CA303DFCBBB /* PageControl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PageControl.swift; path = Sources/ViewTypes/PageControl.swift; sourceTree = "<group>"; };
+		77338313CA3BB5BE486A932FAF7895F9 /* ListWithBorderedStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListWithBorderedStyle.swift; path = Sources/ViewTypes/ListWithBorderedStyle.swift; sourceTree = "<group>"; };
+		7B74BC4BD83739CA3FCF08E7734F2534 /* PlatformViewVersion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlatformViewVersion.swift; path = Sources/PlatformViewVersion.swift; sourceTree = "<group>"; };
+		7CA8ADF79AA4FD7A9D2F2F2EF17EB3B2 /* NavigationViewWithColumnsStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationViewWithColumnsStyle.swift; path = Sources/ViewTypes/NavigationViewWithColumnsStyle.swift; sourceTree = "<group>"; };
+		7CEABF1FC24F2ED3C86C3765D48EFAF5 /* TextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextField.swift; path = Sources/ViewTypes/TextField.swift; sourceTree = "<group>"; };
+		85C7CF21DA4BF24F24FB04A1B26400C9 /* PickerWithSegmentedStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PickerWithSegmentedStyle.swift; path = Sources/ViewTypes/PickerWithSegmentedStyle.swift; sourceTree = "<group>"; };
+		8EEE03AC4C94AA7DE6BDB1CFF9F7916C /* Weak.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Weak.swift; path = Sources/Weak.swift; sourceTree = "<group>"; };
+		9211EF3FDCF74DCC5D47D5D28FA28FA4 /* IntrospectionView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntrospectionView.swift; path = Sources/IntrospectionView.swift; sourceTree = "<group>"; };
+		936C4E8C0CA62A90AAE9C9FC525E9839 /* TabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabView.swift; path = Sources/ViewTypes/TabView.swift; sourceTree = "<group>"; };
+		94216EC60DE776A1E0B2264F5CF2D22D /* DatePickerWithStepperFieldStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerWithStepperFieldStyle.swift; path = Sources/ViewTypes/DatePickerWithStepperFieldStyle.swift; sourceTree = "<group>"; };
+		946F8160746E0B21D5C4E21AB5C0CEC1 /* Introspect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Introspect.swift; path = Sources/Introspect.swift; sourceTree = "<group>"; };
+		95739CF1B8EFB1238437EE530D9C2248 /* SwiftUIIntrospect.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftUIIntrospect.modulemap; sourceTree = "<group>"; };
+		99E2F695B50B2715043FF28EF3665855 /* DatePickerWithCompactStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePickerWithCompactStyle.swift; path = Sources/ViewTypes/DatePickerWithCompactStyle.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A235CE1698DCF0389FE2AE61E682B8D9 /* PlatformView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PlatformView.swift; path = Sources/PlatformView.swift; sourceTree = "<group>"; };
+		A52C7EC96DE2FED65562FF4DA572B734 /* ToggleWithButtonStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToggleWithButtonStyle.swift; path = Sources/ViewTypes/ToggleWithButtonStyle.swift; sourceTree = "<group>"; };
+		AAEA38E313AF6A21AD8A3E1B1F09DF6A /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Sources/Utils.swift; sourceTree = "<group>"; };
+		ABADB80E8E535BE3A6A29508C6A9208D /* Pods-Thesisfy */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Thesisfy"; path = Pods_Thesisfy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC889AF1F263E643A20C6F79E9A137E9 /* TextEditor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextEditor.swift; path = Sources/ViewTypes/TextEditor.swift; sourceTree = "<group>"; };
+		AE78681ECD705E09D896A623A719DCEF /* PopupScrollViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupScrollViewDelegate.swift; path = Sources/PopupView/PopupScrollViewDelegate.swift; sourceTree = "<group>"; };
+		AE8F6BCAA185809B8C03FFF4CC2A711B /* ExytePopupView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExytePopupView-prefix.pch"; sourceTree = "<group>"; };
+		B75FBC3274C52033BB3A451AE3F7571B /* Table.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Table.swift; path = Sources/ViewTypes/Table.swift; sourceTree = "<group>"; };
+		B98B1148439EFB2B5A2809B83FA4B478 /* FullScreenCover.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullScreenCover.swift; path = Sources/ViewTypes/FullScreenCover.swift; sourceTree = "<group>"; };
+		BAFE90D05FF1A50549F294E315176BCB /* ProgressViewWithCircularStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressViewWithCircularStyle.swift; path = Sources/ViewTypes/ProgressViewWithCircularStyle.swift; sourceTree = "<group>"; };
+		BB2E755FEFBC7119C90E6E973FED1365 /* FormWithGroupedStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FormWithGroupedStyle.swift; path = Sources/ViewTypes/FormWithGroupedStyle.swift; sourceTree = "<group>"; };
+		BFC627F2A9F9B5C1C176AAF7E5C86F3B /* ExytePopupView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ExytePopupView-Info.plist"; sourceTree = "<group>"; };
+		C40D73C2C20417FEF043785F640D715F /* ExytePopupView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ExytePopupView.release.xcconfig; sourceTree = "<group>"; };
+		C50D830F75D02AAD528F56DA22E41183 /* Pods-Thesisfy-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Thesisfy-acknowledgements.plist"; sourceTree = "<group>"; };
+		CC0C9056A9BB830246E3D49721E111AB /* DatePicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DatePicker.swift; path = Sources/ViewTypes/DatePicker.swift; sourceTree = "<group>"; };
+		CF364970F115DA2D1C8F54C0DF3B3539 /* ProgressViewWithLinearStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProgressViewWithLinearStyle.swift; path = Sources/ViewTypes/ProgressViewWithLinearStyle.swift; sourceTree = "<group>"; };
+		D429F9C4BC6836324212F030A0911993 /* ExytePopupView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ExytePopupView-dummy.m"; sourceTree = "<group>"; };
+		D6A2590CD831E6A07AF3D1836028746F /* Pods-Thesisfy-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Thesisfy-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DAB4B99C16223D1D3AC25091BEA08742 /* ListWithInsetStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListWithInsetStyle.swift; path = Sources/ViewTypes/ListWithInsetStyle.swift; sourceTree = "<group>"; };
+		DF6E0B509BDB3817CD1641A37374775F /* VideoPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VideoPlayer.swift; path = Sources/ViewTypes/VideoPlayer.swift; sourceTree = "<group>"; };
+		E090891A8A9DA991585669B7D5352DBF /* PopupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PopupView.swift; path = Sources/PopupView/PopupView.swift; sourceTree = "<group>"; };
+		E33960E6F06EEE80D32C7094EBB971DC /* SwiftUIIntrospect-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftUIIntrospect-umbrella.h"; sourceTree = "<group>"; };
+		E51A91094B3A59446FE8F887769445E7 /* Form.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Form.swift; path = Sources/ViewTypes/Form.swift; sourceTree = "<group>"; };
+		E7001C092EB4A85C669A39E704ECE5FA /* IntrospectionSelector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IntrospectionSelector.swift; path = Sources/IntrospectionSelector.swift; sourceTree = "<group>"; };
+		EA9493CA4837A1AB703A7687F16D8F2A /* NavigationSplitView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationSplitView.swift; path = Sources/ViewTypes/NavigationSplitView.swift; sourceTree = "<group>"; };
+		EC80F9EFE7C76D68D42BF6F6E0129675 /* ExytePopupView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ExytePopupView.debug.xcconfig; sourceTree = "<group>"; };
+		ECA03E575E90C9BDA00F653749460842 /* Pods-Thesisfy-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Thesisfy-frameworks.sh"; sourceTree = "<group>"; };
+		ECE1CFEB43629B1412275A29EE702319 /* TextFieldWithVerticalAxis.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TextFieldWithVerticalAxis.swift; path = Sources/ViewTypes/TextFieldWithVerticalAxis.swift; sourceTree = "<group>"; };
+		EF07D5D2B7C8D7727AEB2DBC078E4004 /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = Sources/ViewTypes/List.swift; sourceTree = "<group>"; };
+		F09823889626094907893467F4405528 /* ScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScrollView.swift; path = Sources/ViewTypes/ScrollView.swift; sourceTree = "<group>"; };
+		F1203D0D792CEB6C008BAE02F10D7226 /* Utils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Sources/PopupView/Utils.swift; sourceTree = "<group>"; };
+		F16DCA9CA81F984DF2F92D54A4F165E7 /* ListWithInsetGroupedStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListWithInsetGroupedStyle.swift; path = Sources/ViewTypes/ListWithInsetGroupedStyle.swift; sourceTree = "<group>"; };
+		F3E04ECDAC8A98821679E7C927D61BB6 /* Pods-Thesisfy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Thesisfy.debug.xcconfig"; sourceTree = "<group>"; };
+		FA33B9F2F61E1B5AAF052D96DDCCA115 /* Slider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Slider.swift; path = Sources/ViewTypes/Slider.swift; sourceTree = "<group>"; };
+		FA652CFE4DA00CAE7BC4B343F2D58AF9 /* NavigationViewWithStackStyle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationViewWithStackStyle.swift; path = Sources/ViewTypes/NavigationViewWithStackStyle.swift; sourceTree = "<group>"; };
+		FBA36928C71C69D33D6E4ACAEC0327C7 /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SignInWithAppleButton.swift; path = Sources/ViewTypes/SignInWithAppleButton.swift; sourceTree = "<group>"; };
+		FC3227A198DB0CD61F212CDBEAD9BB20 /* FullscreenPopup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FullscreenPopup.swift; path = Sources/PopupView/FullscreenPopup.swift; sourceTree = "<group>"; };
+		FD3007EB2CC95CE9EA46617BC2320FBA /* ExytePopupView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ExytePopupView-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8F6FCBB8AF94FE25F6C6ABE0FFA07EA7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				18D6BDD3E7C5B253FE4E0E591C9DBCCE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C09AD901EEBB22AD785E87DBD272135A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				44D3F832660EF5CF97DFC790BD60E384 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D55AC5343A3CF79363FD1C61DDA8DB68 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BCFDAD54FCF55892F6E7E1698B406943 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		144EFC776A118DED478FA0338E3EF4DA /* SwiftUIIntrospect */ = {
+			isa = PBXGroup;
+			children = (
+				24F67A81850EB78F8CDA38422BE627AC /* Button.swift */,
+				4445E8C4AD0685B130F35DA734397641 /* ColorPicker.swift */,
+				CC0C9056A9BB830246E3D49721E111AB /* DatePicker.swift */,
+				99E2F695B50B2715043FF28EF3665855 /* DatePickerWithCompactStyle.swift */,
+				1A913C9E53A75B5DF25B15D76A8BF91D /* DatePickerWithFieldStyle.swift */,
+				448983DD14DF0028B9BEDAB991660137 /* DatePickerWithGraphicalStyle.swift */,
+				94216EC60DE776A1E0B2264F5CF2D22D /* DatePickerWithStepperFieldStyle.swift */,
+				1A3D107EE9B162777E2EDACA5A363E9A /* DatePickerWithWheelStyle.swift */,
+				E51A91094B3A59446FE8F887769445E7 /* Form.swift */,
+				BB2E755FEFBC7119C90E6E973FED1365 /* FormWithGroupedStyle.swift */,
+				B98B1148439EFB2B5A2809B83FA4B478 /* FullScreenCover.swift */,
+				946F8160746E0B21D5C4E21AB5C0CEC1 /* Introspect.swift */,
+				4703DDA7309EF9947C3F8D0423EC64E8 /* IntrospectableViewType.swift */,
+				E7001C092EB4A85C669A39E704ECE5FA /* IntrospectionSelector.swift */,
+				9211EF3FDCF74DCC5D47D5D28FA28FA4 /* IntrospectionView.swift */,
+				EF07D5D2B7C8D7727AEB2DBC078E4004 /* List.swift */,
+				159302DB3191AED5B82C0663443EFA22 /* ListCell.swift */,
+				77338313CA3BB5BE486A932FAF7895F9 /* ListWithBorderedStyle.swift */,
+				728CBC80D1139EDD871E7A4E794D1E64 /* ListWithGroupedStyle.swift */,
+				F16DCA9CA81F984DF2F92D54A4F165E7 /* ListWithInsetGroupedStyle.swift */,
+				DAB4B99C16223D1D3AC25091BEA08742 /* ListWithInsetStyle.swift */,
+				3D691748B08FE447E10F3270FF9F2FFF /* ListWithSidebarStyle.swift */,
+				4F0F8BE8959AB467D63B9E90BD0E1651 /* Map.swift */,
+				EA9493CA4837A1AB703A7687F16D8F2A /* NavigationSplitView.swift */,
+				1EEF61C7C88D0D5E9264AD32E4341D9B /* NavigationStack.swift */,
+				7CA8ADF79AA4FD7A9D2F2F2EF17EB3B2 /* NavigationViewWithColumnsStyle.swift */,
+				FA652CFE4DA00CAE7BC4B343F2D58AF9 /* NavigationViewWithStackStyle.swift */,
+				759DFFD46BE6455025197CA303DFCBBB /* PageControl.swift */,
+				281A16AD89C0AD136385A6505C737F76 /* PickerWithMenuStyle.swift */,
+				85C7CF21DA4BF24F24FB04A1B26400C9 /* PickerWithSegmentedStyle.swift */,
+				7088A3170ECB05B98823F875B7CE75BF /* PickerWithWheelStyle.swift */,
+				264C28A5FAAB77C34D56F3E471ECE092 /* PlatformVersion.swift */,
+				A235CE1698DCF0389FE2AE61E682B8D9 /* PlatformView.swift */,
+				7B74BC4BD83739CA3FCF08E7734F2534 /* PlatformViewVersion.swift */,
+				0C38EB58039EBE1FD8AE5A8177570D9F /* Popover.swift */,
+				BAFE90D05FF1A50549F294E315176BCB /* ProgressViewWithCircularStyle.swift */,
+				CF364970F115DA2D1C8F54C0DF3B3539 /* ProgressViewWithLinearStyle.swift */,
+				F09823889626094907893467F4405528 /* ScrollView.swift */,
+				28A623C442423927733C6456F7A2498E /* SearchField.swift */,
+				05A6A49CD3667F84504C07F31F6B1B7F /* SecureField.swift */,
+				4510428E9CE510213CE5D28097E07045 /* Sheet.swift */,
+				FBA36928C71C69D33D6E4ACAEC0327C7 /* SignInWithAppleButton.swift */,
+				FA33B9F2F61E1B5AAF052D96DDCCA115 /* Slider.swift */,
+				1CDCF470FEDC73478FD6853B9F99BD1B /* Stepper.swift */,
+				B75FBC3274C52033BB3A451AE3F7571B /* Table.swift */,
+				936C4E8C0CA62A90AAE9C9FC525E9839 /* TabView.swift */,
+				5380A9F1270B0F304732A62CBE408070 /* TabViewWithPageStyle.swift */,
+				AC889AF1F263E643A20C6F79E9A137E9 /* TextEditor.swift */,
+				7CEABF1FC24F2ED3C86C3765D48EFAF5 /* TextField.swift */,
+				ECE1CFEB43629B1412275A29EE702319 /* TextFieldWithVerticalAxis.swift */,
+				545B4E33C91D43FECB13FA392BE67872 /* Toggle.swift */,
+				A52C7EC96DE2FED65562FF4DA572B734 /* ToggleWithButtonStyle.swift */,
+				66BFE80CE2F704AEC1F9A8208F43B031 /* ToggleWithCheckboxStyle.swift */,
+				674FF110B3A4EBC89D638752AAE44AA4 /* ToggleWithSwitchStyle.swift */,
+				AAEA38E313AF6A21AD8A3E1B1F09DF6A /* Utils.swift */,
+				DF6E0B509BDB3817CD1641A37374775F /* VideoPlayer.swift */,
+				1FEDE3E267C395A30CF47E365E287D26 /* View.swift */,
+				189B53D61A58E3AF3032D7B76783A9B8 /* ViewController.swift */,
+				8EEE03AC4C94AA7DE6BDB1CFF9F7916C /* Weak.swift */,
+				35F809DFF8D253040FDDD70CB3A1DD60 /* Window.swift */,
+				1CFC976E043BC69E3B49A23ECD80549A /* Support Files */,
+			);
+			name = SwiftUIIntrospect;
+			path = SwiftUIIntrospect;
+			sourceTree = "<group>";
+		};
+		1CFC976E043BC69E3B49A23ECD80549A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				95739CF1B8EFB1238437EE530D9C2248 /* SwiftUIIntrospect.modulemap */,
+				604B4556E4A11CEF4C2417CFA920AB2D /* SwiftUIIntrospect-dummy.m */,
+				064265C60BCC01D9670ED5D9D1112244 /* SwiftUIIntrospect-Info.plist */,
+				2C8029C8AED80179625DF212D33DB14C /* SwiftUIIntrospect-prefix.pch */,
+				E33960E6F06EEE80D32C7094EBB971DC /* SwiftUIIntrospect-umbrella.h */,
+				74C8AD1DE023E82E4FAE4C82655A8A55 /* SwiftUIIntrospect.debug.xcconfig */,
+				0E26E1DC860522C500B5505E055EDB95 /* SwiftUIIntrospect.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftUIIntrospect";
+			sourceTree = "<group>";
+		};
+		275333A0972B0DC83898643A5C548348 /* Pods-Thesisfy */ = {
+			isa = PBXGroup;
+			children = (
+				01A8D11F609D0870829B483CC3B8B4DE /* Pods-Thesisfy.modulemap */,
+				D6A2590CD831E6A07AF3D1836028746F /* Pods-Thesisfy-acknowledgements.markdown */,
+				C50D830F75D02AAD528F56DA22E41183 /* Pods-Thesisfy-acknowledgements.plist */,
+				4D103431928C2FBF5A7E8AC7534C9BAD /* Pods-Thesisfy-dummy.m */,
+				ECA03E575E90C9BDA00F653749460842 /* Pods-Thesisfy-frameworks.sh */,
+				04D736206F07AEAC8DD0A0C0377E079D /* Pods-Thesisfy-Info.plist */,
+				6BA89F1422A84CA11BEC7E367E2A1AAC /* Pods-Thesisfy-umbrella.h */,
+				F3E04ECDAC8A98821679E7C927D61BB6 /* Pods-Thesisfy.debug.xcconfig */,
+				515B82B7ED9E10681A1AE2E4ECDE518B /* Pods-Thesisfy.release.xcconfig */,
+			);
+			name = "Pods-Thesisfy";
+			path = "Target Support Files/Pods-Thesisfy";
+			sourceTree = "<group>";
+		};
+		335F3C2997CE746608FDB8B2CBBB19FB /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				275333A0972B0DC83898643A5C548348 /* Pods-Thesisfy */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		3B4DF4ED66A753C47D2282E2DFEE22E6 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				746158D76CFDD40C52B70D35A50F7DC6 /* ExytePopupView.modulemap */,
+				D429F9C4BC6836324212F030A0911993 /* ExytePopupView-dummy.m */,
+				BFC627F2A9F9B5C1C176AAF7E5C86F3B /* ExytePopupView-Info.plist */,
+				AE8F6BCAA185809B8C03FFF4CC2A711B /* ExytePopupView-prefix.pch */,
+				FD3007EB2CC95CE9EA46617BC2320FBA /* ExytePopupView-umbrella.h */,
+				EC80F9EFE7C76D68D42BF6F6E0129675 /* ExytePopupView.debug.xcconfig */,
+				C40D73C2C20417FEF043785F640D715F /* ExytePopupView.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/ExytePopupView";
+			sourceTree = "<group>";
+		};
+		8A163A5560056EA3AF37DB7104E56D32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC52EAF26D6CCCBDDE27F5060A4E29CC /* ExytePopupView */,
+				144EFC776A118DED478FA0338E3EF4DA /* SwiftUIIntrospect */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CC52EAF26D6CCCBDDE27F5060A4E29CC /* ExytePopupView */ = {
+			isa = PBXGroup;
+			children = (
+				FC3227A198DB0CD61F212CDBEAD9BB20 /* FullscreenPopup.swift */,
+				1E2EBFB161F4CBF18D36759CBC4B4D0A /* Modifiers.swift */,
+				AE78681ECD705E09D896A623A719DCEF /* PopupScrollViewDelegate.swift */,
+				E090891A8A9DA991585669B7D5352DBF /* PopupView.swift */,
+				F1203D0D792CEB6C008BAE02F10D7226 /* Utils.swift */,
+				3B4DF4ED66A753C47D2282E2DFEE22E6 /* Support Files */,
+			);
+			name = ExytePopupView;
+			path = ExytePopupView;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				8A163A5560056EA3AF37DB7104E56D32 /* Pods */,
+				E9BA1B765F70D677117586D0CA17891A /* Products */,
+				335F3C2997CE746608FDB8B2CBBB19FB /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E4801F62A6B08CD9B5410329F1A18FDE /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4801F62A6B08CD9B5410329F1A18FDE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				384DDA2CB25005BD6479B5987C619DD4 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E9BA1B765F70D677117586D0CA17891A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				46DD59DE759324C7920A8447CD4B0D72 /* ExytePopupView */,
+				ABADB80E8E535BE3A6A29508C6A9208D /* Pods-Thesisfy */,
+				1C8031220F7ECC04F0D76F050E0655F4 /* SwiftUIIntrospect */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		006CBD9D50521EA073C8D60F6F3732DE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				926B033D364F8D9E72F6F4C66A237A6E /* ExytePopupView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D2FC374590D488E2F2006E16D9FE298 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				681F1D1EFA955B298742C3A5402A054A /* SwiftUIIntrospect-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F43CCB2700B2ABCE1809424E03435B27 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				45DB7A0A5F1FB54FA84B9FFD78CB66EE /* Pods-Thesisfy-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		699E48F8DACD22BFDB833BB48FC580B3 /* Pods-Thesisfy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F961A134E201F431EBC9CAEEC651E45A /* Build configuration list for PBXNativeTarget "Pods-Thesisfy" */;
+			buildPhases = (
+				F43CCB2700B2ABCE1809424E03435B27 /* Headers */,
+				4B95C8BEA93FF8917D8C134393F81649 /* Sources */,
+				8F6FCBB8AF94FE25F6C6ABE0FFA07EA7 /* Frameworks */,
+				FE290E59EAD173956053C0CBD175CDAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B137156D7FDEDE1306085A31D2B8FD32 /* PBXTargetDependency */,
+				005DBDC456D055893C2C47A5FF5F0547 /* PBXTargetDependency */,
+			);
+			name = "Pods-Thesisfy";
+			productName = Pods_Thesisfy;
+			productReference = ABADB80E8E535BE3A6A29508C6A9208D /* Pods-Thesisfy */;
+			productType = "com.apple.product-type.framework";
+		};
+		E3BF7971BE024EA2CBC58C6A22E7F7CD /* ExytePopupView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F5BB94D06A88A812640CF03AC9834A82 /* Build configuration list for PBXNativeTarget "ExytePopupView" */;
+			buildPhases = (
+				006CBD9D50521EA073C8D60F6F3732DE /* Headers */,
+				973107349C9CE2E53C2C28FB5F3977C6 /* Sources */,
+				D55AC5343A3CF79363FD1C61DDA8DB68 /* Frameworks */,
+				8A0B72CD89C4F7C904B91462E229D084 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				25721ECB5E3485838FF1D2BFD77FEE1B /* PBXTargetDependency */,
+			);
+			name = ExytePopupView;
+			productName = ExytePopupView;
+			productReference = 46DD59DE759324C7920A8447CD4B0D72 /* ExytePopupView */;
+			productType = "com.apple.product-type.framework";
+		};
+		FF94F6BC609DB21F0194205C23064AFC /* SwiftUIIntrospect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CCFC4357D14F35FB0ED37D2D03FBE1DD /* Build configuration list for PBXNativeTarget "SwiftUIIntrospect" */;
+			buildPhases = (
+				8D2FC374590D488E2F2006E16D9FE298 /* Headers */,
+				36F4E264BA2022BD7367BA8023032C08 /* Sources */,
+				C09AD901EEBB22AD785E87DBD272135A /* Frameworks */,
+				CA2C397D21BEAA831348CFE2903A1EF6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftUIIntrospect;
+			productName = SwiftUIIntrospect;
+			productReference = 1C8031220F7ECC04F0D76F050E0655F4 /* SwiftUIIntrospect */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E9BA1B765F70D677117586D0CA17891A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E3BF7971BE024EA2CBC58C6A22E7F7CD /* ExytePopupView */,
+				699E48F8DACD22BFDB833BB48FC580B3 /* Pods-Thesisfy */,
+				FF94F6BC609DB21F0194205C23064AFC /* SwiftUIIntrospect */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A0B72CD89C4F7C904B91462E229D084 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA2C397D21BEAA831348CFE2903A1EF6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE290E59EAD173956053C0CBD175CDAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		36F4E264BA2022BD7367BA8023032C08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A55E8FB5E00F19043C0F59000E65F1E /* Button.swift in Sources */,
+				472AA3D26506A400317EA88F8708BF0D /* ColorPicker.swift in Sources */,
+				3437354B2179B2F687F7845DFCFA76CB /* DatePicker.swift in Sources */,
+				692C21403539FC61A212747967568062 /* DatePickerWithCompactStyle.swift in Sources */,
+				5C2696FE574C5E06556D4E0513BC90DA /* DatePickerWithFieldStyle.swift in Sources */,
+				8DDD7B4E628CACA859610A6C0C72843F /* DatePickerWithGraphicalStyle.swift in Sources */,
+				7217DFEBD85F490BDFA0397D8C73E080 /* DatePickerWithStepperFieldStyle.swift in Sources */,
+				32A9B5594D54E77C265536959D301F96 /* DatePickerWithWheelStyle.swift in Sources */,
+				076A724978365E9FD314B0ACEB57FA31 /* Form.swift in Sources */,
+				7579892C2FF0A667E4C67DE41624093C /* FormWithGroupedStyle.swift in Sources */,
+				AFA69AB12BD69959719B9ED9F8CC7F65 /* FullScreenCover.swift in Sources */,
+				DF06DA45383C5D176C05B4A7D637005A /* Introspect.swift in Sources */,
+				7004D08F8F5C5688F4FA072F98B894C7 /* IntrospectableViewType.swift in Sources */,
+				01DD24C53F5BC8F168E21682B04B59E6 /* IntrospectionSelector.swift in Sources */,
+				7C87E4ABABABA37FCD381E003681D0E7 /* IntrospectionView.swift in Sources */,
+				CBDDCC2545954365F1D3EDD5A0559D17 /* List.swift in Sources */,
+				1B25922F468E8AA08BCA211164AA5304 /* ListCell.swift in Sources */,
+				DC412401B525471EE26C9509E169E487 /* ListWithBorderedStyle.swift in Sources */,
+				A0904038C4AC59AB4BDB5B5F2DA6B97C /* ListWithGroupedStyle.swift in Sources */,
+				688EFFE15E3DC43CACB6DF0893167129 /* ListWithInsetGroupedStyle.swift in Sources */,
+				D0EC343AA5A8BAAEF5591A3CA300060E /* ListWithInsetStyle.swift in Sources */,
+				41C67A1E0C33674485257AF84B98913F /* ListWithSidebarStyle.swift in Sources */,
+				8DCD39A7FBC65DB009E8949BA8365275 /* Map.swift in Sources */,
+				69AE2B82DDC143E52785FA62488B0A56 /* NavigationSplitView.swift in Sources */,
+				C44FF33C4E7BEBB1B454639A9BE71AB6 /* NavigationStack.swift in Sources */,
+				322D619F8D5776F3EE13AD62BDB0B334 /* NavigationViewWithColumnsStyle.swift in Sources */,
+				FB1F8A0E09DFEBBF2BF00E44200F4B4A /* NavigationViewWithStackStyle.swift in Sources */,
+				0EC082C76AEA98AD903CAA0C5203B4E7 /* PageControl.swift in Sources */,
+				6C6C280CCC277673D027A02D7431B1FC /* PickerWithMenuStyle.swift in Sources */,
+				B5E8D1FEF4457580167E30846DE19160 /* PickerWithSegmentedStyle.swift in Sources */,
+				8CFAF8FFBD2555F0A5BC660D6176502E /* PickerWithWheelStyle.swift in Sources */,
+				DE8F4823A7ABDE9EA29389A733665930 /* PlatformVersion.swift in Sources */,
+				BA1248277B69ABF69E49AFBD84D801FF /* PlatformView.swift in Sources */,
+				93F2F7053A462FB5CE0A6B4BBD373D3A /* PlatformViewVersion.swift in Sources */,
+				9E446B0171EBEE09110F385429B09CC9 /* Popover.swift in Sources */,
+				B062FE353066EC8F69DEA9B6559B3184 /* ProgressViewWithCircularStyle.swift in Sources */,
+				772C58B78FF3DA159E0E30B84028D42E /* ProgressViewWithLinearStyle.swift in Sources */,
+				5E9825B5B0AB9E2633F4B2D21C2EF516 /* ScrollView.swift in Sources */,
+				C2E6C2947C9DF3170C3DAB25ECA5C71F /* SearchField.swift in Sources */,
+				76690CD850E7CD4550F565E3FCFFF164 /* SecureField.swift in Sources */,
+				60F688CA8354A04F81C804D32519EFC5 /* Sheet.swift in Sources */,
+				7F0FF6CC2D6C475FAB36A3696655B685 /* SignInWithAppleButton.swift in Sources */,
+				54D334DD8ED3A9D834262B4470E1F0EE /* Slider.swift in Sources */,
+				9565063E733ECE2A75B398997EB070EA /* Stepper.swift in Sources */,
+				199DD3E6E490230CBA5ECB347A4EF9BC /* SwiftUIIntrospect-dummy.m in Sources */,
+				5D83DC654ECBA557B83971CBB39F3EE5 /* Table.swift in Sources */,
+				7439903B16EEBFA59E1B28B89B63D9B1 /* TabView.swift in Sources */,
+				8D9EFA86320D280FCB330F9328C57C7C /* TabViewWithPageStyle.swift in Sources */,
+				E74B9F5AA6D31BD475873BE9D6D57CEB /* TextEditor.swift in Sources */,
+				E3C5B9BF94C85F1B0EBEAE96B80DB84E /* TextField.swift in Sources */,
+				4A3F72B52A18373934622A2759603250 /* TextFieldWithVerticalAxis.swift in Sources */,
+				2E1DCCB4B40113F544A202AA34C2950D /* Toggle.swift in Sources */,
+				C423335F1933A37F35EAD4F17903888D /* ToggleWithButtonStyle.swift in Sources */,
+				9BACA80BD6A69B8F5290F934F61BE42C /* ToggleWithCheckboxStyle.swift in Sources */,
+				13426A00E163C7530B13F1743ED11A31 /* ToggleWithSwitchStyle.swift in Sources */,
+				7983F05B902567355A991B4DC83894FA /* Utils.swift in Sources */,
+				1C33DBC4CA582D0DA5AFF11753BA3DDE /* VideoPlayer.swift in Sources */,
+				111FAA163DABAD035E2490DCFE6C22E6 /* View.swift in Sources */,
+				8051E9280E71B1E77AABEE0E130F4181 /* ViewController.swift in Sources */,
+				6B559DF783BD6FD67F7CDBBB6A6ABE95 /* Weak.swift in Sources */,
+				0CEB82B5FF5A7F25BF7B1833D0A876A1 /* Window.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4B95C8BEA93FF8917D8C134393F81649 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9EB48205721D7DB15B1A52350BBE6F7 /* Pods-Thesisfy-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		973107349C9CE2E53C2C28FB5F3977C6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8258B26E866A04CFCD55EAF792362D0C /* ExytePopupView-dummy.m in Sources */,
+				15AF9D4DFEAA4D599C22B0B95819260B /* FullscreenPopup.swift in Sources */,
+				B6356A4E6355767E65E1752D75CDF7A9 /* Modifiers.swift in Sources */,
+				32EC6B97E3C3661D6DAFFBEDC23E0CEC /* PopupScrollViewDelegate.swift in Sources */,
+				770A9E072398271F92588CA7DF0AFF66 /* PopupView.swift in Sources */,
+				4A7942CDCB17739AEF39B49069BC8B06 /* Utils.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		005DBDC456D055893C2C47A5FF5F0547 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftUIIntrospect;
+			target = FF94F6BC609DB21F0194205C23064AFC /* SwiftUIIntrospect */;
+			targetProxy = E8CF64C2C4F75855C645486339E3B321 /* PBXContainerItemProxy */;
+		};
+		25721ECB5E3485838FF1D2BFD77FEE1B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftUIIntrospect;
+			target = FF94F6BC609DB21F0194205C23064AFC /* SwiftUIIntrospect */;
+			targetProxy = 28536276BB22675886C373F922C50A2E /* PBXContainerItemProxy */;
+		};
+		B137156D7FDEDE1306085A31D2B8FD32 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ExytePopupView;
+			target = E3BF7971BE024EA2CBC58C6A22E7F7CD /* ExytePopupView */;
+			targetProxy = F8CBE15BCA96799CCFCF791CC899A8C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		4EC3130C02AB5468F773E27923194786 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC80F9EFE7C76D68D42BF6F6E0129675 /* ExytePopupView.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ExytePopupView/ExytePopupView-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ExytePopupView/ExytePopupView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ExytePopupView/ExytePopupView.modulemap";
+				PRODUCT_MODULE_NAME = ExytePopupView;
+				PRODUCT_NAME = ExytePopupView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		59E8734DA70715406493CA912F854277 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		5A49448602EC1B17D12ADB02D6EE73BD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		5B051BFF4B9C17A835FABFB1BA659704 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 515B82B7ED9E10681A1AE2E4ECDE518B /* Pods-Thesisfy.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8641319C2C30C2DF3D182082DCDADF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E26E1DC860522C500B5505E055EDB95 /* SwiftUIIntrospect.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect.modulemap";
+				PRODUCT_MODULE_NAME = SwiftUIIntrospect;
+				PRODUCT_NAME = SwiftUIIntrospect;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.7;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8B99F9BB607123D840BBA68B94EFCBD8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3E04ECDAC8A98821679E7C927D61BB6 /* Pods-Thesisfy.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D10D7B8C0CBA450850820A6B3D0BAD4D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C40D73C2C20417FEF043785F640D715F /* ExytePopupView.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/ExytePopupView/ExytePopupView-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/ExytePopupView/ExytePopupView-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/ExytePopupView/ExytePopupView.modulemap";
+				PRODUCT_MODULE_NAME = ExytePopupView;
+				PRODUCT_NAME = ExytePopupView;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D2AB3812A6CF73DB48FC813C56F9E1EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74C8AD1DE023E82E4FAE4C82655A8A55 /* SwiftUIIntrospect.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect-prefix.pch";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/SwiftUIIntrospect/SwiftUIIntrospect.modulemap";
+				PRODUCT_MODULE_NAME = SwiftUIIntrospect;
+				PRODUCT_NAME = SwiftUIIntrospect;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_VERSION = 5.7;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59E8734DA70715406493CA912F854277 /* Debug */,
+				5A49448602EC1B17D12ADB02D6EE73BD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CCFC4357D14F35FB0ED37D2D03FBE1DD /* Build configuration list for PBXNativeTarget "SwiftUIIntrospect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2AB3812A6CF73DB48FC813C56F9E1EE /* Debug */,
+				8641319C2C30C2DF3D182082DCDADF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F5BB94D06A88A812640CF03AC9834A82 /* Build configuration list for PBXNativeTarget "ExytePopupView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4EC3130C02AB5468F773E27923194786 /* Debug */,
+				D10D7B8C0CBA450850820A6B3D0BAD4D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F961A134E201F431EBC9CAEEC651E45A /* Build configuration list for PBXNativeTarget "Pods-Thesisfy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B99F9BB607123D840BBA68B94EFCBD8 /* Debug */,
+				5B051BFF4B9C17A835FABFB1BA659704 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}
