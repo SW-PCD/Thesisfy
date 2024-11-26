@@ -114,6 +114,11 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		7B084DFB2CF5D00D0085A7D8 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7B6104662CF4C61F00FE810B = {
 			isa = PBXGroup;
 			children = (
@@ -319,6 +324,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 7B6104702CF4C61F00FE810B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 7B084DFB2CF5D00D0085A7D8 /* Products */;
+					ProjectRef = 7B084DF32CF5C9F50085A7D8 /* Thesisfy.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				7B61046E2CF4C61F00FE810B /* Thesisfy */,
