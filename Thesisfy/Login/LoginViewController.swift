@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Alamofire
 
 struct LoginViewController: View {
     @State private var email: String = ""
@@ -70,6 +71,7 @@ struct SetEmailView: View {
             
             HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
                 TextField("이메일을 입력해 주세요", text: $email)
+                    .keyboardType(.emailAddress)
                     .textInputAutocapitalization(.never) // 자동 대문자 비활성화
                     .font(.system(size: Constants.fontSizeS, weight: Constants.fontWeightMedium))
                     .padding(.horizontal, Constants.fontSizeXs)

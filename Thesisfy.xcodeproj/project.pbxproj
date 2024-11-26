@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		51D5DA981BAE410C610C8232 /* Pods_Thesisfy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9D78EF4FFFD4B4D83C431A /* Pods_Thesisfy.framework */; };
+		7B084DEE2CF5C1330085A7D8 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DED2CF5C1330085A7D8 /* APIConstants.swift */; };
+		7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DF02CF5C52F0085A7D8 /* Extension.swift */; };
 		7B6104862CF4C6EC00FE810B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */; };
 		7B6104872CF4C6EC00FE810B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104822CF4C6EC00FE810B /* Assets.xcassets */; };
 		7B6104892CF4C6EC00FE810B /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6104842CF4C6EC00FE810B /* ThesisfyApp.swift */; };
@@ -44,6 +46,10 @@
 /* Begin PBXFileReference section */
 		3F1A704BBDF2FA6B430F271B /* Pods-Thesisfy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.release.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.release.xcconfig"; sourceTree = "<group>"; };
 		6F9D78EF4FFFD4B4D83C431A /* Pods_Thesisfy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thesisfy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B084DED2CF5C1330085A7D8 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		7B084DF02CF5C52F0085A7D8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		7B084DF22CF5C8FC0085A7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7B084DF32CF5C9F50085A7D8 /* Thesisfy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Thesisfy.xcodeproj; path = ../Thesisfy.xcodeproj; sourceTree = "<group>"; };
 		7B61046F2CF4C61F00FE810B /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B6104822CF4C6EC00FE810B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +106,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		7B084DEC2CF5C10E0085A7D8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7B084DED2CF5C1330085A7D8 /* APIConstants.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		7B6104662CF4C61F00FE810B = {
 			isa = PBXGroup;
 			children = (
@@ -129,7 +143,9 @@
 		7B6104852CF4C6EC00FE810B /* Thesisfy */ = {
 			isa = PBXGroup;
 			children = (
+				7B084DF22CF5C8FC0085A7D8 /* Info.plist */,
 				7B6104E82CF4D53300FE810B /* Font */,
+				7B084DEC2CF5C10E0085A7D8 /* Network */,
 				7B6104B12CF4C85B00FE810B /* Data */,
 				7B61048B2CF4C7DC00FE810B /* Login */,
 				7B61048C2CF4C7E100FE810B /* Register */,
@@ -139,6 +155,8 @@
 				7B6104812CF4C6EC00FE810B /* Preview Content */,
 				7B6104822CF4C6EC00FE810B /* Assets.xcassets */,
 				7B6104842CF4C6EC00FE810B /* ThesisfyApp.swift */,
+				7B084DF02CF5C52F0085A7D8 /* Extension.swift */,
+				7B084DF32CF5C9F50085A7D8 /* Thesisfy.xcodeproj */,
 			);
 			path = Thesisfy;
 			sourceTree = "<group>";
@@ -384,12 +402,14 @@
 				7B6104BE2CF4C8C300FE810B /* BeingWrittenView.swift in Sources */,
 				7B6104BF2CF4C8C300FE810B /* AIRecommendView.swift in Sources */,
 				7B6104C02CF4C8C300FE810B /* CompleteThesisView.swift in Sources */,
+				7B084DEE2CF5C1330085A7D8 /* APIConstants.swift in Sources */,
 				7B6104972CF4C83400FE810B /* FirstTipsViewController.swift in Sources */,
 				7B6104982CF4C83400FE810B /* SecondTipsViewController.swift in Sources */,
 				7B6104992CF4C83400FE810B /* ThirdTipsViewController.swift in Sources */,
 				7B61049A2CF4C83400FE810B /* TermsAgreementViewController.swift in Sources */,
 				7B6104A02CF4C83800FE810B /* BaseViewController.swift in Sources */,
 				7B6104AF2CF4C85500FE810B /* Route.swift in Sources */,
+				7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */,
 				7B6104B02CF4C85500FE810B /* Constants.swift in Sources */,
 				7B6104AA2CF4C84400FE810B /* PaperSearchView.swift in Sources */,
 				7B6104AB2CF4C84400FE810B /* SearchView.swift in Sources */,
@@ -530,14 +550,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
+				DEVELOPMENT_TEAM = 5XRD4YUMV6;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thesisfy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -560,14 +582,16 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Thesisfy/Preview Content\"";
+				DEVELOPMENT_TEAM = 5XRD4YUMV6;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Thesisfy/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

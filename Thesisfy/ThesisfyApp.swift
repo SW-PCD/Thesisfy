@@ -12,6 +12,9 @@ struct ThesisfyApp: App {
     var body: some Scene {
         WindowGroup {
             LoginViewController()
+                .onAppear {
+                    UIApplication.shared.hideKeyboardWhenTappedAround()
+                }
         }
     }
 }
