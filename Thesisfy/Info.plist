@@ -5,11 +5,11 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
+		<false/>
+		<key>UIImageName</key>
+		<string>Logo</string>
 		<key>UIColorName</key>
 		<string>white</string>
-		<key>UIImageName</key>
-		<string>launchLogo</string>
 		<key>UILaunchScreen</key>
 		<dict/>
 	</dict>
