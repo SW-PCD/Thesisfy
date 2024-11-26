@@ -38,33 +38,38 @@ struct RegisterViewController: View {
                     
                     Spacer()
                     
-                    Text("    ")
+                    Image("") // 오른쪽 여백 균형을 위해
+                        .resizable()
+                        .frame(width: 20, height: 20)
                 }
-                
-                // Input Views
-                SetEmailView(email: $email)
-                    .padding(.top, 24)
-                
-                SetPasswordView(password: $password)
-                    .padding(.top, 28)
-                
-                SetPasswordConfirmView(password: $confirmPassword)
-                    .padding(.top, 28)
-                
-                SetNickNameView(nickname: $nickname)
-                    .padding(.top, 28)
-                
-                SetJobView()
-                    .padding(.top, 28)
-                
-                Spacer()
-                
-                NavigationLink(destination: TermsAgreementViewController()) {
-                    NextButtonView()
+                .padding(.horizontal, 24)
+
+                ScrollView(showsIndicators: false) {
+                    // Input Views
+                    SetEmailView(email: $email)
+                        .padding(.top, 24)
+                    
+                    SetPasswordView(password: $password)
+                        .padding(.top, 28)
+                    
+                    SetPasswordConfirmView(password: $confirmPassword)
+                        .padding(.top, 28)
+                    
+                    SetNickNameView(nickname: $nickname)
+                        .padding(.top, 28)
+                    
+                    // 수정된 SetJobView 사용
+                    SetJobView()
+                        .padding(.top, 28)
+                    
+                    Spacer()
+                    
+                    NavigationLink(destination: TermsAgreementViewController()) {
+                        NextButtonView()
+                    }
                 }
+                .padding(.horizontal, 24)
             }
-            .padding(.horizontal, 24)
-            
         }
         .navigationBarBackButtonHidden()
     }
@@ -122,25 +127,123 @@ struct SetNickNameView: View {
 
 // MARK: - ZStack으로 드롭다운 메뉴 구현 해보기
 struct SetJobView: View {
-    @State private var selectedJob = "대학생"
-    let jobOptions = ["대학생", "대학원생", "교수", "교직원", "학생", "기타"]
-    
+    @State private var selectedJob: String? = "대학생" // 선택된 직업 상태 변수
+
     var body: some View {
-        VStack {
-            HStack {
-                Text("직업")
-                    .font(.system(size: Constants.fontSizeL, weight: Constants.fontWeightSemibold))
-                Spacer()
-            }
+        VStack(alignment: .leading, spacing: 8) {
+            Text("직업")
+                .font(.system(size: Constants.fontSizeL, weight: Constants.fontWeightSemibold))
+                .foregroundColor(Constants.GrayColorGray900)
             
-            Picker("직업을 선택해주세요", selection: $selectedJob) {
-                ForEach(jobOptions, id: \.self) { job in
-                    Text(job)
+            // JobDropDownPicker 재사용
+            JobDropDownPicker(
+                selection: $selectedJob,
+                options: ["대학생", "대학원생", "교수", "교직원", "학생", "기타"],
+                onSelectionChanged: { selected in
+                    print("선택된 직업: \(selected ?? "없음")") // 선택 시 작업 수행
                 }
-            }
-            .pickerStyle(DefaultPickerStyle())
+            )
             .background(Constants.GrayColorWhite)
             .cornerRadius(6)
+        }
+        .padding(.vertical, 16)
+    }
+}
+
+struct JobDropDownPicker: View {
+    @Binding var selection: String?
+    var options: [String]
+    var maxWidth: CGFloat = .infinity
+    var onSelectionChanged: (String?) -> Void
+
+    @State private var showDropdown = false
+    @SceneStorage("drop_down_zindex") private var index = 1000.0
+    @State private var zindex = 1000.0
+
+    var body: some View {
+        VStack(spacing: 0) {
+            // 상단 선택된 항목 표시
+            HStack {
+                Text(selection ?? "대학생")
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeS)
+                            .weight(Constants.fontWeightMedium)
+                    )
+                    .foregroundColor(Constants.GrayColorGray900)
+
+                Spacer()
+
+                Image(systemName: showDropdown ? "chevron.up" : "chevron.down")
+                    .font(.title3)
+                    .foregroundColor(showDropdown ? Constants.PrimaryColorPrimary600 : .gray)
+            }
+            .padding(.horizontal, Constants.fontSizeXs)
+            .padding(.vertical, Constants.fontSizeS)
+            .frame(maxWidth: maxWidth, minHeight: 50)
+            .background(Constants.GrayColorWhite)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                withAnimation(.spring(response: 0.3, dampingFraction: 0.7, blendDuration: 0)) {
+                    showDropdown.toggle()
+                }
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .inset(by: 0.5)
+                    .stroke(showDropdown ? Constants.PrimaryColorPrimary600 : Constants.BorderColorBorder2, lineWidth: 1)
+            )
+            .cornerRadius(6)
+
+            // 옵션 리스트
+            if showDropdown {
+                OptionsView()
+                    .frame(maxWidth: maxWidth)
+                    .background(Color.white)
+                    .cornerRadius(6)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 6)
+                            .inset(by: 0.5)
+                            .stroke(Constants.BorderColorBorder2, lineWidth: 1)
+                    )
+                    .transition(.asymmetric(
+                        insertion: .opacity.combined(with: .scale(scale: 1.0, anchor: .top)),
+                        removal: .opacity.combined(with: .scale(scale: 0.9, anchor: .top))
+                    ))
+                    .animation(.spring(response: 0.3, dampingFraction: 0.7, blendDuration: 0), value: showDropdown)
+                    .padding(.top, 4)
+            }
+        }
+        .zIndex(zindex)
+    }
+
+    func OptionsView() -> some View {
+        VStack(spacing: 0) {
+            ForEach(options, id: \.self) { option in
+                HStack {
+                    Text(option)
+                        .font(
+                            Font.custom("Pretendard", size: Constants.fontSizeS)
+                                .weight(Constants.fontWeightMedium)
+                        )
+                        .foregroundColor(Constants.GrayColorGray900)
+
+                    Spacer()
+                }
+                .padding(.horizontal, 15)
+                .padding(.vertical, 10)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    selection = option
+                    onSelectionChanged(option)
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7, blendDuration: 0)) {
+                        showDropdown.toggle()
+                    }
+                }
+
+                if option != options.last {
+                    Divider()
+                }
+            }
         }
     }
 }

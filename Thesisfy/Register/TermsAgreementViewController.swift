@@ -17,8 +17,6 @@ struct TermsAgreementViewController: View {
                 // 헤더
                 headerView
                 
-                Divider()
-                
                 // 약관 내용
                 ScrollView(showsIndicators: false) {
                     VStack(alignment: .leading, spacing: 24) {
@@ -110,8 +108,8 @@ struct TermsAgreementViewController: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 16)
             }
-            .navigationBarBackButtonHidden()
         }
+        .navigationBarHidden(true)
     }
     
     // 헤더 뷰
@@ -124,7 +122,7 @@ struct TermsAgreementViewController: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 20, height: 20)
-                    .foregroundColor(.black)
+                    .foregroundStyle(.black)
             }
             
             Spacer()
@@ -140,7 +138,6 @@ struct TermsAgreementViewController: View {
                 .frame(width: 20, height: 20)
         }
         .padding(.horizontal, 24)
-        .frame(height: 56)
     }
     
     // 섹션 뷰

@@ -130,30 +130,32 @@ struct SideMenu: View {
                         newChat
                         
                         // 드롭다운 메뉴
-                        dropdownMenu(
-                            title: "오늘",
-                            subtitle: nil, // 오늘 날짜 동적으로 표시
-                            isExpanded: $isTodayExpanded,
-                            items: ["바이러스학", "딥러닝", "컴퓨터 비전"]
-                        )
-                        dropdownMenu(
-                            title: "어제",
-                            subtitle: yesterdayDate, // 어제 날짜 동적으로 표시
-                            isExpanded: $isYesterdayExpanded,
-                            items: ["UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
-                        )
-                        dropdownMenu(
-                            title: "그저께",
-                            subtitle: dayBeforeYesterdayDate, // 그저께 날짜 동적으로 표시
-                            isExpanded: $isDayBeforeYesterdayExpanded,
-                            items: ["UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
-                        )
-                        dropdownMenu(
-                            title: "이전 대화",
-                            subtitle: nil, // 날짜 생략 가능
-                            isExpanded: $isPreviousChatsExpanded,
-                            items: ["바이러스학", "딥러닝", "컴퓨터 비전", "UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
-                        )
+                        ScrollView(showsIndicators: false) {
+                            dropdownMenu(
+                                title: "오늘",
+                                subtitle: nil, // 오늘 날짜 동적으로 표시
+                                isExpanded: $isTodayExpanded,
+                                items: ["바이러스학", "딥러닝", "컴퓨터 비전"]
+                            )
+                            dropdownMenu(
+                                title: "어제",
+                                subtitle: yesterdayDate, // 어제 날짜 동적으로 표시
+                                isExpanded: $isYesterdayExpanded,
+                                items: ["UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
+                            )
+                            dropdownMenu(
+                                title: "그저께",
+                                subtitle: dayBeforeYesterdayDate, // 그저께 날짜 동적으로 표시
+                                isExpanded: $isDayBeforeYesterdayExpanded,
+                                items: ["UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
+                            )
+                            dropdownMenu(
+                                title: "이전 대화",
+                                subtitle: nil, // 날짜 생략 가능
+                                isExpanded: $isPreviousChatsExpanded,
+                                items: ["바이러스학", "딥러닝", "컴퓨터 비전", "UI/UX 디자인", "실내 인테리어", "인공지능", "머신러닝"]
+                            )
+                        }
                     }
                     .padding(.top, 80)
                     .padding(.horizontal, 24)
@@ -232,22 +234,20 @@ struct SideMenu: View {
             
             // 드롭다운 항목
             if isExpanded.wrappedValue {
-                ScrollView(showsIndicators: false) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        ForEach(items, id: \.self) { item in
-                            Button(action: {
-                                // 각 항목 클릭 액션 추가
-                            }) {
-                                Text(item)
-                                    .font(.system(size: 14))
-                                    .foregroundColor(.black)
-                                    .padding(Constants.fontSizeXs)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                            }
+                
+                VStack(alignment: .leading, spacing: 8) {
+                    ForEach(items, id: \.self) { item in
+                        Button(action: {
+                            // 각 항목 클릭 액션 추가
+                        }) {
+                            Text(item)
+                                .font(.system(size: 14))
+                                .foregroundColor(.black)
+                                .padding(Constants.fontSizeXs)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                     }
                 }
-                .frame(maxHeight: 150) // 스크롤 가능한 최대 높이 설정
             }
         }
         .padding(.top, 8)

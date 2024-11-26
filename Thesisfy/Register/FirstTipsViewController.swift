@@ -20,7 +20,7 @@ struct FirstTipsViewController: View {
                     
                     VStack(alignment: .leading, spacing: 8) {
                         HStack(alignment: .top, spacing: 8) {
-                            Text("📌")
+                            Text("💬") // 자연어 검색과 관련된 이모티콘
                                 .font(.system(size: Constants.fontSizeL))
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("자연어로 질문하기")
@@ -40,7 +40,7 @@ struct FirstTipsViewController: View {
                         }
                         
                         HStack(alignment: .top, spacing: 8) {
-                            Text("📌")
+                            Text("🔗") // 키워드 조합과 관련된 이모티콘
                                 .font(.system(size: Constants.fontSizeL))
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("키워드 조합 활용하기")
@@ -64,17 +64,17 @@ struct FirstTipsViewController: View {
                             .font(.system(size: Constants.fontSizeS))
                             .foregroundColor(Constants.PrimaryColorPrimary500)
                             .padding(.top, 8)
+                        
+                        Spacer()
+                        
+                        // 다음 페이지 버튼
+                        NavigationLink(destination: SecondTipsViewController()) {
+                            NextButtonView()
+                        }
                     }
                     .padding()
                     .background(Constants.GrayColorGray50)
                     .cornerRadius(8)
-                }
-                
-                Spacer()
-                
-                // 다음 페이지 버튼
-                NavigationLink(destination: SecondTipsViewController()) {
-                    NextButtonView()
                 }
             }
             .navigationTitle(Text("💡첫번째 팁"))
