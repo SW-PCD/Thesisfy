@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK: - Chat View
 struct MainViewController: View {
     @State private var messages: [String] = ["안녕하세요!", "논문 추천 서비스에 오신 걸 환영합니다!"] // 초기 메시지
     @State private var newMessage = ""
