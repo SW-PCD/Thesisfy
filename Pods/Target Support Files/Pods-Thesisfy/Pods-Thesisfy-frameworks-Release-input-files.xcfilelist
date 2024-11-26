@@ -1,3 +1,4 @@
 ${PODS_ROOT}/Target Support Files/Pods-Thesisfy/Pods-Thesisfy-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/ExytePopupView/ExytePopupView.framework
 ${BUILT_PRODUCTS_DIR}/SwiftUIIntrospect/SwiftUIIntrospect.framework

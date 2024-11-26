@@ -7,5 +7,6 @@ target 'Thesisfy' do
 
   # Pods for Thesisfy
   pod 'ExytePopupView'
+  pod 'Alamofire'
 
 end
