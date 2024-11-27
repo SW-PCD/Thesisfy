@@ -42,38 +42,23 @@ struct SearchResponse: Codable {
 
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
-    @Published var register: Register = .init(email: "", password: "", nickname: "", job: "")
+    
     @Published var registerResponse: RegisterResponse?
     @Published var searchResponse: SearchResponse?
     
-    //    func fetchTodos() {
-    //        let url = "https://jsonplaceholder.typicode.com/todos"
-    //        AF.request(url, method: .get)
-    //            .responseDecodable(of: [Todo].self) { data in
-    //                guard let data = data.value else { return }
-    //                self.todo = data
-    //            }
-    //    }
-    
     // MARK: 회원가입
-    func registerBtnTapped() {
+    func registerBtnTapped(registerModel: Register) {
         let url = APIConstants.registerURL
         
-        let param: [String: Any] = [
-            "email": "testasdfsadf12fff345@gmail.com",
-            "password": "password",
-            "nickname": "hwang",
-            "job": "student"
-        ]
-        
-        AF.request(url, method: .post, parameters: param, encoding: JSONEncoding.default)
+        // Register 모델 객체를 JSON으로 인코딩
+        AF.request(url, method: .post, parameters: registerModel, encoder: JSONParameterEncoder.default)
             .responseDecodable(of: RegisterResponse.self) { response in
                 switch response.result {
                 case .success(let value):
                     self.registerResponse = value
-                    print(self.registerResponse ?? "adsfsadf실패")
+                    print("회원가입 성공: \(value.message ?? "메시지 없음")")
                 case .failure(let error):
-                    print(error)
+                    print("회원가입 실패: \(error.localizedDescription)")
                 }
             }
     }
