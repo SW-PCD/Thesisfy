@@ -13,17 +13,22 @@ struct PaperSearchView: View {
     
     var body: some View {
 <<<<<<< HEAD
+<<<<<<< HEAD
         NavigationStack(path: $path) {
 <<<<<<< HEAD
 =======
         NavigationStack(path: $path) { // NavigationStack 추가
 >>>>>>> 216cbf1 (Resolve Conflice by Search)
+=======
+        NavigationStack(path: $path) {
+>>>>>>> ab9b96a (Update Search)
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
                     SearchFieldView(path: $path)
                         .padding(.top, 12)
                         .padding(.bottom, 20)
                     
+<<<<<<< HEAD
 <<<<<<< HEAD
                     PaperListView(path: $path, isExpanded: $isExpanded)  // isExpanded 전달
                     
@@ -41,25 +46,17 @@ struct PaperSearchView: View {
 >>>>>>> 49dd072 (Merge Login & Register API)
 =======
                     PaperListView(path: $path, isExpanded: isExpanded)  // 상태 변수를 전달
+=======
+                    PaperListView(path: $path, isExpanded: $isExpanded)  // isExpanded 전달
+>>>>>>> ab9b96a (Update Search)
                     
-                    Spacer()
-                        .frame(height: 32)
-                    
-                    if !isExpanded {  // 리스트가 확장되지 않았을 때만 버튼 표시
-                        ShowMoreButton(isExpanded: $isExpanded)
-                            .padding(.top, 16)
-                    } else {
-                        // 버튼이 없어도 같은 높이를 유지하기 위해 빈 공간 추가
-                        Color.clear
-                            .frame(height: 52)  // ShowMoreButton과 동일한 높이 설정
-                    }
-                    
-                    Spacer(minLength: 12)  // 화면 하단에 일정한 여백 확보
+                    Spacer(minLength: 12)
                 }
 >>>>>>> 216cbf1 (Resolve Conflice by Search)
             }
             .padding(.horizontal, 24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)  // 전체 화면을 채우되 위쪽 정렬
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            .background(Color.white.ignoresSafeArea())
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .searchView:
@@ -74,6 +71,7 @@ struct PaperSearchView: View {
     }
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 // MARK: - SearchFieldView
 struct SearchFieldView: View {
@@ -100,26 +98,30 @@ struct SearchFieldView: View {
 struct SearchFieldView:View {
     @Binding var path: [Route] // NavigationStack 경로
     @State var inputSearch: String = ""
+=======
+// MARK: - SearchFieldView
+struct SearchFieldView: View {
+    @Binding var path: [Route]
+    @State private var inputSearch: String = ""
+>>>>>>> ab9b96a (Update Search)
     
     var body: some View {
-        HStack(alignment: .center) {
-            HStack {
-                
-                TextField("검색어 입력", text: $inputSearch)
-                    .font(.custom("Pretendard", size: Constants.fontSizeS))
-                    .fontWeight(Constants.fontWeightMedium)
-                    .foregroundColor(Constants.GrayColorGray900)
-                    .padding(.leading, 12)
-                
-                
-                Spacer()
-                
-                Image("search")
-                    .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
-                    .padding(.trailing, 12)
-            }
+        HStack {
+            TextField("검색어 입력", text: $inputSearch)
+                .font(.custom("Pretendard", size: Constants.fontSizeS))
+                .fontWeight(Constants.fontWeightMedium)
+                .foregroundColor(Constants.GrayColorGray900)
+                .padding(.leading, 12)
+            
             Spacer()
+<<<<<<< HEAD
 >>>>>>> 216cbf1 (Resolve Conflice by Search)
+=======
+            
+            Image("search")
+                .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
+                .padding(.trailing, 12)
+>>>>>>> ab9b96a (Update Search)
         }
         .padding(.horizontal, Constants.fontSizeXs)
         .padding(.vertical, Constants.fontSizeS)
@@ -129,7 +131,9 @@ struct SearchFieldView:View {
     }
 }
 
+// MARK: - PaperListView
 struct PaperListView: View {
+<<<<<<< HEAD
 <<<<<<< HEAD
     @Binding var path: [Route]
     @Binding var isExpanded: Bool
@@ -159,21 +163,27 @@ struct PaperListView: View {
         VStack(alignment: .leading) {
             HStack(spacing: 5) {
 >>>>>>> 216cbf1 (Resolve Conflice by Search)
+=======
+    @Binding var path: [Route]
+    @Binding var isExpanded: Bool
+    let totalPapers = 20
+    let papersToShowInitially = 5
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // 제목과 검색 결과 개수
+            HStack {
+>>>>>>> ab9b96a (Update Search)
                 Text("인공지능 검색결과")
-                    .font(
-                        Font.custom("Pretendard", size: Constants.fontSizeS)
-                            .weight(Constants.fontWeightMedium)
-                    )
+                    .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                     .foregroundColor(Constants.GrayColorGray800)
                 
                 Text("\(totalPapers)건")
-                    .font(
-                        Font.custom("Pretendard", size: Constants.fontSizeS)
-                            .weight(Constants.fontWeightSemibold)
-                    )
+                    .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightSemibold))
                     .foregroundColor(Constants.PrimaryColorPrimary600)
             }
             
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             ScrollView(showsIndicators: false) {
@@ -215,13 +225,23 @@ struct PaperListView: View {
                 .frame(maxHeight: UIScreen.main.bounds.height - 100)  // 확장 시 탭바 높이 고려
             } else {
                 // 확장되지 않은 상태에서는 ScrollView 없이 5개의 논문만 표시
+=======
+            ScrollView(showsIndicators: false) {
+>>>>>>> ab9b96a (Update Search)
                 VStack(spacing: 8) {
-                    ForEach(0..<papersToShowInitially, id: \.self) { _ in
+                    // 확장 여부에 따라 표시할 논문 개수 조정
+                    let papersToShow = isExpanded ? totalPapers : papersToShowInitially
+                    ForEach(0..<papersToShow, id: \.self) { _ in
                         PaperRowView(path: $path)
                     }
+                    
+                    if !isExpanded {  // 확장되지 않은 상태에서만 버튼 표시
+                        ShowMoreButton(isExpanded: $isExpanded)
+                            .padding(.top, 16)
+                    }
                 }
-                .frame(maxHeight: CGFloat(5 * 100))  // 초기 5개의 논문만 표시
             }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 높이 조정
@@ -231,122 +251,75 @@ struct PaperListView: View {
             .animation(.easeInOut, value: isExpanded)
 =======
 >>>>>>> 216cbf1 (Resolve Conflice by Search)
+=======
+            .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 높이 조정
+            .animation(.easeInOut, value: isExpanded)
+>>>>>>> ab9b96a (Update Search)
         }
-        .frame(maxWidth: .infinity, alignment: .topLeading)  // 상단 정렬
-        .background(Color.white)  // 배경색 설정
     }
 }
 
-// PaperRowView로 리스트의 각 항목을 분리하여 깔끔하게 유지
+// MARK: - PaperRowView
 struct PaperRowView: View {
-    @Binding var path: [Route]  // NavigationStack 경로
+    @Binding var path: [Route]
     
     var body: some View {
         Button(action: {
-            path.append(.thesisView) // 버튼 클릭 시 `thesisView`로 이동
+            path.append(.thesisView)
         }) {
-            HStack {
-                Image("logo image")
+            HStack(spacing: 12) {
+                Image("SNU")
                     .resizable()
                     .frame(width: 60, height: 60)
-                    .background(Circle().fill(Constants.GrayColorWhite))
-                    .overlay(
-                        Circle()
-                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                    )
                     .clipShape(Circle())
-                    .padding(.leading, 16)
+                    .overlay(Circle().stroke(Constants.BorderColorBorder1, lineWidth: 1))
                 
-                Spacer()
-                    .frame(width: 12)
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                        Text("인공지능")
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                    .weight(Constants.fontWeightSemibold)
-                            )
-                            .foregroundColor(Constants.PrimaryColorPrimary600)
-                    }
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
-                    .background(Constants.PrimaryColorPrimary50)
-                    .cornerRadius(6)
-                    
-                    Spacer()
-                        .frame(height: 7)
-                    
+                VStack(alignment: .leading, spacing: 4) {
                     Text("인공지능과 딥러닝")
-                        .font(
-                            Font.custom("Pretendard", size: Constants.fontSizeS)
-                                .weight(Constants.fontWeightSemibold)
-                        )
+                        .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightSemibold))
                         .foregroundColor(Constants.GrayColorGray900)
                     
-                    HStack {
-                        Text("서울대학교 인공지능학부")
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                    .weight(Constants.fontWeightSemibold)
-                            )
-                            .foregroundColor(Constants.GrayColorGray800)
-                        
-                        Text("홍길동 학생")
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                    .weight(Constants.fontWeightMedium)
-                            )
-                            .foregroundColor(Constants.GrayColorGray600)
-                    }
-                    .padding(.top, 8)
+                    Text("서울대학교 인공지능학부")
+                        .font(Font.custom("Pretendard", size: Constants.fontSizeXxs).weight(Constants.fontWeightMedium))
+                        .foregroundColor(Constants.GrayColorGray800)
+                    
+                    Text("홍길동 학생")
+                        .font(Font.custom("Pretendard", size: Constants.fontSizeXxs).weight(Constants.fontWeightRegular))
+                        .foregroundColor(Constants.GrayColorGray600)
                 }
                 
                 Spacer()
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 100)
+            .padding()
             .background(Constants.GrayColorGray50)
-            .cornerRadius(6)
-            .overlay(
-                RoundedRectangle(cornerRadius: 6)
-                    .inset(by: 0.5)
-                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-            )
+            .cornerRadius(8)
+            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Constants.BorderColorBorder1, lineWidth: 1))
         }
     }
 }
 
+// MARK: - ShowMoreButton
 struct ShowMoreButton: View {
-    @Binding var isExpanded: Bool  // 버튼에서 확장 여부를 변경할 수 있도록 바인딩 변수로 설정
+    @Binding var isExpanded: Bool
     
     var body: some View {
         Button(action: {
-            isExpanded.toggle()  // 버튼을 누를 때 확장 여부 토글
+            isExpanded.toggle()
         }) {
-            HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                Text("논문 정보 더보기")  // 상태와 상관없이 동일한 텍스트 사용
-                    .font(
-                        Font.custom("Pretendard", size: Constants.fontSizeXs)
-                            .weight(Constants.fontWeightMedium)
-                    )
+            HStack {
+                Text("논문 정보 더보기")
+                    .font(Font.custom("Pretendard", size: Constants.fontSizeXs).weight(Constants.fontWeightMedium))
                     .foregroundColor(Constants.GrayColorGray600)
                 
                 Image("downArrow")
-                    .frame(width: Constants.fontSizeXs, height: Constants.fontSizeXs)
+                    .resizable()
+                    .frame(width: 12, height: 12)
             }
-            .padding(.horizontal, 6)
-            .padding(.vertical, 3)
-            .frame(maxWidth: .infinity, alignment: .center)
-            .frame(width: 140)
-            .frame(height: 36)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
             .background(Constants.GrayColorWhite)
-            .cornerRadius(999)
-            .overlay(
-                RoundedRectangle(cornerRadius: 999)
-                    .inset(by: 0.5)
-                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-            )
+            .cornerRadius(20)
+            .overlay(RoundedRectangle(cornerRadius: 20).stroke(Constants.BorderColorBorder1, lineWidth: 1))
         }
     }
 }
