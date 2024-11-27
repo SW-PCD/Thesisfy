@@ -11,9 +11,11 @@ import Alamofire
 struct LoginViewController: View {
     @State private var email: String = ""
     @State private var password: String = ""
+    @State private var showAlert = false
+    @State private var alertMessage = ""
+    @State private var loginSuccess = false // 로그인 성공 여부 상태
     
     var isLoginEnabled: Bool {
-        // 이메일과 비밀번호가 모두 비어있지 않으면 true
         return !email.isEmpty && !password.isEmpty
     }
     
@@ -30,8 +32,27 @@ struct LoginViewController: View {
                 SetPasswordView(password: $password)
                     .padding(.top, 28)
                 
-                LoginButtonView(isEnabled: isLoginEnabled)
-                    .padding(.top, 72)
+                NavigationLink(destination: BaseViewController(), isActive: $loginSuccess) {
+                    Button(action: {
+                        loginUser()
+                    }) {
+                        Text("로그인")
+                            .font(.system(size: Constants.fontSizeM, weight: Constants.fontWeightBold))
+                            .foregroundColor(isLoginEnabled ? Constants.GrayColorWhite : Constants.GrayColorGray400)
+                            .frame(maxWidth: .infinity, minHeight: 48)
+                            .background(isLoginEnabled ? Constants.PrimaryColorPrimary500 : Constants.GrayColorGray100)
+                            .cornerRadius(12)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                            )
+                    }
+                    .disabled(!isLoginEnabled)
+                }
+                .padding(.top, 72)
+                .alert(isPresented: $showAlert) {
+                    Alert(title: Text("로그인 실패"), message: Text(alertMessage), dismissButton: .default(Text("확인")))
+                }
                 
                 NavigationLink(destination: RegisterViewController()) {
                     HStack {
@@ -50,6 +71,38 @@ struct LoginViewController: View {
             }
             .padding(.horizontal, 24)
         }
+    }
+    
+    // MARK: - 로그인 요청 함수
+    private func loginUser() {
+        guard isLoginEnabled else { return }
+        
+        let parameters: [String: String] = [
+            "email": email,
+            "password": password
+        ]
+        
+        AF.request(APIConstants.loginURL, method: .post, parameters: LoginModel(email: email, password: password), encoder: JSONParameterEncoder.default)
+            .validate()
+            .responseDecodable(of: LoginResponse.self) { response in
+                switch response.result {
+                case .success(let data):
+                    alertMessage = data.message
+                    if data.message.contains("성공") {
+                        loginSuccess = true // 로그인 성공 시 이동 플래그 true로 설정
+                        // 회원 정보 출력
+                        print("회원 정보:")
+                        print("ID: \(data.user.id)")
+                        print("Email: \(data.user.email)")
+                        print("Nickname: \(data.user.nickname)")
+                        print("Job: \(data.user.job)")
+                    }
+                case .failure(let error):
+                    alertMessage = "이메일 또는 비밀번호가 잘못되었습니다."
+                    print("로그인 실패: \(error.localizedDescription)")
+                }
+                showAlert = !loginSuccess // 실패 시만 Alert 표시
+            }
     }
 }
 

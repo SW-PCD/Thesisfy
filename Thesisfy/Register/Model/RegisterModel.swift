@@ -13,3 +13,7 @@ struct RegisterModel: Encodable {
     var nickname: String
     var job: String
 }
+
+struct RegisterResponse: Decodable {
+    var message: String?
+}
