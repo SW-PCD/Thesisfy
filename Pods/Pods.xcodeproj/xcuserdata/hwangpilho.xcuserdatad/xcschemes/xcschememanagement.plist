@@ -8,10 +8,14 @@
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<integer>1</integer>
 =======
 			<integer>3</integer>
 >>>>>>> 3d086b3 (--)
+=======
+			<integer>1</integer>
+>>>>>>> dd03da2 (--)
 		</dict>
 		<key>Alamofire.xcscheme_^#shared#^_</key>
 		<dict>
@@ -22,10 +26,14 @@
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<integer>2</integer>
 =======
 			<integer>1</integer>
 >>>>>>> 3d086b3 (--)
+=======
+			<integer>3</integer>
+>>>>>>> dd03da2 (--)
 		</dict>
 		<key>Pods-Thesisfy.xcscheme_^#shared#^_</key>
 		<dict>
