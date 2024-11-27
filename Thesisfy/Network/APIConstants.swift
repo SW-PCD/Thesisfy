@@ -21,5 +21,3 @@ struct APIConstants {
     
     static let searchURL: String = baseURL + "/kci/search"
 }
-
-

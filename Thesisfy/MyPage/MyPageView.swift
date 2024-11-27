@@ -37,7 +37,7 @@ struct MyPageView: View {
     @State private var progress: Double = 0.3 // 논문 진행 상태
     @State private var isEditingbeingWrittenView: Bool = false // 작성중인 논문 편집 모드 상태 변수
     @State private var isEditingCompletedThesisView: Bool = false // 작성 완료된 편집 모드 상태 변수
-    @State private var paper: String? = "한성대 홍길동" // 작성 중인 논문 상태
+    @State private var paper: String? = "AI 관련 논문" // 작성 중인 논문 상태
     
     @State private var path: [Route] = [] // 네비게이션 스택을 MyPageView에서 선언
     
@@ -76,7 +76,7 @@ struct MyPageView: View {
                         progress: $progress,
                         isEditing: $isEditingbeingWrittenView,
                         onDeletebeingWrittenView: { self.paper = nil },
-                        onAdd: { self.paper = "한성대 홍길동" }
+                        onAdd: { self.paper = "새로운 논문.pdf" }
                     )
                     
                     Spacer()
@@ -631,7 +631,7 @@ struct CompletedThesisView: View {
                                 .frame(width: 12)
                             
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("한성대 홍길동")
+                                Text("오케스트로 LLM")
                                     .font(
                                         Font.custom("Pretendard", size: Constants.fontSizeS)
                                             .weight(Constants.fontWeightSemibold)
@@ -730,6 +730,7 @@ struct setManagementButtonView: View {
 //로그아웃 버튼 뷰
 struct LogoutPopupView: View {
     @Binding var isShowLogoutPopup: Bool
+    @State private var showLoginScreen = false // LoginViewController 표시 상태
     
     var body: some View {
         VStack {
@@ -765,7 +766,7 @@ struct LogoutPopupView: View {
                 HStack(spacing: 6) {
                     Button(action: {
                         // 로그아웃 처리 로직 추가
-                        isShowLogoutPopup = false // 팝업 닫기
+                        showLoginScreen = true // LoginViewController로 이동
                     }) {
                         Text("로그아웃하기")
                             .font(
@@ -779,6 +780,9 @@ struct LogoutPopupView: View {
                             .cornerRadius(8)
                     }
                     .allowsHitTesting(true) // 로그아웃 버튼 클릭 허용
+                    .fullScreenCover(isPresented: $showLoginScreen) {
+                        LoginViewController()
+                    }
                     
                     Button(action: {
                         isShowLogoutPopup = false // 팝업 닫기
