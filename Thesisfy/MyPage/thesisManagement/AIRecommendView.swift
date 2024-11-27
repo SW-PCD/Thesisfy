@@ -137,15 +137,14 @@ struct paperRowView: View {
             path.append(.thesisView) // ThesisView로 이동
         }) {
             HStack {
-                Image("logo image")
+                Image("SNU")
                     .resizable()
-                    .frame(width: 60, height: 60)
+                    .frame(width: 42, height: 43)
                     .background(Circle().fill(Constants.GrayColorWhite))
                     .overlay(
                         Circle()
                             .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                     )
-                    .clipShape(Circle())
                     .padding(.leading, 16)
                 
                 Spacer()

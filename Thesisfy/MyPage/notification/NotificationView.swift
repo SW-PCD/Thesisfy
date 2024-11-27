@@ -167,15 +167,14 @@ struct NewNotificationListView: View {
             }) {
                 HStack {
                     HStack {
-                        Image("logo image")
+                        Image("SNU")
                             .resizable()
-                            .frame(width: 60, height: 60)
+                            .frame(width: 42, height: 43)
                             .background(Circle().fill(Constants.GrayColorWhite))
                             .overlay(
                                 Circle()
                                     .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                             )
-                            .clipShape(Circle())
                         
                         Spacer()
                             .frame(width: 12)
@@ -269,15 +268,14 @@ struct CheckedNotificationListView: View {
         }) {
             HStack {
                 HStack {
-                    Image("logo image")
+                    Image("SNU")
                         .resizable()
-                        .frame(width: 60, height: 60)
+                        .frame(width: 42, height: 43)
                         .background(Circle().fill(Constants.GrayColorWhite))
                         .overlay(
                             Circle()
                                 .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                         )
-                        .clipShape(Circle())
                     
                     Spacer()
                         .frame(width: 12)

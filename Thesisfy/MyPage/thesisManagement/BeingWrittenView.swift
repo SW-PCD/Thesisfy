@@ -192,7 +192,7 @@ struct TitleView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("한성대 서강준 황필호")
+                Text("한성대 홍길동")
                     .font(
                         Font.custom("Pretendard", size: Constants.fontSizeXxl)
                             .weight(Constants.fontWeightSemibold)
@@ -233,15 +233,14 @@ struct MyThesisView: View {
             
             HStack {
                 // 논문 이미지
-                Image("logo image")
+                Image("HSU")
                     .resizable()
-                    .frame(width: 60, height: 60)
+                    .frame(width: 42, height: 42)
                     .background(Circle().fill(Constants.GrayColorWhite))
                     .overlay(
                         Circle()
                             .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                     )
-                    .clipShape(Circle())
                     .padding(.leading, 16)
                 
                 Spacer()
@@ -249,7 +248,7 @@ struct MyThesisView: View {
                 
                 // 논문 제목 및 업데이트 정보
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("한성대 차은우 황필호.PDF")
+                    Text("한성대 OpenAI에 관하여.PDF")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
@@ -386,9 +385,9 @@ struct AiRecommendThesisView: View {
                             path.append(.thesisView) // ThesisView로 이동
                         }) {
                             HStack {
-                                Image("logo image")
+                                Image("SNU")
                                     .resizable()
-                                    .frame(width: 60, height: 60)
+                                    .frame(width: 42, height: 43)
                                     .background(Circle().fill(Constants.GrayColorWhite))
                                     .overlay(
                                         Circle()
