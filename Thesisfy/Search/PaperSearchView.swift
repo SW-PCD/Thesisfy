@@ -13,14 +13,16 @@ struct PaperSearchView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
-            VStack(spacing: 0) {
-                SearchFieldView(path: $path)
-                    .padding(.top, 12)
-                    .padding(.bottom, 20)
-                
-                PaperListView(path: $path, isExpanded: $isExpanded)
-                
-                Spacer(minLength: 12)
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    SearchFieldView(path: $path)
+                        .padding(.top, 12)
+                        .padding(.bottom, 20)
+                    
+                    PaperListView(path: $path, isExpanded: $isExpanded)  // isExpanded 전달
+                    
+                    Spacer(minLength: 12)
+                }
             }
             .padding(.horizontal, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -42,28 +44,27 @@ struct PaperSearchView: View {
 // MARK: - SearchFieldView
 struct SearchFieldView: View {
     @Binding var path: [Route]
+    @State private var inputSearch: String = ""
     
     var body: some View {
-        Button(action: {
-            path.append(.searchView)
-        }) {
-            HStack {
-                Text("궁금한 주제를 검색해보세요")
-                    .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
-                    .foregroundColor(Constants.GrayColorGray400)
-                    .padding(.leading, 12)
-                
-                Spacer()
-                
-                Image("search")
-                    .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
-                    .padding(.trailing, 12)
-            }
-            .padding(.horizontal, Constants.fontSizeXs)
-            .padding(.vertical, Constants.fontSizeS)
-            .background(Constants.GrayColorGray50)
-            .cornerRadius(6)
+        HStack {
+            TextField("검색어 입력", text: $inputSearch)
+                .font(.custom("Pretendard", size: Constants.fontSizeS))
+                .fontWeight(Constants.fontWeightMedium)
+                .foregroundColor(Constants.GrayColorGray900)
+                .padding(.leading, 12)
+            
+            Spacer()
+            
+            Image("search")
+                .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
+                .padding(.trailing, 12)
         }
+        .padding(.horizontal, Constants.fontSizeXs)
+        .padding(.vertical, Constants.fontSizeS)
+        .frame(maxWidth: .infinity, alignment: .center)
+        .background(Constants.GrayColorGray50)
+        .cornerRadius(6)
     }
 }
 
@@ -72,11 +73,11 @@ struct PaperListView: View {
     @Binding var path: [Route]
     @Binding var isExpanded: Bool
     let totalPapers = 20
-    let papersToShowInitially = 3
+    let papersToShowInitially = 5
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            // 제목과 논문 개수
+            // 제목과 검색 결과 개수
             HStack {
                 Text("인공지능 검색결과")
                     .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
@@ -87,23 +88,21 @@ struct PaperListView: View {
                     .foregroundColor(Constants.PrimaryColorPrimary600)
             }
             
-            // 논문 리스트
             ScrollView(showsIndicators: false) {
-                VStack(spacing: 12) {
+                VStack(spacing: 8) {
                     // 확장 여부에 따라 표시할 논문 개수 조정
                     let papersToShow = isExpanded ? totalPapers : papersToShowInitially
                     ForEach(0..<papersToShow, id: \.self) { _ in
                         PaperRowView(path: $path)
                     }
                     
-                    // 논문 정보 더보기 버튼
-                    if !isExpanded {
+                    if !isExpanded {  // 확장되지 않은 상태에서만 버튼 표시
                         ShowMoreButton(isExpanded: $isExpanded)
                             .padding(.top, 16)
                     }
                 }
             }
-            .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 확장 여부에 따라 높이 조정
+            .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 높이 조정
             .animation(.easeInOut, value: isExpanded)
         }
     }
