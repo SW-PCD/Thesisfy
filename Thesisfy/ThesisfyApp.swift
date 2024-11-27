@@ -11,7 +11,7 @@ import SwiftUI
 struct ThesisfyApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginViewController()
+            BaseViewController()
                 .onAppear {
                     UIApplication.shared.hideKeyboardWhenTappedAround()
                 }

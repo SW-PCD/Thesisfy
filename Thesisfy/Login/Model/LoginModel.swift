@@ -11,3 +11,15 @@ struct LoginModel: Encodable {
     var email: String?
     var password: String?
 }
+
+struct LoginResponse: Decodable {
+    let message: String
+    let user: UserInfo
+}
+
+struct UserInfo: Decodable {
+    let id: Int
+    let email: String
+    let nickname: String
+    let job: String
+}

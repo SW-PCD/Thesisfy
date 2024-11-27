@@ -13,6 +13,7 @@
 		<key>UiLaunchScreen</key>
 		<dict/>
     </dict>
+
 <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSExceptionDomains</key>
