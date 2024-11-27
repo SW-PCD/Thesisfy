@@ -53,208 +53,204 @@ struct PaperSearchView: View {
     
     struct SearchFieldView:View {
         @Binding var path: [Route] // NavigationStack 경로
+        @State var inputSearch: String = ""
         
         var body: some View {
-            Button(action: {
-                path.append(.searchView) // SearchView로 이동
-            }) {
-                HStack(alignment: .center) {
-                    HStack {
-                        Text("인공지능")
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeS)
-                                    .weight(Constants.fontWeightMedium)
-                            )
-                            .foregroundColor(Constants.GrayColorGray900)
-                            .padding(.leading, 12)
-                        
-                        Spacer()
-                        
-                        Image("search")
-                            .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
-                            .padding(.trailing, 12)
-                    }
+            HStack(alignment: .center) {
+                HStack {
+                    
+                    TextField("검색어 입력", text: $inputSearch)
+                        .font(.custom("Pretendard", size: Constants.fontSizeS))
+                        .fontWeight(Constants.fontWeightMedium)
+                        .foregroundColor(Constants.GrayColorGray900)
+                        .padding(.leading, 12)
+                    
+                    
                     Spacer()
+                    
+                    Image("search")
+                        .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
+                        .padding(.trailing, 12)
                 }
-                .padding(.horizontal, Constants.fontSizeXs)
-                .padding(.vertical, Constants.fontSizeS)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(Constants.GrayColorGray50)
-                .cornerRadius(6)
+                Spacer()
             }
+            .padding(.horizontal, Constants.fontSizeXs)
+            .padding(.vertical, Constants.fontSizeS)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .background(Constants.GrayColorGray50)
+            .cornerRadius(6)
         }
     }
 }
+
+struct PaperListView: View {
+    @Binding var path: [Route]  // NavigationStack 경로
     
-    struct PaperListView: View {
-        @Binding var path: [Route]  // NavigationStack 경로
-        
-        let isExpanded: Bool  // 리스트 확장 여부를 받아옴
-        let totalPapers = 20  // 예시 데이터 총 개수
-        let papersToShowInitially = 5  // 초기 표시 개수
-        
-        var body: some View {
-            VStack(alignment: .leading) {
-                HStack(spacing: 5) {
-                    Text("인공지능 검색결과")
-                        .font(
-                            Font.custom("Pretendard", size: Constants.fontSizeS)
-                                .weight(Constants.fontWeightMedium)
-                        )
-                        .foregroundColor(Constants.GrayColorGray800)
+    let isExpanded: Bool  // 리스트 확장 여부를 받아옴
+    let totalPapers = 20  // 예시 데이터 총 개수
+    let papersToShowInitially = 5  // 초기 표시 개수
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(spacing: 5) {
+                Text("인공지능 검색결과")
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeS)
+                            .weight(Constants.fontWeightMedium)
+                    )
+                    .foregroundColor(Constants.GrayColorGray800)
+                
+                Text("\(totalPapers)건")
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeS)
+                            .weight(Constants.fontWeightSemibold)
+                    )
+                    .foregroundColor(Constants.PrimaryColorPrimary600)
+            }
+            
+            // 버튼이 있을 때와 없을 때의 간격을 동일하게 유지
+            .padding(.bottom, isExpanded ? 12 : 28)  // 확장 여부에 따라 간격 조정
+            
+            if isExpanded {
+                // 확장된 상태에서는 ScrollView로 모든 논문 표시
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 8) {
+                        ForEach(0..<totalPapers, id: \.self) { _ in
+                            PaperRowView(path: $path)
+                            
+                        }
+                    }
+                }
+                .frame(maxHeight: UIScreen.main.bounds.height - 100)  // 확장 시 탭바 높이 고려
+            } else {
+                // 확장되지 않은 상태에서는 ScrollView 없이 5개의 논문만 표시
+                VStack(spacing: 8) {
+                    ForEach(0..<papersToShowInitially, id: \.self) { _ in
+                        PaperRowView(path: $path)
+                    }
+                }
+                .frame(maxHeight: CGFloat(5 * 100))  // 초기 5개의 논문만 표시
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .topLeading)  // 상단 정렬
+        .background(Color.white)  // 배경색 설정
+    }
+}
+
+// PaperRowView로 리스트의 각 항목을 분리하여 깔끔하게 유지
+struct PaperRowView: View {
+    @Binding var path: [Route]  // NavigationStack 경로
+    
+    var body: some View {
+        Button(action: {
+            path.append(.thesisView) // 버튼 클릭 시 `thesisView`로 이동
+        }) {
+            HStack {
+                Image("logo image")
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .background(Circle().fill(Constants.GrayColorWhite))
+                    .overlay(
+                        Circle()
+                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+                    )
+                    .clipShape(Circle())
+                    .padding(.leading, 16)
+                
+                Spacer()
+                    .frame(width: 12)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
+                        Text("인공지능")
+                            .font(
+                                Font.custom("Pretendard", size: Constants.fontSizeXs)
+                                    .weight(Constants.fontWeightSemibold)
+                            )
+                            .foregroundColor(Constants.PrimaryColorPrimary600)
+                    }
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 3)
+                    .background(Constants.PrimaryColorPrimary50)
+                    .cornerRadius(6)
                     
-                    Text("\(totalPapers)건")
+                    Spacer()
+                        .frame(height: 7)
+                    
+                    Text("인공지능과 딥러닝")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
                         )
-                        .foregroundColor(Constants.PrimaryColorPrimary600)
-                }
-                
-                // 버튼이 있을 때와 없을 때의 간격을 동일하게 유지
-                .padding(.bottom, isExpanded ? 12 : 28)  // 확장 여부에 따라 간격 조정
-                
-                if isExpanded {
-                    // 확장된 상태에서는 ScrollView로 모든 논문 표시
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 8) {
-                            ForEach(0..<totalPapers, id: \.self) { _ in
-                                PaperRowView(path: $path)
-                                
-                            }
-                        }
-                    }
-                    .frame(maxHeight: UIScreen.main.bounds.height - 100)  // 확장 시 탭바 높이 고려
-                } else {
-                    // 확장되지 않은 상태에서는 ScrollView 없이 5개의 논문만 표시
-                    VStack(spacing: 8) {
-                        ForEach(0..<papersToShowInitially, id: \.self) { _ in
-                            PaperRowView(path: $path)
-                        }
-                    }
-                    .frame(maxHeight: CGFloat(5 * 100))  // 초기 5개의 논문만 표시
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .topLeading)  // 상단 정렬
-            .background(Color.white)  // 배경색 설정
-        }
-    }
-    
-    // PaperRowView로 리스트의 각 항목을 분리하여 깔끔하게 유지
-    struct PaperRowView: View {
-        @Binding var path: [Route]  // NavigationStack 경로
-        
-        var body: some View {
-            Button(action: {
-                path.append(.thesisView) // 버튼 클릭 시 `thesisView`로 이동
-            }) {
-                HStack {
-                    Image("logo image")
-                        .resizable()
-                        .frame(width: 60, height: 60)
-                        .background(Circle().fill(Constants.GrayColorWhite))
-                        .overlay(
-                            Circle()
-                                .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                        )
-                        .clipShape(Circle())
-                        .padding(.leading, 16)
+                        .foregroundColor(Constants.GrayColorGray900)
                     
-                    Spacer()
-                        .frame(width: 12)
-                    
-                    VStack(alignment: .leading, spacing: 0) {
-                        HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                            Text("인공지능")
-                                .font(
-                                    Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                        .weight(Constants.fontWeightSemibold)
-                                )
-                                .foregroundColor(Constants.PrimaryColorPrimary600)
-                        }
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 3)
-                        .background(Constants.PrimaryColorPrimary50)
-                        .cornerRadius(6)
-                        
-                        Spacer()
-                            .frame(height: 7)
-                        
-                        Text("인공지능과 딥러닝")
+                    HStack {
+                        Text("서울대학교 인공지능학부")
                             .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeS)
+                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                     .weight(Constants.fontWeightSemibold)
                             )
-                            .foregroundColor(Constants.GrayColorGray900)
+                            .foregroundColor(Constants.GrayColorGray800)
                         
-                        HStack {
-                            Text("서울대학교 인공지능학부")
-                                .font(
-                                    Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                        .weight(Constants.fontWeightSemibold)
-                                )
-                                .foregroundColor(Constants.GrayColorGray800)
-                            
-                            Text("홍길동 학생")
-                                .font(
-                                    Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                        .weight(Constants.fontWeightMedium)
-                                )
-                                .foregroundColor(Constants.GrayColorGray600)
-                        }
-                        .padding(.top, 8)
+                        Text("홍길동 학생")
+                            .font(
+                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                    .weight(Constants.fontWeightMedium)
+                            )
+                            .foregroundColor(Constants.GrayColorGray600)
                     }
-                    
-                    Spacer()
+                    .padding(.top, 8)
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: 100)
-                .background(Constants.GrayColorGray50)
-                .cornerRadius(6)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 6)
-                        .inset(by: 0.5)
-                        .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                )
+                
+                Spacer()
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 100)
+            .background(Constants.GrayColorGray50)
+            .cornerRadius(6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .inset(by: 0.5)
+                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+            )
         }
     }
+}
+
+struct ShowMoreButton: View {
+    @Binding var isExpanded: Bool  // 버튼에서 확장 여부를 변경할 수 있도록 바인딩 변수로 설정
     
-    struct ShowMoreButton: View {
-        @Binding var isExpanded: Bool  // 버튼에서 확장 여부를 변경할 수 있도록 바인딩 변수로 설정
-        
-        var body: some View {
-            Button(action: {
-                isExpanded.toggle()  // 버튼을 누를 때 확장 여부 토글
-            }) {
-                HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                    Text("논문 정보 더보기")  // 상태와 상관없이 동일한 텍스트 사용
-                        .font(
-                            Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                .weight(Constants.fontWeightMedium)
-                        )
-                        .foregroundColor(Constants.GrayColorGray600)
-                    
-                    Image("downArrow")
-                        .frame(width: Constants.fontSizeXs, height: Constants.fontSizeXs)
-                }
-                .padding(.horizontal, 6)
-                .padding(.vertical, 3)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .frame(width: 140)
-                .frame(height: 36)
-                .background(Constants.GrayColorWhite)
-                .cornerRadius(999)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 999)
-                        .inset(by: 0.5)
-                        .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                )
+    var body: some View {
+        Button(action: {
+            isExpanded.toggle()  // 버튼을 누를 때 확장 여부 토글
+        }) {
+            HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
+                Text("논문 정보 더보기")  // 상태와 상관없이 동일한 텍스트 사용
+                    .font(
+                        Font.custom("Pretendard", size: Constants.fontSizeXs)
+                            .weight(Constants.fontWeightMedium)
+                    )
+                    .foregroundColor(Constants.GrayColorGray600)
+                
+                Image("downArrow")
+                    .frame(width: Constants.fontSizeXs, height: Constants.fontSizeXs)
             }
+            .padding(.horizontal, 6)
+            .padding(.vertical, 3)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .frame(width: 140)
+            .frame(height: 36)
+            .background(Constants.GrayColorWhite)
+            .cornerRadius(999)
+            .overlay(
+                RoundedRectangle(cornerRadius: 999)
+                    .inset(by: 0.5)
+                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
+            )
         }
     }
-    
-    
-    #Preview {
-        PaperSearchView()
-    }
+}
+
+#Preview {
+    PaperSearchView()
+}

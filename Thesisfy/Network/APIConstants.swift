@@ -13,5 +13,7 @@ struct APIConstants {
     
     static let loginURL: String = baseURL + "/login"
     
-    static let registerURL: String = baseURL + "/register"
+    static let registerURL: String = baseURL + "/auth/register"
 }
+
+
