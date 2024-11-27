@@ -11,6 +11,8 @@
 		7B084DEE2CF5C1330085A7D8 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DED2CF5C1330085A7D8 /* APIConstants.swift */; };
 		7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DF02CF5C52F0085A7D8 /* Extension.swift */; };
 		7B084E062CF5E7D50085A7D8 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E052CF5E7D50085A7D8 /* LoginModel.swift */; };
+		7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */; };
+		7B084E122CF5F3A40085A7D8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E112CF5F3A40085A7D8 /* ChatModel.swift */; };
 		7B6104862CF4C6EC00FE810B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */; };
 		7B6104872CF4C6EC00FE810B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104822CF4C6EC00FE810B /* Assets.xcassets */; };
 		7B6104892CF4C6EC00FE810B /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6104842CF4C6EC00FE810B /* ThesisfyApp.swift */; };
@@ -52,6 +54,8 @@
 		7B084DF22CF5C8FC0085A7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7B084DF32CF5C9F50085A7D8 /* Thesisfy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Thesisfy.xcodeproj; path = ../Thesisfy.xcodeproj; sourceTree = "<group>"; };
 		7B084E052CF5E7D50085A7D8 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
+		7B084E112CF5F3A40085A7D8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		7B61046F2CF4C61F00FE810B /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B6104822CF4C6EC00FE810B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -129,6 +133,22 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		7B084E0D2CF5F36C0085A7D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B084E102CF5F39C0085A7D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B084E112CF5F3A40085A7D8 /* ChatModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7B6104662CF4C61F00FE810B = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +199,7 @@
 		7B61048A2CF4C7C600FE810B /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				7B084E102CF5F39C0085A7D8 /* Model */,
 				7B61049B2CF4C83800FE810B /* BaseViewController.swift */,
 				7B61049C2CF4C83800FE810B /* MainViewController.swift */,
 			);
@@ -197,6 +218,7 @@
 		7B61048C2CF4C7E100FE810B /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				7B084E0D2CF5F36C0085A7D8 /* Model */,
 				7B6104912CF4C83400FE810B /* RegisterViewController.swift */,
 				7B6104922CF4C83400FE810B /* TermsAgreementViewController.swift */,
 				7B6104932CF4C83400FE810B /* FirstTipsViewController.swift */,
@@ -431,11 +453,13 @@
 				7B61049A2CF4C83400FE810B /* TermsAgreementViewController.swift in Sources */,
 				7B084E062CF5E7D50085A7D8 /* LoginModel.swift in Sources */,
 				7B6104A02CF4C83800FE810B /* BaseViewController.swift in Sources */,
+				7B084E122CF5F3A40085A7D8 /* ChatModel.swift in Sources */,
 				7B6104AF2CF4C85500FE810B /* Route.swift in Sources */,
 				7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */,
 				7B6104B02CF4C85500FE810B /* Constants.swift in Sources */,
 				7B6104AA2CF4C84400FE810B /* PaperSearchView.swift in Sources */,
 				7B6104AB2CF4C84400FE810B /* SearchView.swift in Sources */,
+				7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */,
 				7B6104AC2CF4C84400FE810B /* ThesisView.swift in Sources */,
 				7B6104A22CF4C83800FE810B /* MainViewController.swift in Sources */,
 				7B6104892CF4C6EC00FE810B /* ThesisfyApp.swift in Sources */,

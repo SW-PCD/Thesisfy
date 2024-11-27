@@ -37,7 +37,7 @@ struct MyPageView: View {
     @State private var progress: Double = 0.3 // 논문 진행 상태
     @State private var isEditingbeingWrittenView: Bool = false // 작성중인 논문 편집 모드 상태 변수
     @State private var isEditingCompletedThesisView: Bool = false // 작성 완료된 편집 모드 상태 변수
-    @State private var paper: String? = "한성대 서강준 황필호" // 작성 중인 논문 상태
+    @State private var paper: String? = "한성대 홍길동" // 작성 중인 논문 상태
     
     @State private var path: [Route] = [] // 네비게이션 스택을 MyPageView에서 선언
     
@@ -76,7 +76,7 @@ struct MyPageView: View {
                         progress: $progress,
                         isEditing: $isEditingbeingWrittenView,
                         onDeletebeingWrittenView: { self.paper = nil },
-                        onAdd: { self.paper = "한성대 서강준 황필호" }
+                        onAdd: { self.paper = "한성대 홍길동" }
                     )
                     
                     Spacer()
@@ -208,15 +208,9 @@ struct profileView: View {
     
     var body: some View {
         HStack {
-            Image("logo image")
+            Image("person")
                 .resizable()
-                .frame(width: 60, height: 60)
-                .background(Circle().fill(Constants.GrayColorWhite))
-                .overlay(
-                    Circle()
-                        .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                )
-                .clipShape(Circle())
+                .frame(width: 42, height: 43)
                 .padding(.leading, 16)
             
             Spacer()
@@ -306,15 +300,14 @@ struct bookMarkView: View {
                         path.append(.thesisView) // ThesisView로 이동
                     }) {
                         HStack {
-                            Image("logo image")
+                            Image("SNU")
                                 .resizable()
-                                .frame(width: 60, height: 60)
+                                .frame(width: 42, height: 43)
                                 .background(Circle().fill(Constants.GrayColorWhite))
                                 .overlay(
                                     Circle()
                                         .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                                 )
-                                .clipShape(Circle())
                                 .padding(.leading, 16)
                             
                             Spacer()
@@ -428,15 +421,14 @@ struct beingWrittenView: View {
                     path.append(.beingWrittenView) // 네비게이션 경로 추가
                 }) {
                     HStack {
-                        Image("logo image")
+                        Image("HSU")
                             .resizable()
-                            .frame(width: 60, height: 60)
+                            .frame(width: 42, height: 43)
                             .background(Circle().fill(Constants.GrayColorWhite))
                             .overlay(
                                 Circle()
                                     .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                             )
-                            .clipShape(Circle())
                             .padding(.leading, 16)
                         
                         Spacer()
@@ -625,22 +617,21 @@ struct CompletedThesisView: View {
                         path.append(.completeThesisView) // CompleteThesisView로 이동
                     }) {
                         HStack {
-                            Image("logo image")
+                            Image("HSU")
                                 .resizable()
-                                .frame(width: 60, height: 60)
+                                .frame(width: 42, height: 43)
                                 .background(Circle().fill(Constants.GrayColorWhite))
                                 .overlay(
                                     Circle()
                                         .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                                 )
-                                .clipShape(Circle())
                                 .padding(.leading, 16)
                             
                             Spacer()
                                 .frame(width: 12)
                             
                             VStack(alignment: .leading, spacing: 0) {
-                                Text("한성대 차은우 황필호")
+                                Text("한성대 홍길동")
                                     .font(
                                         Font.custom("Pretendard", size: Constants.fontSizeS)
                                             .weight(Constants.fontWeightSemibold)
@@ -995,16 +986,15 @@ struct bookMarkListView: View {
             path.append(.thesisView) // Route에 thesisView 추가
         }) {
             HStack {
-                Image("logo image")
+                Image("YSU")
                     .resizable()
-                    .frame(width: 60, height: 60)
+                    .frame(width: 42, height: 43)
                     .background(Circle().fill(Constants.GrayColorWhite))
                     .overlay(
                         Circle()
                             .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                     )
-                    .clipShape(Circle())
-                    .padding(.leading, 16)
+                    .padding(.leading, 8)
                 
                 Spacer()
                     .frame(width: 12)
@@ -1037,7 +1027,7 @@ struct bookMarkListView: View {
                         .frame(height: 8)
                     
                     HStack {
-                        Text("서울대학교 인공지능학부")
+                        Text("연세대학교 인공지능학부")
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                     .weight(Constants.fontWeightSemibold)
@@ -1053,6 +1043,7 @@ struct bookMarkListView: View {
                     }
                     .padding(.top, 8)
                 }
+                .padding(.horizontal, 8)
                 
                 Spacer()
                 
@@ -1196,15 +1187,14 @@ struct notificationListView: View {
         }) {
             HStack {
                 HStack {
-                    Image("logo image")
+                    Image("HSU")
                         .resizable()
-                        .frame(width: 60, height: 60)
+                        .frame(width: 42, height: 43)
                         .background(Circle().fill(Constants.GrayColorWhite))
                         .overlay(
                             Circle()
                                 .stroke(Constants.BorderColorBorder1, lineWidth: 1)
                         )
-                        .clipShape(Circle())
                     
                     Spacer()
                         .frame(width: 12)
