@@ -813,8 +813,8 @@ struct LogoutPopupView: View {
 // 탈퇴 팝업 뷰
 struct withdrawPopup: View {
     @Binding var isShowWithdrawPopup: Bool
-    @State private var inputPassword: String = "" // 비밀번호 입력 변수
-    private let correctPassword = "1234" // 임의 설정된 비밀번호
+    @State private var inputID: String = "" // 비밀번호 입력 변수
+    private let correctID = "1234" // 임의 설정된 비밀번호
 
     var body: some View {
         VStack {
@@ -832,7 +832,7 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 20)
                     
-                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 비밀번호 입력이 필요합니다.")
+                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 아이디 입력이 필요합니다.")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightMedium)
@@ -846,7 +846,7 @@ struct withdrawPopup: View {
                 
                 // 비밀번호 입력 뷰
                 VStack(alignment: .leading) {
-                    Text("비밀번호 입력")
+                    Text("아이디 입력")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeM)
                                 .weight(Constants.fontWeightSemibold)
@@ -857,7 +857,7 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 8)
                     
-                    SecureField("비밀번호를 입력해 주세요", text: $inputPassword) // SecureField로 수정
+                    TextField("아이디를 입력해 주세요", text: $inputID)
                         .padding(.horizontal, Constants.fontSizeXs)
                         .padding(.vertical, Constants.fontSizeS)
                         .background(Constants.GrayColorWhite)
@@ -875,7 +875,7 @@ struct withdrawPopup: View {
                 HStack(spacing: 6) {
                     // 탈퇴하기 버튼 - 비밀번호 일치 시 색상 변경
                     Button(action: {
-                        if inputPassword == correctPassword {
+                        if inputID == correctID {
                             isShowWithdrawPopup = false // 팝업 닫기
                             // 탈퇴 로직 추가 가능
                         }
@@ -885,13 +885,13 @@ struct withdrawPopup: View {
                                 Font.custom("Pretendard", size: Constants.fontSizeM)
                                     .weight(Constants.fontWeightMedium)
                             )
-                            .foregroundColor(inputPassword == correctPassword ? .white : Constants.GrayColorGray400)
+                            .foregroundColor(inputID == correctID ? .white : Constants.GrayColorGray400)
                     }
                     .padding(.horizontal, Constants.fontSizeXs)
                     .padding(.vertical, Constants.fontSizeM)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .frame(height: 48)
-                    .background(inputPassword == correctPassword ? Color.red : Constants.GrayColorGray100) // 조건에 따른 배경색 변경
+                    .background(inputID == correctID ? Color.red : Constants.GrayColorGray100) // 조건에 따른 배경색 변경
                     .cornerRadius(8)
                     
                     HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {

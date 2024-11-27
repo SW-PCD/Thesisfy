@@ -14,6 +14,7 @@ struct RegisterViewController: View {
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     @State private var nickname: String = ""
+    @ObservedObject private var register = NetworkManager.shared
     
     var body: some View {
         NavigationView {
@@ -65,7 +66,9 @@ struct RegisterViewController: View {
                     Spacer()
                     
                     NavigationLink(destination: TermsAgreementViewController()) {
-                        NextButtonView()
+                        NextButtonView().onTapGesture {
+                            register.registerBtnTapped()
+                        }
                     }
                 }
                 .padding(.horizontal, 24)

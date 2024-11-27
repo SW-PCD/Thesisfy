@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		51D5DA981BAE410C610C8232 /* Pods_Thesisfy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F9D78EF4FFFD4B4D83C431A /* Pods_Thesisfy.framework */; };
-		7B084DEE2CF5C1330085A7D8 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DED2CF5C1330085A7D8 /* APIConstants.swift */; };
 		7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084DF02CF5C52F0085A7D8 /* Extension.swift */; };
 		7B084E062CF5E7D50085A7D8 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E052CF5E7D50085A7D8 /* LoginModel.swift */; };
 		7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */; };
@@ -44,12 +43,13 @@
 		7B6104F82CF4D53D00FE810B /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EB2CF4D53D00FE810B /* Pretendard-ExtraBold.otf */; };
 		7B6104F92CF4D53D00FE810B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EA2CF4D53D00FE810B /* Pretendard-Bold.otf */; };
 		7B6104FA2CF4D53D00FE810B /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EC2CF4D53D00FE810B /* Pretendard-ExtraLight.otf */; };
+		A1791C402CF775F000507F21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1791C3D2CF775F000507F21 /* NetworkManager.swift */; };
+		A1791C412CF775F000507F21 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1791C3C2CF775F000507F21 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3F1A704BBDF2FA6B430F271B /* Pods-Thesisfy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.release.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.release.xcconfig"; sourceTree = "<group>"; };
 		6F9D78EF4FFFD4B4D83C431A /* Pods_Thesisfy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Thesisfy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B084DED2CF5C1330085A7D8 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		7B084DF02CF5C52F0085A7D8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		7B084DF22CF5C8FC0085A7D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7B084DF32CF5C9F50085A7D8 /* Thesisfy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Thesisfy.xcodeproj; path = ../Thesisfy.xcodeproj; sourceTree = "<group>"; };
@@ -88,6 +88,8 @@
 		7B6104EF2CF4D53D00FE810B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		7B6104F02CF4D53D00FE810B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		7B6104F12CF4D53D00FE810B /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		A1791C3C2CF775F000507F21 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		A1791C3D2CF775F000507F21 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DCD7900AC957A2D692E8A931 /* Pods-Thesisfy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.debug.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,14 +112,6 @@
 				3F1A704BBDF2FA6B430F271B /* Pods-Thesisfy.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		7B084DEC2CF5C10E0085A7D8 /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				7B084DED2CF5C1330085A7D8 /* APIConstants.swift */,
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		7B084DFB2CF5D00D0085A7D8 /* Products */ = {
@@ -179,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				7B084DF22CF5C8FC0085A7D8 /* Info.plist */,
+				A1791C3E2CF775F000507F21 /* Network */,
 				7B6104E82CF4D53300FE810B /* Font */,
-				7B084DEC2CF5C10E0085A7D8 /* Network */,
 				7B6104B12CF4C85B00FE810B /* Data */,
 				7B61048B2CF4C7DC00FE810B /* Login */,
 				7B61048C2CF4C7E100FE810B /* Register */,
@@ -298,6 +292,15 @@
 				7B6104F12CF4D53D00FE810B /* Pretendard-Thin.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		A1791C3E2CF775F000507F21 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				A1791C3C2CF775F000507F21 /* APIConstants.swift */,
+				A1791C3D2CF775F000507F21 /* NetworkManager.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		FF720BC0484F1884B9287DA3 /* Frameworks */ = {
@@ -446,7 +449,6 @@
 				7B6104BE2CF4C8C300FE810B /* BeingWrittenView.swift in Sources */,
 				7B6104BF2CF4C8C300FE810B /* AIRecommendView.swift in Sources */,
 				7B6104C02CF4C8C300FE810B /* CompleteThesisView.swift in Sources */,
-				7B084DEE2CF5C1330085A7D8 /* APIConstants.swift in Sources */,
 				7B6104972CF4C83400FE810B /* FirstTipsViewController.swift in Sources */,
 				7B6104982CF4C83400FE810B /* SecondTipsViewController.swift in Sources */,
 				7B6104992CF4C83400FE810B /* ThirdTipsViewController.swift in Sources */,
@@ -462,6 +464,8 @@
 				7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */,
 				7B6104AC2CF4C84400FE810B /* ThesisView.swift in Sources */,
 				7B6104A22CF4C83800FE810B /* MainViewController.swift in Sources */,
+				A1791C402CF775F000507F21 /* NetworkManager.swift in Sources */,
+				A1791C412CF775F000507F21 /* APIConstants.swift in Sources */,
 				7B6104892CF4C6EC00FE810B /* ThesisfyApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
