@@ -64,22 +64,45 @@ class NetworkManager: ObservableObject {
     }
     
     // MARK: 논문 검색
-    func paperSearchBtnTapped(with query: String) {
-        let url = "http://3.34.186.44:3000/kci/searchKci"
+    func paperSearchBtnTapped(with search: Search) {
+        let url = APIConstants.searchURL //@@@@@ API URL
         
         // URL에 쿼리 파라미터 추가
-        let param: [String: String] = ["query": query]
+        let param: [String: String] = [ //@@@@@ 요청 파라미터 구성
+            "query": search.query,
+//            "key": "YOUR_API_KEY",
+//            "apiCode": "articleSearch"
+        ]
         
         // GET 요청
-        AF.request(url, method: .get, parameters: param, encoder: URLEncodedFormParameterEncoder.default)
-            .responseDecodable(of: SearchResponse.self) { response in
+        AF.request(url, method: .get, parameters: param, encoding: URLEncoding.default) //@@@@@ URL 쿼리 파라미터 인코딩
+            .response { response in
                 switch response.result {
-                case .success(let value):
-                    self.searchResponse = value
-                    print("총 결과 수: \(value.total)")
-                    print("첫 번째 논문 제목: \(value.records.first?.title ?? "없음")")
+                case .success(let data):
+                    guard let data = data else {
+                        print("Error: No data received from server.") //@@@@@ 데이터 없을 경우
+                        return
+                    }
+                    
+                    // JSON 디코딩 시도
+                    do {
+                        let decodedResponse = try JSONDecoder().decode(SearchResponse.self, from: data) //@@@@@ JSON 디코딩
+                        self.searchResponse = decodedResponse
+                        print("총 결과 수: \(decodedResponse.total)")
+                        print("첫 번째 논문 제목: \(decodedResponse.records.first?.title ?? "없음")")
+                    } catch {
+                        // JSON 디코딩 실패 시 원시 응답 출력
+                        if let rawString = String(data: data, encoding: .utf8) { //@@@@@ 원시 응답 출력
+                            print("Raw Response (Not JSON): \(rawString)")
+                        }
+                        print("JSON Decoding Error: \(error)")
+                    }
                 case .failure(let error):
-                    print("논문 검색 실패: \(error.localizedDescription)")
+                    // 요청 실패 처리
+                    print("Request failed: \(error)") //@@@@@ 요청 실패 메시지 출력
+                    if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
+                        print("Raw Error Response: \(rawString)") //@@@@@ 실패 시 원시 응답 출력
+                    }
                 }
             }
     }
