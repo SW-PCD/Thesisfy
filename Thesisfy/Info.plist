@@ -14,7 +14,7 @@
 		<dict/>
     </dict>
 
-	<key>NSAppTransportSecurity</key>
+<key>NSAppTransportSecurity</key>
     <dict>
         <key>NSExceptionDomains</key>
         <dict>
@@ -28,7 +28,7 @@
                 <false/>
             </dict>
         </dict>
-    </dict>	
+    </dict>
 </dict>
 </plist>
 
