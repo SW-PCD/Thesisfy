@@ -13,6 +13,7 @@ struct PaperSearchView: View {
     
     var body: some View {
         NavigationStack(path: $path) {
+<<<<<<< HEAD
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 0) {
                     SearchFieldView(path: $path)
@@ -23,6 +24,16 @@ struct PaperSearchView: View {
                     
                     Spacer(minLength: 12)
                 }
+=======
+            VStack(spacing: 0) {
+                SearchFieldView(path: $path)
+                    .padding(.top, 12)
+                    .padding(.bottom, 20)
+                
+                PaperListView(path: $path, isExpanded: $isExpanded)
+                
+                Spacer(minLength: 12)
+>>>>>>> 49dd072 (Merge Login & Register API)
             }
             .padding(.horizontal, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -44,7 +55,10 @@ struct PaperSearchView: View {
 // MARK: - SearchFieldView
 struct SearchFieldView: View {
     @Binding var path: [Route]
+<<<<<<< HEAD
     @State private var inputSearch: String = ""
+=======
+>>>>>>> 49dd072 (Merge Login & Register API)
     
     var body: some View {
         HStack {
@@ -73,11 +87,19 @@ struct PaperListView: View {
     @Binding var path: [Route]
     @Binding var isExpanded: Bool
     let totalPapers = 20
+<<<<<<< HEAD
     let papersToShowInitially = 5
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // 제목과 검색 결과 개수
+=======
+    let papersToShowInitially = 3
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // 제목과 논문 개수
+>>>>>>> 49dd072 (Merge Login & Register API)
             HStack {
                 Text("인공지능 검색결과")
                     .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
@@ -88,21 +110,36 @@ struct PaperListView: View {
                     .foregroundColor(Constants.PrimaryColorPrimary600)
             }
             
+<<<<<<< HEAD
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
+=======
+            // 논문 리스트
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 12) {
+>>>>>>> 49dd072 (Merge Login & Register API)
                     // 확장 여부에 따라 표시할 논문 개수 조정
                     let papersToShow = isExpanded ? totalPapers : papersToShowInitially
                     ForEach(0..<papersToShow, id: \.self) { _ in
                         PaperRowView(path: $path)
                     }
                     
+<<<<<<< HEAD
                     if !isExpanded {  // 확장되지 않은 상태에서만 버튼 표시
+=======
+                    // 논문 정보 더보기 버튼
+                    if !isExpanded {
+>>>>>>> 49dd072 (Merge Login & Register API)
                         ShowMoreButton(isExpanded: $isExpanded)
                             .padding(.top, 16)
                     }
                 }
             }
+<<<<<<< HEAD
             .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 높이 조정
+=======
+            .frame(maxHeight: isExpanded ? .infinity : CGFloat(papersToShowInitially * 120)) // 확장 여부에 따라 높이 조정
+>>>>>>> 49dd072 (Merge Login & Register API)
             .animation(.easeInOut, value: isExpanded)
         }
     }
