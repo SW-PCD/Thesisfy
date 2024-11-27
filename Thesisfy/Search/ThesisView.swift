@@ -131,7 +131,8 @@ struct ThesisTitleView: View {
                     Button(action: {
                         isBookmarked.toggle() // 버튼 클릭 시 상태 토글
                     }) {
-                        Image(isBookmarked ? "bookMark" : "bookMarkOff") // 상태에 따라 이미지 변경
+                        Image(isBookmarked ? "bookMark" : "bookMark") // 상태에 따라 이미지 변경
+                        // 추후 오른쪽 bookMarkOff로 변경 해야함
                             .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
                     }
                     

@@ -9,28 +9,31 @@ import SwiftUI
 
 // MARK: - Chat View
 struct MainViewController: View {
-    @State private var messages: [String] = ["안녕하세요!", "논문 추천 서비스에 오신 걸 환영합니다!"] // 초기 메시지
+    @State private var messages: [Message] = [
+        Message(content: "안녕하세요!", isUser: false),
+        Message(content: "논문 추천 서비스에 오신 걸 환영합니다!", isUser: false)
+    ] // 초기 메시지
     @State private var newMessage = ""
     @State private var showSideMenu = false // 사이드 메뉴 상태를 관리하는 변수
     @State private var path: [Route] = [] // 네비게이션 경로
     @State private var isShowNotificationSheet = false // 알림 팝업 표시 상태
-    
+
     var body: some View {
         ZStack {
             VStack {
                 // 헤더 뷰
                 HeaderView(showSideMenu: $showSideMenu, isShowNotificationSheet: $isShowNotificationSheet)
-                
+
                 Divider()
-                
+
                 // 메시지 목록
                 ScrollView(showsIndicators: false) {
                     LazyVStack(spacing: 8) {
-                        ForEach(messages, id: \.self) { message in
+                        ForEach(messages) { message in
                             HStack {
-                                if message.contains("안녕하세요") { // 시스템 메시지 구분
+                                if message.isUser { // 사용자의 메시지
                                     Spacer()
-                                    Text(message)
+                                    Text(message.content)
                                         .font(Font.custom("Pretendard", size: Constants.fontSizeXs)
                                             .weight(Constants.fontWeightMedium))
                                         .foregroundColor(Constants.GrayColorWhite)
@@ -39,8 +42,8 @@ struct MainViewController: View {
                                         .cornerRadius(10)
                                         .fixedSize(horizontal: false, vertical: true)
                                         .padding(.horizontal)
-                                } else { // 사용자 메시지
-                                    Text(message)
+                                } else { // 시스템 메시지
+                                    Text(message.content)
                                         .font(Font.custom("Pretendard", size: Constants.fontSizeXs)
                                             .weight(Constants.fontWeightMedium))
                                         .foregroundColor(Constants.GrayColorGray800)
@@ -56,7 +59,7 @@ struct MainViewController: View {
                     }
                     .padding(.vertical, 24)
                 }
-                
+
                 // 입력창
                 HStack {
                     ZStack(alignment: .leading) {
@@ -65,7 +68,7 @@ struct MainViewController: View {
                                 .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                                 .foregroundColor(Constants.GrayColorGray400)
                         }
-                        
+
                         TextField("", text: $newMessage)
                             .background(Color.clear)
                             .overlay(
@@ -74,9 +77,9 @@ struct MainViewController: View {
                             )
                             .frame(height: 48)
                     }
-                    
+
                     Spacer()
-                    
+
                     Button(action: {
                         sendMessage()
                     }) {
@@ -93,7 +96,7 @@ struct MainViewController: View {
                 .cornerRadius(6)
                 .padding(24)
             }
-            
+
             // 사이드 메뉴
             if showSideMenu {
                 SideMenu(isSidebarVisible: $showSideMenu)
@@ -113,13 +116,25 @@ struct MainViewController: View {
                 .closeOnTap(false)
         }
     }
-    
+
     // 메시지 전송 함수
     func sendMessage() {
         guard !newMessage.isEmpty else { return }
-        messages.append(newMessage)
+        messages.append(Message(content: newMessage, isUser: true))
         newMessage = ""
+
+        // 시스템 메시지 응답 추가 (예시)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            messages.append(Message(content: "네, 궁금한 내용을 입력해주세요!", isUser: false))
+        }
     }
+}
+
+// MARK: - 메시지 모델
+struct Message: Identifiable {
+    let id = UUID()
+    let content: String
+    let isUser: Bool // true: 사용자의 메시지, false: 시스템 메시지
 }
 
 struct MainNotificationSheetView: View {

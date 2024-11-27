@@ -192,7 +192,7 @@ struct TitleView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("한성대 홍길동")
+                Text("AI 관련 논문")
                     .font(
                         Font.custom("Pretendard", size: Constants.fontSizeXxl)
                             .weight(Constants.fontWeightSemibold)
@@ -248,7 +248,7 @@ struct MyThesisView: View {
                 
                 // 논문 제목 및 업데이트 정보
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("한성대 OpenAI에 관하여.PDF")
+                    Text("한성대 OpenAI에 관하여.pdf")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
