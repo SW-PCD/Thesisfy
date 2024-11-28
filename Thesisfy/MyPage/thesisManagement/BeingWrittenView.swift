@@ -276,7 +276,7 @@ struct MyThesisView: View {
                         .foregroundColor(Constants.GrayColorGray900)
                     
                     HStack {
-                        Text("업로드 시간")
+                        Text("업데이트")
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                     .weight(Constants.fontWeightSemibold)
