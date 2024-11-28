@@ -43,6 +43,7 @@
 		7B6104F82CF4D53D00FE810B /* Pretendard-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EB2CF4D53D00FE810B /* Pretendard-ExtraBold.otf */; };
 		7B6104F92CF4D53D00FE810B /* Pretendard-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EA2CF4D53D00FE810B /* Pretendard-Bold.otf */; };
 		7B6104FA2CF4D53D00FE810B /* Pretendard-ExtraLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104EC2CF4D53D00FE810B /* Pretendard-ExtraLight.otf */; };
+		A17025A32CF8C18900FF470D /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17025A22CF8C18900FF470D /* UserManager.swift */; };
 		A1791C402CF775F000507F21 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1791C3D2CF775F000507F21 /* NetworkManager.swift */; };
 		A1791C412CF775F000507F21 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1791C3C2CF775F000507F21 /* APIConstants.swift */; };
 /* End PBXBuildFile section */
@@ -88,6 +89,7 @@
 		7B6104EF2CF4D53D00FE810B /* Pretendard-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Regular.otf"; sourceTree = "<group>"; };
 		7B6104F02CF4D53D00FE810B /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		7B6104F12CF4D53D00FE810B /* Pretendard-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Thin.otf"; sourceTree = "<group>"; };
+		A17025A22CF8C18900FF470D /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A1791C3C2CF775F000507F21 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
 		A1791C3D2CF775F000507F21 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		DCD7900AC957A2D692E8A931 /* Pods-Thesisfy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Thesisfy.debug.xcconfig"; path = "Target Support Files/Pods-Thesisfy/Pods-Thesisfy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				7B6104AD2CF4C85500FE810B /* Constants.swift */,
 				7B6104AE2CF4C85500FE810B /* Route.swift */,
+				A17025A22CF8C18900FF470D /* UserManager.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -459,6 +462,7 @@
 				7B6104AF2CF4C85500FE810B /* Route.swift in Sources */,
 				7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */,
 				7B6104B02CF4C85500FE810B /* Constants.swift in Sources */,
+				A17025A32CF8C18900FF470D /* UserManager.swift in Sources */,
 				7B6104AA2CF4C84400FE810B /* PaperSearchView.swift in Sources */,
 				7B6104AB2CF4C84400FE810B /* SearchView.swift in Sources */,
 				7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */,

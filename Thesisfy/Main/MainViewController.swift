@@ -122,11 +122,32 @@ struct MainViewController: View {
     // MARK: - 메시지 전송 함수
     private func sendMessage() {
         guard !newMessage.isEmpty else { return }
+        
+        // 사용자의 메시지 추가
         messages.append(Message(content: newMessage, isUser: true))
+        let userMessage = newMessage
         newMessage = ""
-
-        // 시스템 응답 추가
-        simulateSystemResponse()
+        
+        // 로딩 메시지 추가
+        messages.append(Message(content: "답변을 가져오는 중...", isUser: false))
+        
+        // OpenAI API 호출
+        NetworkManager.shared.sendPromptToChatBot(prompt: userMessage) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let reply):
+                    // 로딩 메시지를 대체
+                    if let lastMessageIndex = messages.lastIndex(where: { !$0.isUser }) {
+                        messages[lastMessageIndex] = Message(content: reply, isUser: false)
+                    }
+                case .failure(let error):
+                    // 에러 처리
+                    if let lastMessageIndex = messages.lastIndex(where: { !$0.isUser }) {
+                        messages[lastMessageIndex] = Message(content: "에러 발생: \(error.localizedDescription)", isUser: false)
+                    }
+                }
+            }
+        }
     }
 
     private func simulateSystemResponse() {

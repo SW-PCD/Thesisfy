@@ -33,21 +33,21 @@ struct SearchResponse: Codable {
         let pubYear: String
         let url: String
         let category: String
-
+        
         // 'title' 배열에서 적절한 언어의 제목을 반환 (기본은 'original')
         var localizedTitle: String {
             title.first { $0.lang == "original" }?.value ?? title.first?.value ?? "제목 없음"
         }
-
+        
         // 'abstract' 배열에서 적절한 언어의 초록을 반환 (기본은 'original')
         var localizedAbstract: String {
             abstract?.first { $0.lang == "original" }?.value ?? "초록 없음"
         }
-
+        
         private enum CodingKeys: String, CodingKey {
             case title, abstract, authors, pubYear, url, category
         }
-
+        
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             title = try container.decode([LocalizedTitle].self, forKey: .title)
@@ -55,7 +55,7 @@ struct SearchResponse: Codable {
             pubYear = try container.decode(String.self, forKey: .pubYear)
             url = try container.decode(String.self, forKey: .url)
             category = try container.decode(String.self, forKey: .category)
-
+            
             // authors를 문자열 또는 배열로 처리
             if let authorsArray = try? container.decode([String].self, forKey: .authors) {
                 authors = authorsArray
@@ -80,12 +80,12 @@ struct SearchResponse: Codable {
     struct LocalizedAbstract: Codable {
         let value: String
         let lang: String
-
+        
         private enum CodingKeys: String, CodingKey {
             case value = "_" // JSON의 '_' 키를 Swift의 'value' 변수로 매핑
             case lang
         }
-
+        
         // lang 키가 없을 경우 기본값을 설정
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -95,11 +95,22 @@ struct SearchResponse: Codable {
     }
 }
 
+// AI챗봇
+struct ChatRequest: Codable {
+    let userId: Int
+    let prompt: String
+}
+
+struct ChatResponse: Codable {
+    let reply: String
+}
+
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
     
     @Published var registerResponse: RegisterResponse?
     @Published var searchResponse: SearchResponse?
+    @Published var chatResponse: String? // 챗봇 응답 저장
     
     // MARK: 회원가입
     func registerBtnTapped(registerModel: Register) {
@@ -162,16 +173,43 @@ class NetworkManager: ObservableObject {
                 }
             }
     }
+    
+    // MARK: OpenAI API 호출 메서드
+    func sendPromptToChatBot(prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let userId = UserManager.shared.userId else {
+            print("Error: User ID not found. User must be logged in.")
+            completion(.failure(NSError(domain: "User ID Missing", code: 0, userInfo: nil)))
+            return
+        }
+
+        let url = APIConstants.chatBotURL
+        let headers: HTTPHeaders = [
+            "Content-Type": "application/json"
+        ]
+
+        let parameters = ChatRequest(userId: userId, prompt: prompt)
+
+        AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: headers)
+            .responseDecodable(of: ChatResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    completion(.success(value.reply))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
+}
 //    func paperSearchBtnTapped(with search: Search) {
 //        let url = APIConstants.searchURL //@@@@@ API URL
-//        
+//
 //        // URL에 쿼리 파라미터 추가
 //        let param: [String: String] = [ //@@@@@ 요청 파라미터 구성
 //            "query": search.query,
 ////            "key": "YOUR_API_KEY",
 ////            "apiCode": "articleSearch"
 //        ]
-//        
+//
 //        // GET 요청
 //        AF.request(url, method: .get, parameters: param, encoding: URLEncoding.default) //@@@@@ URL 쿼리 파라미터 인코딩
 //            .response { response in
@@ -181,7 +219,7 @@ class NetworkManager: ObservableObject {
 //                        print("Error: No data received from server.") //@@@@@ 데이터 없을 경우
 //                        return
 //                    }
-//                    
+//
 //                    // JSON 디코딩 시도
 //                    do {
 //                        let decodedResponse = try JSONDecoder().decode(SearchResponse.self, from: data) //@@@@@ JSON 디코딩
@@ -204,4 +242,3 @@ class NetworkManager: ObservableObject {
 //                }
 //            }
 //    }
-}

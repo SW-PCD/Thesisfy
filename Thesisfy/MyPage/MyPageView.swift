@@ -205,19 +205,21 @@ struct myPageTopView: View {
 
 struct profileView: View {
     @Binding var path: [Route] //네비게이션 스택 바인딩 추가
+    @StateObject private var userManager = UserManager.shared // UserManager를 상태 객체로 추가
     
     var body: some View {
         HStack {
-            Image("person")
+            Image("userProfile")
                 .resizable()
                 .frame(width: 42, height: 43)
                 .padding(.leading, 16)
+                .foregroundColor(Constants.PrimaryColorPrimary600)
             
             Spacer()
                 .frame(width: 12)
             
-            VStack {
-                Text("홍길동 님")
+            VStack(alignment: .leading) {
+                Text(userManager.nickname ?? "Guest")
                     .font(
                         Font.custom("Pretendard", size: Constants.fontSizeM)
                             .weight(Constants.fontWeightSemibold)
@@ -228,7 +230,7 @@ struct profileView: View {
                 Spacer()
                     .frame(height: 4)
                 
-                Text("hong@hansung.ac.kr")
+                Text(userManager.email ?? "example@example.com")
                     .font(
                         Font.custom("Pretendard", size: Constants.fontSizeXs)
                             .weight(Constants.fontWeightMedium)
