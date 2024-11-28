@@ -2,33 +2,46 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>UILaunchScreen</key>
-    <dict>
-        <key>UIColorName</key>
-        <string>white</string>
-        <key>UIImageName</key>
-        <string>Logo</string>
-        <key>UIImageRespectsSafeAreaInsets</key>
-        <false/>
+	<key>Information Property List</key>
+	<dict>
+		<key>Fonts provided by application</key>
+		<array>
+			<string>Pretendard-Black</string>
+			<string>Pretendard-Bold</string>
+			<string>Pretendard-ExtraBold</string>
+			<string>Pretendard-ExtraLight</string>
+			<string>Pretendard-Light</string>
+			<string>Pretendard-Medium</string>
+			<string>Pretendard-Regular</string>
+			<string>Pretendard-SemiBold</string>
+			<string>Pretendard-Thin</string>
+		</array>
+	</dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>3.34.186.44</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>white</string>
+		<key>UIImageName</key>
+		<string>Logo</string>
+		<key>UIImageRespectsSafeAreaInsets</key>
+		<false/>
 		<key>UiLaunchScreen</key>
 		<dict/>
-    </dict>
-
-<key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSExceptionDomains</key>
-        <dict>
-            <key>3.34.186.44</key>
-            <dict>
-                <key>NSIncludesSubdomains</key>
-                <true/>
-                <key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
-                <true/>
-                <key>NSExceptionRequiresForwardSecrecy</key>
-                <false/>
-            </dict>
-        </dict>
-    </dict>
+	</dict>
 </dict>
 </plist>
-
