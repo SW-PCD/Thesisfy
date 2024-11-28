@@ -257,11 +257,6 @@ struct MyThesisView: View {
                 Image("pdf")
                     .resizable()
                     .frame(width: 42, height: 42)
-                    .background(Circle().fill(Constants.GrayColorWhite))
-                    .overlay(
-                        Circle()
-                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                    )
                     .padding(.leading, 16)
                 
                 Spacer()
@@ -343,6 +338,9 @@ struct progressBar: View {
 }
 
 struct MemoView: View {
+    @State private var memoText: String = "" // 메모 텍스트 상태 변수
+    @State private var showAlert: Bool = false // 알림 표시 여부 상태 변수
+
     var body: some View {
         VStack {
             HStack {
@@ -354,9 +352,29 @@ struct MemoView: View {
                     .foregroundColor(Constants.GrayColorGray900)
                 
                 Spacer()
+                
+                // 저장 버튼
+                Button(action: {
+                    saveMemo()
+                    showAlert = true // 저장 완료 알림 표시
+                }) {
+                    Text("저장")
+                        .font(
+                            Font.custom("Pretendard", size: Constants.fontSizeM)
+                                .weight(Constants.fontWeightMedium)
+                        )
+                        .foregroundColor(Constants.PrimaryColorPrimary600)
+                }
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("저장 완료"),
+                        message: Text("메모가 저장되었습니다."),
+                        dismissButton: .default(Text("확인"))
+                    )
+                }
             }
             
-            TextEditor(text: .constant(""))
+            TextEditor(text: $memoText) // 상태 변수를 바인딩
                 .frame(height: 200) // 세로 길이 설정
                 .padding(.horizontal, Constants.fontSizeXs)
                 .padding(.vertical, Constants.fontSizeS)
@@ -369,6 +387,19 @@ struct MemoView: View {
                 )
         }
         .padding(.horizontal, 24)
+        .onAppear(perform: loadMemo) // 뷰가 나타날 때 메모 로드
+    }
+    
+    // MARK: - 저장 로직
+    private func saveMemo() {
+        UserDefaults.standard.set(memoText, forKey: "SavedMemo")
+    }
+    
+    // MARK: - 불러오기 로직
+    private func loadMemo() {
+        if let savedMemo = UserDefaults.standard.string(forKey: "SavedMemo") {
+            memoText = savedMemo
+        }
     }
 }
 

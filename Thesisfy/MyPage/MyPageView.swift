@@ -436,11 +436,6 @@ struct beingWrittenView: View {
                         Image("pdf")
                             .resizable()
                             .frame(width: 42, height: 43)
-                            .background(Circle().fill(Constants.GrayColorWhite))
-                            .overlay(
-                                Circle()
-                                    .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                            )
                             .padding(.leading, 16)
                         
                         Spacer()
