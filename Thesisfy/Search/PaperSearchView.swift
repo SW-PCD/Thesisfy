@@ -149,7 +149,7 @@ struct PaperListView: View {
         VStack(alignment: .leading, spacing: 12) {
             // 제목과 검색 결과 개수
             HStack {
-                Text("\(query) 검색결과 \(searchResponse.records.count)건") // 검색어와 결과 개수 표시
+                Text("\(query) 검색결과 \(searchResponse.total)건") // 검색어와 결과 개수 표시
                     .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                     .foregroundColor(Constants.GrayColorGray800)
             }

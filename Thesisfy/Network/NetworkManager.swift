@@ -130,7 +130,7 @@ class NetworkManager: ObservableObject {
     }
     
     // MARK: 논문 검색
-    func paperSearchBtnTapped(query: String, page: Int = 1, displayCount: Int = 10) {
+    func paperSearchBtnTapped(query: String, page: Int = 1, displayCount: Int = 20) {
         let url = APIConstants.searchURL
         let params: [String: Any] = [
             "query": query,

@@ -194,7 +194,7 @@ struct MainViewController: View {
                 }
             } else {
                 Text(content)
-                    .font(Font.custom("Pretendard", size: Constants.fontSizeXs).weight(Constants.fontWeightMedium))
+                    .font(Font.custom("Pretendard", size: Constants.fontSizeM).weight(Constants.fontWeightRegular))
                     .foregroundColor(isUser ? Constants.GrayColorWhite : Constants.GrayColorGray800)
                     .padding(12)
                     .background(isUser ? Constants.PrimaryColorPrimary500 : Constants.GrayColorGray50)
