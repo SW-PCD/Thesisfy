@@ -421,7 +421,7 @@ struct beingWrittenView: View {
                     path.append(.beingWrittenView) // 네비게이션 경로 추가
                 }) {
                     HStack {
-                        Image("HSU")
+                        Image("pdf")
                             .resizable()
                             .frame(width: 42, height: 43)
                             .background(Circle().fill(Constants.GrayColorWhite))
