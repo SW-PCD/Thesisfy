@@ -18,7 +18,6 @@ struct Register: Codable {
 
 struct RegisterResponse: Codable {
     var message: String?
-    var error: String?
 }
 
 // 논문 검색
@@ -105,12 +104,24 @@ struct ChatResponse: Codable {
     let reply: String
 }
 
+// 회원 탈퇴
+struct DeleteAccountRequest: Codable {
+    let email: String
+    let password: String
+}
+
+struct DeleteAccountResponse: Codable {
+    var message: String? // 성공 메시지
+    var error: String?   // 오류 메시지
+}
+
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
     
     @Published var registerResponse: RegisterResponse?
     @Published var searchResponse: SearchResponse?
     @Published var chatResponse: String? // 챗봇 응답 저장
+    @Published var deleteAccountResponse: DeleteAccountResponse? // 탈퇴 응답 저장
     
     // MARK: 회원가입
     func registerBtnTapped(registerModel: Register) {
@@ -128,6 +139,39 @@ class NetworkManager: ObservableObject {
                 }
             }
     }
+    
+    // MARK: 회원 탈퇴
+        func deleteAccount(password: String, completion: @escaping (Result<String, Error>) -> Void) {
+            guard let email = UserManager.shared.email else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "이메일 정보가 없습니다."])))
+                return
+            }
+            
+            let url = APIConstants.deleteAccountURL // 탈퇴 API URL
+            let parameters = DeleteAccountRequest(email: email, password: password) // 요청 데이터
+            
+            // POST 요청
+            AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default)
+                .responseDecodable(of: DeleteAccountResponse.self) { response in
+                    switch response.result {
+                    case .success(let value):
+                        if let message = value.message {
+                            completion(.success(message)) // 성공 메시지 전달
+                            print("회원 탈퇴 성공: \(message)")
+                        } else {
+                            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "알 수 없는 오류"])))
+                            print("회원 탈퇴 실패: 알 수 없는 메시지")
+                        }
+                    case .failure(let error):
+                        // 디코딩 실패 시 원시 데이터를 로깅
+                        if let data = response.data, let rawResponse = String(data: data, encoding: .utf8) {
+                            print("Raw Response: \(rawResponse)")
+                        }
+                        completion(.failure(error))
+                        print("회원 탈퇴 요청 실패: \(error.localizedDescription)")
+                    }
+                }
+        }
     
     // MARK: 논문 검색
     func paperSearchBtnTapped(query: String, page: Int = 1, displayCount: Int = 10) {
@@ -181,14 +225,14 @@ class NetworkManager: ObservableObject {
             completion(.failure(NSError(domain: "User ID Missing", code: 0, userInfo: nil)))
             return
         }
-
+        
         let url = APIConstants.chatBotURL
         let headers: HTTPHeaders = [
             "Content-Type": "application/json"
         ]
-
+        
         let parameters = ChatRequest(userId: userId, prompt: prompt)
-
+        
         AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default, headers: headers)
             .responseDecodable(of: ChatResponse.self) { response in
                 switch response.result {
