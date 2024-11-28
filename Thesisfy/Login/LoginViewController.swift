@@ -178,6 +178,12 @@ struct LoginViewController: View {
                             loginSuccess = true
                             alertMessage = "로그인 성공"
                             print("로그인 성공")
+                            
+                            // 사용자 정보 저장
+                            UserManager.shared.userId = decodedResponse.user.id
+                            UserManager.shared.email = decodedResponse.user.email
+                            UserManager.shared.nickname = decodedResponse.user.nickname
+                            UserManager.shared.job = decodedResponse.user.job
                         } else {
                             alertMessage = decodedResponse.message
                             showAlert = true
