@@ -73,8 +73,8 @@ struct SearchFieldView: View {
             Spacer()
             
             Button(action: { // 검색 버튼 클릭 시 API 호출
-                let searchRequest = Search(query: inputSearch)
-                NetworkManager.shared.paperSearchBtnTapped(with: searchRequest)
+                NetworkManager.shared.paperSearchBtnTapped(query: inputSearch)
+//                NetworkManager.shared.paperSearchBtnTapped(with: searchRequest)
             }) {
                 Image("search")
                     .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
@@ -90,6 +90,7 @@ struct SearchFieldView: View {
 }
 
 // MARK: - PaperListView
+// MARK: - PaperListView
 struct PaperListView: View {
     @Binding var path: [Route]
     @Binding var isExpanded: Bool
@@ -100,21 +101,16 @@ struct PaperListView: View {
         VStack(alignment: .leading, spacing: 12) {
             // 제목과 검색 결과 개수
             HStack {
-                Text("\(query) 검색결과") //@@@@@ 검색어 표시
+                Text("\(query) 검색결과 \(searchResponse.records.count)건") // 검색어와 결과 개수 표시
                     .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                     .foregroundColor(Constants.GrayColorGray800)
-                
-                //@@@ JSON에서 total 값 대신 records.count 사용
-                Text("\(searchResponse.records.count)건")
-                    .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightSemibold))
-                    .foregroundColor(Constants.PrimaryColorPrimary600)
             }
             
             ScrollView(showsIndicators: false) {
                 VStack(spacing: 8) {
                     // 확장 여부에 따라 표시할 레코드 수 조정
                     let recordsToShow = isExpanded ? searchResponse.records : Array(searchResponse.records.prefix(5))
-                    ForEach(recordsToShow, id: \.title) { record in
+                    ForEach(recordsToShow, id: \.url) { record in
                         PaperRowView(path: $path, record: record) //@@@ 레코드 뷰 생성
                     }
                     
@@ -135,28 +131,29 @@ struct PaperRowView: View {
     @Binding var path: [Route]  // NavigationStack 경로
     let record: SearchResponse.Record // 논문 데이터 전달받음
     
+    // 이미지 배열
+    private let universityLogos = ["YSU", "SNU", "KU", "KAIST", "POSTECH", "HSU", "SKKU", "HYU"]
+    
+    // 랜덤 이미지 선택
+    private var randomLogo: String {
+        universityLogos.randomElement() ?? "defaultLogo"
+    }
+    
     var body: some View {
         Button(action: {
             path.append(.thesisView) // 버튼 클릭 시 `thesisView`로 이동
         }) {
-            HStack {
-                Image("SNU")
+            HStack(alignment: .top, spacing: 12) { // HStack 정렬과 간격 설정
+                Image(randomLogo) // 랜덤 이미지 적용
                     .resizable()
-                    .frame(width: 60, height: 60)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 42, height: 43)
                     .background(Circle().fill(Constants.GrayColorWhite))
-                    .overlay(
-                        Circle()
-                            .stroke(Constants.BorderColorBorder1, lineWidth: 1)
-                    )
-                    .clipShape(Circle())
                     .padding(.leading, 16)
                 
-                Spacer()
-                    .frame(width: 12)
-                
-                VStack(alignment: .leading, spacing: 0) {
+                VStack(alignment: .leading, spacing: 7) { // 텍스트 정렬
                     HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                        Text(record.category)//@@@@@ 논문 카테고리
+                        Text(record.category) // 논문 카테고리
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeXs)
                                     .weight(Constants.fontWeightSemibold)
@@ -168,37 +165,19 @@ struct PaperRowView: View {
                     .background(Constants.PrimaryColorPrimary50)
                     .cornerRadius(6)
                     
-                    Spacer()
-                        .frame(height: 7)
-                    
-                    Text(record.title) //@@@@@ 논문 제목
+                    Text(record.localizedTitle) // 적절한 언어의 논문 제목 표시
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
                         )
                         .foregroundColor(Constants.GrayColorGray900)
-                    
-                    HStack {
-                        Text("서울대학교 인공지능학부")
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                    .weight(Constants.fontWeightSemibold)
-                            )
-                            .foregroundColor(Constants.GrayColorGray800)
-                        
-                        Text(record.authors.joined(separator: ", ")) //논문저자
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                                    .weight(Constants.fontWeightMedium)
-                            )
-                            .foregroundColor(Constants.GrayColorGray600)
-                    }
-                    .padding(.top, 8)
+                        .lineLimit(1) // 한 줄로 제한
+                        .truncationMode(.tail) // 초과 텍스트를 "..."으로 표시
+                        .frame(maxWidth: .infinity, alignment: .leading) // 명시적으로 왼쪽 정렬
                 }
-                
-                Spacer()
+                .frame(maxWidth: .infinity, alignment: .leading) // 전체를 왼쪽 정렬
             }
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, alignment: .leading) // HStack 정렬
             .frame(height: 100)
             .background(Constants.GrayColorGray50)
             .cornerRadius(6)
