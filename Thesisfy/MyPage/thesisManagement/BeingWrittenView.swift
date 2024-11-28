@@ -15,6 +15,7 @@ struct BeingWrittenView: View {
     @State private var isShowEditPopup = false // 편집 팝업 상태 변수
     @State private var isShowingDocumentPicker = false // 파일 선택 팝업 상태
     @State private var selectedFileName: String = "한성대 OpenAI에 관하여.pdf" // 초기 파일 제목
+    @State private var selectedFileDate: String = "날짜 없음" // 초기 파일 제목
     
     var body: some View {
         VStack {
@@ -35,9 +36,14 @@ struct BeingWrittenView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                MyThesisView(selectedFileName: $selectedFileName, onUpdateTap: {
-                    isShowingDocumentPicker = true // 파일 선택 팝업 표시
-                })
+                MyThesisView(
+                    selectedFileName: $selectedFileName,
+                    selectedFileDate: $selectedFileDate,
+                    onUpdateTap: {
+                        // DocumentPicker 표시
+                        isShowingDocumentPicker = true
+                    }
+                )
                 
                 Spacer()
                     .frame(height: 24)
@@ -62,7 +68,7 @@ struct BeingWrittenView: View {
             ThesisButton()
         }
         .sheet(isPresented: $isShowingDocumentPicker) {
-            DocumentPicker(fileName: $selectedFileName)
+            DocumentPicker(fileName: $selectedFileName, fileDate: $selectedFileDate)
         }
         // 편집 팝업
         .popup(isPresented: $isShowEditPopup) {
@@ -227,14 +233,16 @@ struct TitleView: View {
 
 struct MyThesisView: View {
     @Binding var selectedFileName: String // 선택된 파일 이름
-        var onUpdateTap: () -> Void // 업데이트 버튼 동작 전달
-    
+    @Binding var selectedFileDate: String // 업로드 날짜
+    var onUpdateTap: () -> Void // 버튼 클릭 동작 전달
+
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 
-                Button(action: onUpdateTap) { // 업데이트 버튼 클릭 시 동작
+                // 업데이트 버튼
+                Button(action: onUpdateTap) {
                     Text("업데이트")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeXxs)
@@ -259,9 +267,8 @@ struct MyThesisView: View {
                 Spacer()
                     .frame(width: 12)
                 
-                // 논문 제목 및 업데이트 정보
                 VStack(alignment: .leading, spacing: 0) {
-                    Text(selectedFileName)// 선택된 파일 이름 표시
+                    Text(selectedFileName)
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
@@ -269,14 +276,14 @@ struct MyThesisView: View {
                         .foregroundColor(Constants.GrayColorGray900)
                     
                     HStack {
-                        Text("업데이트")
+                        Text("업로드 시간")
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                     .weight(Constants.fontWeightSemibold)
                             )
                             .foregroundColor(Constants.GrayColorGray800)
                         
-                        Text("2024년 12월 6일 12시 03분")
+                        Text(selectedFileDate.isEmpty ? "날짜 없음" : selectedFileDate)
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                     .weight(Constants.fontWeightMedium)
@@ -501,33 +508,40 @@ struct ThesisButton: View {
 
 struct DocumentPicker: UIViewControllerRepresentable {
     @Binding var fileName: String // 선택된 파일 이름
-
+    @Binding var fileDate: String // 선택된 파일 날짜
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
-
+    
     func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
         let documentPicker = UIDocumentPickerViewController(
-            documentTypes: ["com.adobe.pdf", "com.hancom.hwp", "org.openxmlformats.wordprocessingml.document"], // PDF, HWP, DOCX
+            documentTypes: ["com.adobe.pdf"], // PDF
             in: .import
         )
         documentPicker.delegate = context.coordinator
         return documentPicker
     }
-
+    
     func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
-
+    
     class Coordinator: NSObject, UIDocumentPickerDelegate {
         let parent: DocumentPicker
-
+        
         init(parent: DocumentPicker) {
             self.parent = parent
         }
-
+        
         func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-            if let selectedURL = urls.first {
-                parent.fileName = selectedURL.lastPathComponent // 파일 이름 업데이트
-            }
+            guard let selectedURL = urls.first else { return }
+            
+            // 파일 이름 업데이트
+            parent.fileName = selectedURL.lastPathComponent
+            
+            // 업로드 시간 업데이트 (현재 시간)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시 mm분" // 원하는 날짜 포맷
+            parent.fileDate = dateFormatter.string(from: Date())
         }
     }
 }
@@ -535,4 +549,3 @@ struct DocumentPicker: UIViewControllerRepresentable {
 #Preview {
     BeingWrittenView(path: .constant([]))
 }
-
