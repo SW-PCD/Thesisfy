@@ -7,11 +7,14 @@
 
 import SwiftUI
 import ExytePopupView
+import UniformTypeIdentifiers
 
 struct BeingWrittenView: View {
     @Binding var path: [Route] //네비게이션 경로를 전달받기 위해 path 추가
     @State private var progress: Double = 0.3 // 논문 진행 상태
     @State private var isShowEditPopup = false // 편집 팝업 상태 변수
+    @State private var isShowingDocumentPicker = false // 파일 선택 팝업 상태
+    @State private var selectedFileName: String = "한성대 OpenAI에 관하여.pdf" // 초기 파일 제목
     
     var body: some View {
         VStack {
@@ -32,7 +35,9 @@ struct BeingWrittenView: View {
                 Spacer()
                     .frame(height: 24)
                 
-                MyThesisView()
+                MyThesisView(selectedFileName: $selectedFileName, onUpdateTap: {
+                    isShowingDocumentPicker = true // 파일 선택 팝업 표시
+                })
                 
                 Spacer()
                     .frame(height: 24)
@@ -55,6 +60,9 @@ struct BeingWrittenView: View {
             }
             
             ThesisButton()
+        }
+        .sheet(isPresented: $isShowingDocumentPicker) {
+            DocumentPicker(fileName: $selectedFileName)
         }
         // 편집 팝업
         .popup(isPresented: $isShowEditPopup) {
@@ -218,22 +226,27 @@ struct TitleView: View {
 }
 
 struct MyThesisView: View {
+    @Binding var selectedFileName: String // 선택된 파일 이름
+        var onUpdateTap: () -> Void // 업데이트 버튼 동작 전달
+    
     var body: some View {
         VStack {
             HStack {
                 Spacer()
                 
-                Text("업데이트")
-                    .font(
-                        Font.custom("Pretendard", size: Constants.fontSizeXxs)
-                            .weight(Constants.fontWeightMedium)
-                    )
-                    .foregroundColor(Constants.GrayColorGray400)
+                Button(action: onUpdateTap) { // 업데이트 버튼 클릭 시 동작
+                    Text("업데이트")
+                        .font(
+                            Font.custom("Pretendard", size: Constants.fontSizeXxs)
+                                .weight(Constants.fontWeightMedium)
+                        )
+                        .foregroundColor(Constants.GrayColorGray400)
+                }
             }
             
             HStack {
                 // 논문 이미지
-                Image("HSU")
+                Image("pdf")
                     .resizable()
                     .frame(width: 42, height: 42)
                     .background(Circle().fill(Constants.GrayColorWhite))
@@ -248,7 +261,7 @@ struct MyThesisView: View {
                 
                 // 논문 제목 및 업데이트 정보
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("한성대 OpenAI에 관하여.pdf")
+                    Text(selectedFileName)// 선택된 파일 이름 표시
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
@@ -483,6 +496,39 @@ struct ThesisButton: View {
             )
         }
         .padding(.horizontal, 24)
+    }
+}
+
+struct DocumentPicker: UIViewControllerRepresentable {
+    @Binding var fileName: String // 선택된 파일 이름
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator(parent: self)
+    }
+
+    func makeUIViewController(context: Context) -> UIDocumentPickerViewController {
+        let documentPicker = UIDocumentPickerViewController(
+            documentTypes: ["com.adobe.pdf", "com.hancom.hwp", "org.openxmlformats.wordprocessingml.document"], // PDF, HWP, DOCX
+            in: .import
+        )
+        documentPicker.delegate = context.coordinator
+        return documentPicker
+    }
+
+    func updateUIViewController(_ uiViewController: UIDocumentPickerViewController, context: Context) {}
+
+    class Coordinator: NSObject, UIDocumentPickerDelegate {
+        let parent: DocumentPicker
+
+        init(parent: DocumentPicker) {
+            self.parent = parent
+        }
+
+        func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+            if let selectedURL = urls.first {
+                parent.fileName = selectedURL.lastPathComponent // 파일 이름 업데이트
+            }
+        }
     }
 }
 
