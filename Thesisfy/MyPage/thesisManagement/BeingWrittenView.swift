@@ -11,11 +11,11 @@ import UniformTypeIdentifiers
 
 struct BeingWrittenView: View {
     @Binding var path: [Route] //네비게이션 경로를 전달받기 위해 path 추가
-    @State private var progress: Double = 0.3 // 논문 진행 상태
+    @Binding var selectedFileName: String // 선택된 파일 이름 상위 뷰에서 전달받음
+    @Binding var selectedFileDate: String // 선택된 파일 날짜 상위 뷰에서 전달받음
+    @Binding var progress: Double // 진행률 추가
     @State private var isShowEditPopup = false // 편집 팝업 상태 변수
     @State private var isShowingDocumentPicker = false // 파일 선택 팝업 상태
-    @State private var selectedFileName: String = "한성대 OpenAI에 관하여.pdf" // 초기 파일 제목
-    @State private var selectedFileDate: String = "날짜 없음" // 초기 파일 제목
     
     var body: some View {
         VStack {
@@ -547,5 +547,10 @@ struct DocumentPicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    BeingWrittenView(path: .constant([]))
+    BeingWrittenView(
+        path: .constant([]),
+        selectedFileName: .constant("미리보기 논문.pdf"),
+        selectedFileDate: .constant("2024년 12월 1일 10시 00분"),
+        progress: .constant(0.5) // 정의에 포함된 경우
+    )
 }

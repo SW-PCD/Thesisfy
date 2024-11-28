@@ -39,6 +39,9 @@ struct MyPageView: View {
     @State private var isEditingCompletedThesisView: Bool = false // 작성 완료된 편집 모드 상태 변수
     @State private var paper: String? = "AI 관련 논문" // 작성 중인 논문 상태
     
+    @State private var selectedFileName: String = "한성대 OpenAI에 관하여.pdf"
+    @State private var selectedFileDate: String = "날짜 없음"
+    
     @State private var path: [Route] = [] // 네비게이션 스택을 MyPageView에서 선언
     
     var body: some View {
@@ -71,10 +74,12 @@ struct MyPageView: View {
                         .frame(height: 24)
                     
                     beingWrittenView(
-                        path: $path, // 네비게이션 스택 전달
+                        path: $path,
                         paper: $paper,
-                        progress: $progress,
+                        progress: $progress, // progress가 isEditing보다 먼저
                         isEditing: $isEditingbeingWrittenView,
+                        selectedFileName: $selectedFileName,
+                        selectedFileDate: $selectedFileDate,
                         onDeletebeingWrittenView: { self.paper = nil },
                         onAdd: { self.paper = "새로운 논문.pdf" }
                     )
@@ -102,7 +107,12 @@ struct MyPageView: View {
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .beingWrittenView:
-                    BeingWrittenView(path: $path) // BeingWrittenView로 네비게이션
+                    BeingWrittenView(
+                        path: $path,
+                        selectedFileName: $selectedFileName,
+                        selectedFileDate: $selectedFileDate,
+                        progress: $progress // 정의에 포함된 경우
+                    )
                 case .completeThesisView:
                         CompleteThesisView(path: $path) // CompleteThesisView로 네비게이션
                 case .aiRecommendView:
@@ -146,7 +156,7 @@ struct MyPageView: View {
             }
             // 탈퇴 팝업
             .popup(isPresented: $isShowWithdrawPopup) {
-                withdrawPopup(isShowWithdrawPopup: $isShowWithdrawPopup)
+                WithdrawPopup(isShowWithdrawPopup: $isShowWithdrawPopup)
             } customize: {
                 $0
                     .type(.default)
@@ -385,14 +395,14 @@ struct bookMarkView: View {
 }
 
 struct beingWrittenView: View {
-    @Binding var path: [Route] //네비게이션 스택 바인딩 추가
-    
-    @Binding var paper: String? // 작성 중인 논문 상태
-    @Binding var progress: Double // 진행률
-    @Binding var isEditing: Bool // 편집 모드 상태
-    
-    var onDeletebeingWrittenView: () -> Void // 논문 삭제 동작
-    var onAdd: () -> Void // 논문 추가 동작
+    @Binding var path: [Route]
+        @Binding var paper: String?
+        @Binding var progress: Double
+        @Binding var isEditing: Bool
+        @Binding var selectedFileName: String
+        @Binding var selectedFileDate: String
+        var onDeletebeingWrittenView: () -> Void
+        var onAdd: () -> Void
     
     var body: some View {
         VStack(spacing: 8) {
@@ -437,7 +447,7 @@ struct beingWrittenView: View {
                             .frame(width: 12)
                         
                         VStack(alignment: .leading, spacing: 0) {
-                            Text(paper)
+                            Text(selectedFileName)
                                 .font(
                                     Font.custom("Pretendard", size: Constants.fontSizeS)
                                         .weight(Constants.fontWeightSemibold)
@@ -455,7 +465,7 @@ struct beingWrittenView: View {
                                     )
                                     .foregroundColor(Constants.GrayColorGray800)
                                 
-                                Text("2024년 12월 6일 12시 03분")
+                                Text(selectedFileDate)
                                     .font(
                                         Font.custom("Pretendard", size: Constants.fontSizeXxs)
                                             .weight(Constants.fontWeightMedium)
@@ -816,12 +826,13 @@ struct LogoutPopupView: View {
     }
 }
 
-// 탈퇴 팝업 뷰
-struct withdrawPopup: View {
+//탈퇴 성공되면 로그인 뷰로 안돌아감
+struct WithdrawPopup: View {
     @Binding var isShowWithdrawPopup: Bool
-    @State private var inputID: String = "" // 비밀번호 입력 변수
-    private let correctID = "1234" // 임의 설정된 비밀번호
-
+    @State private var inputPassword: String = "" // 비밀번호 입력
+    @State private var showAlert: Bool = false // 알림 표시 여부
+    @State private var alertMessage: String = "" // 알림 메시지
+    
     var body: some View {
         VStack {
             VStack {
@@ -838,7 +849,7 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 20)
                     
-                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 아이디 입력이 필요합니다.")
+                    Text("탈퇴하면 지금까지 이용한 내역이 모두 사라져요. 탈퇴하기 위해서는 비밀번호 입력이 필요합니다.")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightMedium)
@@ -852,7 +863,7 @@ struct withdrawPopup: View {
                 
                 // 비밀번호 입력 뷰
                 VStack(alignment: .leading) {
-                    Text("아이디 입력")
+                    Text("비밀번호 입력")
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeM)
                                 .weight(Constants.fontWeightSemibold)
@@ -863,7 +874,8 @@ struct withdrawPopup: View {
                     Spacer()
                         .frame(height: 8)
                     
-                    TextField("아이디를 입력해 주세요", text: $inputID)
+                    // 비밀번호 입력 필드
+                    SecureField("비밀번호를 입력해 주세요", text: $inputPassword)
                         .padding(.horizontal, Constants.fontSizeXs)
                         .padding(.vertical, Constants.fontSizeS)
                         .background(Constants.GrayColorWhite)
@@ -879,49 +891,37 @@ struct withdrawPopup: View {
                     .frame(height: 28)
                 
                 HStack(spacing: 6) {
-                    // 탈퇴하기 버튼 - 비밀번호 일치 시 색상 변경
-                    Button(action: {
-                        if inputID == correctID {
-                            isShowWithdrawPopup = false // 팝업 닫기
-                            // 탈퇴 로직 추가 가능
-                        }
-                    }) {
+                    // 탈퇴하기 버튼
+                    Button(action: handleWithdraw) {
                         Text("탈퇴하기")
                             .font(
                                 Font.custom("Pretendard", size: Constants.fontSizeM)
                                     .weight(Constants.fontWeightMedium)
                             )
-                            .foregroundColor(inputID == correctID ? .white : Constants.GrayColorGray400)
+                            .foregroundColor(inputPassword.isEmpty ? Constants.GrayColorGray400 : .white)
                     }
                     .padding(.horizontal, Constants.fontSizeXs)
                     .padding(.vertical, Constants.fontSizeM)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .frame(height: 48)
-                    .background(inputID == correctID ? Color.red : Constants.GrayColorGray100) // 조건에 따른 배경색 변경
+                    .background(inputPassword.isEmpty ? Constants.GrayColorGray100 : Color.red) // 입력 여부에 따른 배경색 변경
                     .cornerRadius(8)
+                    .disabled(inputPassword.isEmpty) // 입력값이 없으면 비활성화
                     
-                    HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                        Button(action: {
-                            isShowWithdrawPopup = false // 팝업 닫기
-                        }) {
-                            Text("닫기")
-                                .font(
-                                    Font.custom("Pretendard", size: Constants.fontSizeM)
-                                        .weight(Constants.fontWeightSemibold)
-                                )
-                                .foregroundColor(Constants.GrayColorWhite)
-                                .frame(maxWidth: .infinity)
-                                .frame(height: 48)
-                                .background(Constants.PrimaryColorPrimary500)
-                                .cornerRadius(8)
-                        }
+                    Button(action: {
+                        isShowWithdrawPopup = false // 팝업 닫기
+                    }) {
+                        Text("닫기")
+                            .font(
+                                Font.custom("Pretendard", size: Constants.fontSizeM)
+                                    .weight(Constants.fontWeightSemibold)
+                            )
+                            .foregroundColor(Constants.GrayColorWhite)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 48)
+                            .background(Constants.PrimaryColorPrimary500)
+                            .cornerRadius(8)
                     }
-                    .padding(.horizontal, Constants.fontSizeXs)
-                    .padding(.vertical, Constants.fontSizeM)
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .frame(height: 48)
-                    .background(Constants.PrimaryColorPrimary500)
-                    .cornerRadius(8)
                 }
             }
             .padding(.horizontal, 20)
@@ -931,6 +931,51 @@ struct withdrawPopup: View {
         .background(Constants.GrayColorWhite)
         .cornerRadius(16)
         .padding(.horizontal, 48)
+        .alert(isPresented: $showAlert) {
+            Alert(
+                title: Text("알림"),
+                message: Text(alertMessage),
+                dismissButton: .default(Text("확인")) {
+                    if alertMessage == "탈퇴되었습니다." {
+                        moveToLoginViewController() // 탈퇴 성공 시 LoginViewController로 이동
+                    }
+                }
+            )
+        }
+    }
+    
+    private func handleWithdraw() {
+        NetworkManager.shared.deleteAccount(password: inputPassword) { result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let message):
+                    alertMessage = message
+                    showAlert = true
+                    
+                case .failure(let error):
+                    alertMessage = error.localizedDescription
+                    showAlert = true
+                }
+            }
+        }
+    }
+    
+    private func moveToLoginViewController() {
+        guard let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
+            print("WindowScene을 찾을 수 없습니다.")
+            return
+        }
+        
+        guard let window = scene.windows.first else {
+            print("윈도우를 찾을 수 없습니다.")
+            return
+        }
+        
+        DispatchQueue.main.async {
+            // 새로운 루트 뷰 설정
+            window.rootViewController = UIHostingController(rootView: LoginViewController())
+            window.makeKeyAndVisible()
+        }
     }
 }
 
