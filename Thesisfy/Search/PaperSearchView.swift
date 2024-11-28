@@ -12,35 +12,58 @@ struct PaperSearchView: View {
     @State private var path: [Route] = []  // NavigationStack 경로
     @ObservedObject var networkManager = NetworkManager.shared // NetworkManager 연결
     @State private var inputSearch: String = "" // 사용자 입력 검색어 상태
+    @State private var searchTimeout = false // 검색 시간 초과 여부
     
     var body: some View {
         NavigationStack(path: $path) {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    SearchFieldView(path: $path, inputSearch: $inputSearch) //inputSearch 전달
-                        .padding(.top, 12)
-                        .padding(.bottom, 20)
-                    
-                    // 검색 결과 목록
-                    if let searchResponse = networkManager.searchResponse { // 검색 결과 연결
-                        PaperListView(
-                            path: $path,
-                            isExpanded: $isExpanded,
-                            searchResponse: searchResponse,
-                            query: inputSearch // 검색어 전달
-                        )
-                    } else {
-                        Text("검색 결과가 없습니다.")
-                            .foregroundColor(Constants.GrayColorGray600)
-                            .padding(.top, 20)
+            ZStack {
+                // 배경 이미지
+                Image("Cone")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(width: 300, height: 300)
+                    .opacity(0.1) // 반투명 효과
+                    .ignoresSafeArea() // 화면 전체를 덮도록 설정
+                
+                // 메인 콘텐츠
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 0) {
+                        SearchFieldView(path: $path, inputSearch: $inputSearch) //inputSearch 전달
+                            .padding(.top, 12)
+                            .padding(.bottom, 20)
+                            .onChange(of: inputSearch) { newValue in
+                                if !newValue.isEmpty {
+                                    searchTimeout = false
+                                    isExpanded = false // 새로운 검색 시 리스트 확장 상태 초기화
+                                    startSearchTimeout() // 타이머 시작
+                                }
+                            }
+                        
+                        // 검색 결과 목록
+                        if let searchResponse = networkManager.searchResponse { // 검색 결과 연결
+                            PaperListView(
+                                path: $path,
+                                isExpanded: $isExpanded,
+                                searchResponse: searchResponse,
+                                query: inputSearch // 검색어 전달
+                            )
+                        } else if searchTimeout {
+                            Text("검색 결과가 없습니다.")
+                                .foregroundColor(Color.red.opacity(0.8))
+                                .padding(.top, 20)
+                        } else if !inputSearch.isEmpty { // 검색 중인 경우
+                            Text("검색 중입니다...")
+                                .foregroundColor(Constants.GrayColorGray600)
+                                .padding(.top, 20)
+                        }
+                        
+                        Spacer(minLength: 12)
                     }
-                    
-                    Spacer(minLength: 12)
                 }
+                .padding(.horizontal, 24)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
-            .padding(.horizontal, 24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .background(Color.white.ignoresSafeArea())
+            .background(Color.white.ignoresSafeArea()) // 배경색 설정
             .navigationDestination(for: Route.self) { route in
                 switch route {
                 case .searchView:
@@ -53,7 +76,17 @@ struct PaperSearchView: View {
             }
         }
     }
+    
+    // MARK: - Helper Functions
+    private func startSearchTimeout() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+            if networkManager.searchResponse == nil && !inputSearch.isEmpty {
+                searchTimeout = true
+            }
+        }
+    }
 }
+
 
 // MARK: - SearchFieldView
 struct SearchFieldView: View {
@@ -67,14 +100,14 @@ struct SearchFieldView: View {
                 .fontWeight(Constants.fontWeightMedium)
                 .foregroundColor(Constants.GrayColorGray900)
                 .padding(.leading, 12)
-            
-            Spacer()
+                .onSubmit { // 키보드에서 Return을 눌렀을 때
+                    performSearch()
+                }
             
             Spacer()
             
             Button(action: { // 검색 버튼 클릭 시 API 호출
-                NetworkManager.shared.paperSearchBtnTapped(query: inputSearch)
-//                NetworkManager.shared.paperSearchBtnTapped(with: searchRequest)
+                performSearch()
             }) {
                 Image("search")
                     .frame(width: Constants.fontSizeXl, height: Constants.fontSizeXl)
@@ -87,9 +120,24 @@ struct SearchFieldView: View {
         .background(Constants.GrayColorGray50)
         .cornerRadius(6)
     }
+    
+    // 검색 로직 공통 함수
+    private func performSearch() {
+        if !inputSearch.isEmpty {
+            NetworkManager.shared.searchResponse = nil // 기존 검색 결과 초기화
+            NetworkManager.shared.paperSearchBtnTapped(query: inputSearch)
+            UIApplication.shared.endEditing() // 키보드 닫기
+        }
+    }
 }
 
-// MARK: - PaperListView
+// MARK: - Helper Extension
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
 // MARK: - PaperListView
 struct PaperListView: View {
     @Binding var path: [Route]
@@ -101,7 +149,7 @@ struct PaperListView: View {
         VStack(alignment: .leading, spacing: 12) {
             // 제목과 검색 결과 개수
             HStack {
-                Text("\(query) 검색결과 \(searchResponse.records.count)건") // 검색어와 결과 개수 표시
+                Text("\(query) 검색결과 \(searchResponse.total)건") // 검색어와 결과 개수 표시
                     .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                     .foregroundColor(Constants.GrayColorGray800)
             }

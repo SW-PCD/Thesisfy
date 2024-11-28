@@ -6,18 +6,60 @@
 //
 
 import SwiftUI
+import Combine
 
-// MARK: - Chat View
-struct MainViewController: View {
-    @State private var messages: [Message] = [
+class KeyboardResponder: ObservableObject {
+    @Published var currentHeight: CGFloat = 0
+
+    private var _center: NotificationCenter
+
+    init(center: NotificationCenter = .default) {
+        _center = center
+        _center.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(notification:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+        _center.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(notification:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+    }
+
+    @objc private func keyboardWillShow(notification: Notification) {
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            currentHeight = keyboardFrame.height - 90 // 탭바 높이만큼 조정
+        }
+    }
+
+    @objc private func keyboardWillHide(notification: Notification) {
+        currentHeight = 0
+    }
+}
+
+class MessageManager: ObservableObject {
+    static let shared = MessageManager() // 싱글톤
+    @Published var messages: [Message] = [
         Message(content: "안녕하세요!", isUser: false),
         Message(content: "논문 추천 서비스에 오신 걸 환영합니다!", isUser: false)
-    ] // 초기 메시지
+    ]
+
+    private init() {}
+}
+
+struct MainViewController: View {
+    @StateObject private var messageManager = MessageManager.shared
     @State private var newMessage = ""
-    @State private var showSideMenu = false // 사이드 메뉴 상태 관리
-    @State private var isNewChat = false // 새로운 채팅 상태 관리
-    @State private var path: [Route] = [] // 네비게이션 경로
-    @State private var isShowNotificationSheet = false // 알림 팝업 상태 관리
+    @State private var showSideMenu = false
+    @State private var isNewChat = false
+    @State private var path: [Route] = []
+    @State private var isShowNotificationSheet = false
+    @State private var showLoadingAnimation = false
+
+    @ObservedObject private var keyboardResponder = KeyboardResponder()
 
     var body: some View {
         ZStack {
@@ -28,16 +70,44 @@ struct MainViewController: View {
                 Divider()
 
                 // 메시지 목록
-                messageListView
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        LazyVStack(spacing: 8) {
+                            ForEach(messageManager.messages) { message in
+                                HStack {
+                                    if message.isUser {
+                                        Spacer()
+                                        messageBubble(content: message.content, isUser: true)
+                                    } else {
+                                        messageBubble(content: message.content, isUser: false, isLoading: message.isLoading)
+                                        Spacer()
+                                    }
+                                }
+                                .id(message.id) // 메시지에 고유 ID를 할당
+                            }
+                        }
+                        .padding(.vertical, 24)
+                        .padding(.bottom, keyboardResponder.currentHeight) // 키보드 높이에 따라 여백 추가
+                        .onChange(of: messageManager.messages) { _ in
+                            scrollToBottom(proxy: proxy) // 새로운 메시지가 추가되면 스크롤
+                        }
+                    }
+                }
 
-                // 입력창
-                messageInputView
+                Spacer()
+                
+                // 메시지 입력창
+                VStack {
+                    messageInputView
+                        .padding(.bottom, keyboardResponder.currentHeight) // 키보드 높이에 따라 입력창 위치 조정
+                        .animation(.easeOut(duration: 0.3), value: keyboardResponder.currentHeight)
+                }
             }
 
             // 사이드 메뉴
             if showSideMenu {
                 SideMenu(isSidebarVisible: $showSideMenu, isNewChat: $isNewChat)
-                    .zIndex(1) // 사이드 메뉴를 최상위로 배치
+                    .zIndex(1)
             }
         }
         .onChange(of: isNewChat) { newValue in
@@ -45,7 +115,9 @@ struct MainViewController: View {
                 startNewChat()
             }
         }
-        // 알림 팝업 뷰
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil) // 키보드 닫기
+        }
         .popup(isPresented: $isShowNotificationSheet) {
             MainNotificationSheetView(path: $path)
         } customize: {
@@ -59,131 +131,142 @@ struct MainViewController: View {
         }
     }
 
-    // MARK: - 메시지 목록 뷰
-    private var messageListView: some View {
-        ScrollView(showsIndicators: false) {
-            LazyVStack(spacing: 8) {
-                ForEach(messages) { message in
-                    HStack {
-                        if message.isUser {
-                            Spacer()
-                            messageBubble(content: message.content, isUser: true)
-                        } else {
-                            messageBubble(content: message.content, isUser: false)
-                            Spacer()
-                        }
-                    }
-                }
-            }
-            .padding(.vertical, 24)
-        }
-    }
-
-    // MARK: - 메시지 입력창 뷰
+    // 메시지 입력창 뷰
     private var messageInputView: some View {
-        HStack {
-            TextField("궁금한 내용을 검색해 보세요", text: $newMessage)
-                .font(.custom("Pretendard", size: Constants.fontSizeS))
-                .fontWeight(Constants.fontWeightMedium)
+        HStack(spacing: 12) {
+            // 입력 텍스트 필드
+            TextField("메시지를 입력하세요...", text: $newMessage)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .background(Constants.GrayColorGray50)
+                .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Constants.BorderColorBorder2, lineWidth: 1)
+                )
+                .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
                 .foregroundColor(Constants.GrayColorGray900)
-                .padding(.leading, 12)
 
-            Spacer()
-
+            // 전송 버튼
             Button(action: {
                 sendMessage()
             }) {
-                Image("send")
+                Image(newMessage.isEmpty ? "send" : "send.fill") // 동적으로 이미지 변경
                     .resizable()
                     .scaledToFit()
                     .frame(width: 20, height: 20)
+                    .foregroundColor(newMessage.isEmpty ? Constants.GrayColorGray400 : Constants.PrimaryColorPrimary100)
+            }
+            .padding(12)
+            .background(newMessage.isEmpty ? Constants.GrayColorGray100 : Constants.PrimaryColorPrimary50)
+            .cornerRadius(10)
+            .disabled(newMessage.isEmpty) // 메시지가 비어있으면 버튼 비활성화
+        }
+        .padding(.horizontal, 24)
+        .padding(.vertical, 10)
+        .background(Color.white)
+    }
+
+    // 메시지 버블 뷰
+    private func messageBubble(content: String, isUser: Bool, isLoading: Bool = false) -> some View {
+        HStack {
+            if isLoading {
+                HStack(spacing: 2) {
+                    ForEach(0..<3, id: \.self) { index in
+                        Circle()
+                            .fill(isUser ? Constants.GrayColorWhite : Constants.PrimaryColorPrimary500)
+                            .frame(width: 8, height: 8)
+                            .offset(x: showLoadingAnimation && isLoading ? 10 : -10)
+                            .animation(
+                                Animation.easeInOut(duration: 0.6)
+                                    .repeatForever(autoreverses: true)
+                                    .delay(Double(index) * 0.2),
+                                value: showLoadingAnimation
+                            )
+                            .padding(.leading, 24)
+                            .padding(.top, 24)
+                    }
+                }
+                .onAppear {
+                    if isLoading {
+                        showLoadingAnimation = true
+                    }
+                }
+            } else {
+                Text(content)
+                    .font(Font.custom("Pretendard", size: Constants.fontSizeM).weight(Constants.fontWeightRegular))
+                    .foregroundColor(isUser ? Constants.GrayColorWhite : Constants.GrayColorGray800)
+                    .padding(12)
+                    .background(isUser ? Constants.PrimaryColorPrimary500 : Constants.GrayColorGray50)
+                    .cornerRadius(10)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(.horizontal)
             }
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 14)
-        .background(Constants.GrayColorGray50)
-        .cornerRadius(6)
-        .padding(24)
-        
     }
 
-    // MARK: - 메시지 버블 뷰
-    private func messageBubble(content: String, isUser: Bool) -> some View {
-        Text(content)
-            .font(Font.custom("Pretendard", size: Constants.fontSizeXs).weight(Constants.fontWeightMedium))
-            .foregroundColor(isUser ? Constants.GrayColorWhite : Constants.GrayColorGray800)
-            .padding(12)
-            .background(isUser ? Constants.PrimaryColorPrimary500 : Constants.GrayColorGray50)
-            .cornerRadius(10)
-            .fixedSize(horizontal: false, vertical: true)
-            .padding(.horizontal)
-    }
-
-    // MARK: - 메시지 전송 함수
     private func sendMessage() {
         guard !newMessage.isEmpty else { return }
-        
-        // 사용자의 메시지 추가
-        messages.append(Message(content: newMessage, isUser: true))
+        messageManager.messages.append(Message(content: newMessage, isUser: true))
         let userMessage = newMessage
         newMessage = ""
-        
-        // 로딩 메시지 추가
-        messages.append(Message(content: "답변을 가져오는 중...", isUser: false))
-        
-        // OpenAI API 호출
+
+        showLoadingAnimation = false
+        messageManager.messages.append(Message(content: "", isUser: false, isLoading: true))
+
         NetworkManager.shared.sendPromptToChatBot(prompt: userMessage) { result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let reply):
-                    // 로딩 메시지를 대체
-                    if let lastMessageIndex = messages.lastIndex(where: { !$0.isUser }) {
-                        messages[lastMessageIndex] = Message(content: reply, isUser: false)
-                    }
+                    animateReply(reply)
                 case .failure(let error):
-                    // 에러 처리
-                    if let lastMessageIndex = messages.lastIndex(where: { !$0.isUser }) {
-                        messages[lastMessageIndex] = Message(content: "에러 발생: \(error.localizedDescription)", isUser: false)
+                    if let lastMessageIndex = messageManager.messages.lastIndex(where: { !$0.isUser }) {
+                        messageManager.messages[lastMessageIndex] = Message(content: "에러 발생: \(error.localizedDescription)", isUser: false)
                     }
                 }
             }
         }
     }
 
-    private func simulateSystemResponse() {
-        let systemResponse = "인공지능(AI)은 인간처럼 학습하고, 문제를 해결하며, 의사결정을 내리는 기술입니다. 주요 분야로는 머신러닝(데이터 학습), 딥러닝(인공신경망), 자연어 처리(언어 이해), 컴퓨터 비전(이미지 인식), 로보틱스(로봇 제어)가 있습니다. 활용 사례로는 의료(진단), 금융(사기 탐지), 소비자 서비스(챗봇), 제조업(자동화), 교통(자율주행) 등이 있습니다. AI는 데이터와 계산 능력으로 발전하고 있지만, 윤리적 문제, 설명 가능성 부족, 높은 비용 같은 한계도 있습니다! 😄"
-
+    private func animateReply(_ reply: String) {
+        guard let lastMessageIndex = messageManager.messages.lastIndex(where: { !$0.isUser }) else { return }
         var displayedText = ""
-        DispatchQueue.global().async {
-            for char in systemResponse {
-                usleep(50_000) // 50ms 지연
-                DispatchQueue.main.async {
-                    displayedText.append(char)
-                    if let lastMessage = messages.last, !lastMessage.isUser {
-                        messages[messages.count - 1].content = displayedText
-                    } else {
-                        messages.append(Message(content: displayedText, isUser: false))
-                    }
-                }
+        messageManager.messages[lastMessageIndex] = Message(content: "", isUser: false, isLoading: false)
+
+        Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true) { timer in
+            if displayedText.count < reply.count {
+                let index = reply.index(reply.startIndex, offsetBy: displayedText.count)
+                displayedText.append(reply[index])
+                messageManager.messages[lastMessageIndex] = Message(content: displayedText, isUser: false)
+            } else {
+                timer.invalidate()
             }
         }
     }
 
-    // MARK: - 새로운 채팅 초기화
     private func startNewChat() {
-        messages = [
+        messageManager.messages = [
             Message(content: "새로운 대화가 시작되었습니다.", isUser: false)
         ]
         isNewChat = false
     }
+
+    private func scrollToBottom(proxy: ScrollViewProxy) {
+        if let lastMessageID = messageManager.messages.last?.id {
+            withAnimation {
+                proxy.scrollTo(lastMessageID, anchor: .bottom)
+            }
+        }
+    }
 }
 
-// MARK: - 메시지 모델
-struct Message: Identifiable {
+struct Message: Identifiable, Equatable {
     let id = UUID()
     var content: String
-    let isUser: Bool // true: 사용자의 메시지, false: 시스템 메시지
+    let isUser: Bool
+    var isLoading: Bool = false
 }
+
 
 struct MainNotificationSheetView: View {
     @Binding var path: [Route] // 네비게이션 경로 바인딩 추가
