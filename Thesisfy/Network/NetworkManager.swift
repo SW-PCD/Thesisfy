@@ -129,8 +129,6 @@ struct DeleteAccountResponse: Codable {
     var error: String?   // 오류 메시지
 }
 
-import Foundation
-
 class ArticleDetailViewModel: ObservableObject {
     @Published var articleDetail: ArticleDetail?
     @Published var isLoading = false
@@ -176,6 +174,45 @@ extension NetworkManager {
     }
 }
 
+// 작성중인 논문 보조
+struct Recommendation: Identifiable, Codable {  //@@@@@ 수정: Identifiable 프로토콜 추가
+    let id = UUID() //@@@@@ 수정: UUID 자동 생성
+    let title: String
+    let field: String
+    let authors: String
+    let url: String
+}
+
+// 전체 응답 모델
+struct AnalysisRequest: Codable {
+    let pdf: String // 논문 파일 이름
+}
+
+struct AnalysisData: Codable {
+    let overall_progress: Int
+    let recommendations: [Recommendation]
+}
+
+struct Response: Codable {
+    let analysis: String // 이중 디코딩이 필요한 문자열 데이터
+}
+
+//    struct AnalysisRequest: Codable {
+//        let pdf: String // 논문 파일 이름
+//    }
+//
+//    struct AnalysisResponse: Codable {
+//        let analysis: AnalysisData
+//
+//        struct AnalysisData: Codable {
+//            let overall_progress: Int // 진행률 (0~100)
+//            let recommend: [Recommendation]? // 추천 논문 리스트
+//        }
+//    }
+
+struct ErrorResponse: Codable {
+    let error: String
+}
 
 class NetworkManager: ObservableObject {
     static let shared = NetworkManager()
@@ -184,6 +221,20 @@ class NetworkManager: ObservableObject {
     @Published var searchResponse: SearchResponse?
     @Published var chatResponse: String? // 챗봇 응답 저장
     @Published var deleteAccountResponse: DeleteAccountResponse? // 탈퇴 응답 저장
+    @Published var analysisResponse: AnalysisData? // 이중 디코딩 후 결과 저장
+    
+    // MARK: - Custom Error 타입 추가
+    enum NetworkError: Error {
+        case custom(String) // 커스텀 에러 메시지를 포함
+        case decodingError(String) // 디코딩 관련 에러
+        
+        var localizedDescription: String {
+            switch self {
+            case .custom(let message), .decodingError(let message):
+                return message
+            }
+        }
+    }
     
     // MARK: 회원가입
     func registerBtnTapped(registerModel: Register) {
@@ -203,37 +254,37 @@ class NetworkManager: ObservableObject {
     }
     
     // MARK: 회원 탈퇴
-        func deleteAccount(password: String, completion: @escaping (Result<String, Error>) -> Void) {
-            guard let email = UserManager.shared.email else {
-                completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "이메일 정보가 없습니다."])))
-                return
-            }
-            
-            let url = APIConstants.deleteAccountURL // 탈퇴 API URL
-            let parameters = DeleteAccountRequest(email: email, password: password) // 요청 데이터
-            
-            // POST 요청
-            AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default)
-                .responseDecodable(of: DeleteAccountResponse.self) { response in
-                    switch response.result {
-                    case .success(let value):
-                        if let message = value.message {
-                            completion(.success(message)) // 성공 메시지 전달
-                            print("회원 탈퇴 성공: \(message)")
-                        } else {
-                            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "알 수 없는 오류"])))
-                            print("회원 탈퇴 실패: 알 수 없는 메시지")
-                        }
-                    case .failure(let error):
-                        // 디코딩 실패 시 원시 데이터를 로깅
-                        if let data = response.data, let rawResponse = String(data: data, encoding: .utf8) {
-                            print("Raw Response: \(rawResponse)")
-                        }
-                        completion(.failure(error))
-                        print("회원 탈퇴 요청 실패: \(error.localizedDescription)")
-                    }
-                }
+    func deleteAccount(password: String, completion: @escaping (Result<String, Error>) -> Void) {
+        guard let email = UserManager.shared.email else {
+            completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "이메일 정보가 없습니다."])))
+            return
         }
+        
+        let url = APIConstants.deleteAccountURL // 탈퇴 API URL
+        let parameters = DeleteAccountRequest(email: email, password: password) // 요청 데이터
+        
+        // POST 요청
+        AF.request(url, method: .post, parameters: parameters, encoder: JSONParameterEncoder.default)
+            .responseDecodable(of: DeleteAccountResponse.self) { response in
+                switch response.result {
+                case .success(let value):
+                    if let message = value.message {
+                        completion(.success(message)) // 성공 메시지 전달
+                        print("회원 탈퇴 성공: \(message)")
+                    } else {
+                        completion(.failure(NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: "알 수 없는 오류"])))
+                        print("회원 탈퇴 실패: 알 수 없는 메시지")
+                    }
+                case .failure(let error):
+                    // 디코딩 실패 시 원시 데이터를 로깅
+                    if let data = response.data, let rawResponse = String(data: data, encoding: .utf8) {
+                        print("Raw Response: \(rawResponse)")
+                    }
+                    completion(.failure(error))
+                    print("회원 탈퇴 요청 실패: \(error.localizedDescription)")
+                }
+            }
+    }
     
     // MARK: 논문 검색
     func paperSearchBtnTapped(query: String, page: Int = 1, displayCount: Int = 20) {
@@ -305,4 +356,67 @@ class NetworkManager: ObservableObject {
                 }
             }
     }
+    
+    // MARK: 업로드 함수
+    // 업로드 함수에서 데이터가 정상적으로 전송되었는지 확인하는 로그 추가
+    func uploadPDF(fileData: Data, completion: @escaping (Result<String, Error>) -> Void) {
+        guard !fileData.isEmpty else {
+            print("Error: 파일 데이터가 비어 있습니다.")
+            completion(.failure(NetworkError.custom("파일 데이터가 비어 있습니다.")))
+            return
+        }
+
+        let url = APIConstants.analysisURL
+
+        AF.upload(multipartFormData: { formData in
+            formData.append(fileData, withName: "pdf", fileName: "document.pdf", mimeType: "application/pdf")
+        }, to: url)
+        .validate()
+        .response { response in
+            switch response.result {
+            case .success:
+                if let data = response.data, let jsonString = String(data: data, encoding: .utf8) {
+                    completion(.success(jsonString))
+                } else {
+                    completion(.failure(NetworkError.custom("서버 응답이 없습니다.")))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: Analysis 요청 메서드
+    // 추천 논문 데이터를 가져오는 메서드
+    func fetchRecommendationsData(request: AnalysisRequest, completion: @escaping (Result<AnalysisData, NetworkError>) -> Void) {
+            let url = APIConstants.analysisURL
+            
+            AF.request(url, method: .post, parameters: request, encoder: JSONParameterEncoder.default)
+                .response { response in
+                    if let data = response.data {
+                        print("Raw Response Data: \(String(data: data, encoding: .utf8) ?? "No readable data")")
+                        
+                        let decoder = JSONDecoder()
+                        do {
+                            // Step 1: 1차 디코딩 (Response 구조체)
+                            let decodedResponse = try decoder.decode(Response.self, from: data)
+                            
+                            // Step 2: analysis 필드를 다시 JSON으로 디코딩
+                            guard let analysisData = decodedResponse.analysis.data(using: .utf8) else {
+                                throw NetworkError.custom("analysis 필드를 Data로 변환할 수 없습니다.")
+                            }
+                            
+                            let analysis = try decoder.decode(AnalysisData.self, from: analysisData)
+                            completion(.success(analysis))
+                            print("디코딩 성공: \(analysis)")
+                        } catch {
+                            print("Response 데이터를 디코딩하는 중 오류 발생: \(error.localizedDescription)")
+                            completion(.failure(.custom("Response 데이터를 디코딩할 수 없습니다.")))
+                        }
+                    } else {
+                        print("서버로부터 데이터를 받지 못했습니다.")
+                        completion(.failure(.custom("서버로부터 데이터를 받지 못했습니다.")))
+                    }
+                }
+        }
 }

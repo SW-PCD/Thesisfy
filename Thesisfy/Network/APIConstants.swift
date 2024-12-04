@@ -23,7 +23,9 @@ struct APIConstants {
     
     static let chatBotURL: String = baseURL + "/chat/chatopenai"
     
-    static let deleteAccountURL = "\(baseURL)/auth/delete" // 회원 탈퇴 URL
+    static let deleteAccountURL: String = baseURL + "/auth/delete"
     
-    static let detailSearchURL: String = baseURL + "/kci/article-detail" // 논문 상세보기
+    static let analysisURL: String = baseURL + "/pdf/analyze"
+    
+    static let detailSearchURL: String = baseURL + "/kci/article-detail"
 }
