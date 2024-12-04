@@ -117,8 +117,8 @@ struct MyPageView: View {
                         CompleteThesisView(path: $path) // CompleteThesisView로 네비게이션
                 case .aiRecommendView:
                     AIRecommendView(path: $path) // AIRecommendView로 네비게이션
-                case .thesisView:  // ThesisView로 이동
-                        ThesisView()
+                case .thesisView(let articleId):  // ThesisView로 이동
+                    ThesisView(articleId: articleId ?? "")
                 case .profileManagementView:
                     ProfileManagementView()
                 case .notificationView:
@@ -309,7 +309,7 @@ struct bookMarkView: View {
             VStack(spacing: 8) {
                 ForEach(0..<2) { _ in
                     Button(action: {
-                        path.append(.thesisView) // ThesisView로 이동
+                        path.append(.thesisView(articleId: nil)) // ThesisView로 이동
                     }) {
                         HStack {
                             Image("SNU")
@@ -1029,7 +1029,7 @@ struct bookMarkListView: View {
     
     var body: some View {
         Button(action: {
-            path.append(.thesisView) // Route에 thesisView 추가
+            path.append(.thesisView(articleId: nil)) // Route에 thesisView 추가
         }) {
             HStack {
                 Image("YSU")
@@ -1229,7 +1229,7 @@ struct notificationListView: View {
     var body: some View {
         
         Button(action: {
-            path.append(.thesisView) // Route에 thesisView 추가
+            path.append(.thesisView(articleId: nil)) // Route에 thesisView 추가
         }) {
             HStack {
                 HStack {

@@ -12,6 +12,9 @@
 		7B084E062CF5E7D50085A7D8 /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E052CF5E7D50085A7D8 /* LoginModel.swift */; };
 		7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */; };
 		7B084E122CF5F3A40085A7D8 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B084E112CF5F3A40085A7D8 /* ChatModel.swift */; };
+		7B3F58D62D00C284006BF1A9 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F58D52D00C284006BF1A9 /* SearchModel.swift */; };
+		7B3F58D92D00C508006BF1A9 /* PaperDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F58D82D00C508006BF1A9 /* PaperDetailResponse.swift */; };
+		7B3F58DD2D00CCE7006BF1A9 /* ThesisViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3F58DC2D00CCE7006BF1A9 /* ThesisViewModel.swift */; };
 		7B6104862CF4C6EC00FE810B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */; };
 		7B6104872CF4C6EC00FE810B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B6104822CF4C6EC00FE810B /* Assets.xcassets */; };
 		7B6104892CF4C6EC00FE810B /* ThesisfyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6104842CF4C6EC00FE810B /* ThesisfyApp.swift */; };
@@ -57,6 +60,9 @@
 		7B084E052CF5E7D50085A7D8 /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		7B084E0E2CF5F3730085A7D8 /* RegisterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterModel.swift; sourceTree = "<group>"; };
 		7B084E112CF5F3A40085A7D8 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
+		7B3F58D52D00C284006BF1A9 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		7B3F58D82D00C508006BF1A9 /* PaperDetailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperDetailResponse.swift; sourceTree = "<group>"; };
+		7B3F58DC2D00CCE7006BF1A9 /* ThesisViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThesisViewModel.swift; sourceTree = "<group>"; };
 		7B61046F2CF4C61F00FE810B /* Thesisfy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Thesisfy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B6104802CF4C6EC00FE810B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B6104822CF4C6EC00FE810B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -141,6 +147,16 @@
 			isa = PBXGroup;
 			children = (
 				7B084E112CF5F3A40085A7D8 /* ChatModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B3F58D72D00C4FA006BF1A9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B3F58D52D00C284006BF1A9 /* SearchModel.swift */,
+				7B3F58D82D00C508006BF1A9 /* PaperDetailResponse.swift */,
+				7B3F58DC2D00CCE7006BF1A9 /* ThesisViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -230,6 +246,7 @@
 				7B6104A72CF4C84400FE810B /* PaperSearchView.swift */,
 				7B6104A82CF4C84400FE810B /* ThesisView.swift */,
 				7B6104A92CF4C84400FE810B /* SearchView.swift */,
+				7B3F58D72D00C4FA006BF1A9 /* Model */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -237,9 +254,9 @@
 		7B61048E2CF4C81C00FE810B /* MyPage */ = {
 			isa = PBXGroup;
 			children = (
+				7B6104B92CF4C8C300FE810B /* profileManagement */,
 				7B6104B52CF4C8C300FE810B /* thesisManagement */,
 				7B6104B72CF4C8C300FE810B /* notification */,
-				7B6104B92CF4C8C300FE810B /* profileManagement */,
 				7B6104BA2CF4C8C300FE810B /* MyPageView.swift */,
 			);
 			path = MyPage;
@@ -455,17 +472,20 @@
 				7B6104972CF4C83400FE810B /* FirstTipsViewController.swift in Sources */,
 				7B6104982CF4C83400FE810B /* SecondTipsViewController.swift in Sources */,
 				7B6104992CF4C83400FE810B /* ThirdTipsViewController.swift in Sources */,
+				7B3F58D62D00C284006BF1A9 /* SearchModel.swift in Sources */,
 				7B61049A2CF4C83400FE810B /* TermsAgreementViewController.swift in Sources */,
 				7B084E062CF5E7D50085A7D8 /* LoginModel.swift in Sources */,
 				7B6104A02CF4C83800FE810B /* BaseViewController.swift in Sources */,
 				7B084E122CF5F3A40085A7D8 /* ChatModel.swift in Sources */,
 				7B6104AF2CF4C85500FE810B /* Route.swift in Sources */,
 				7B084DF12CF5C52F0085A7D8 /* Extension.swift in Sources */,
+				7B3F58DD2D00CCE7006BF1A9 /* ThesisViewModel.swift in Sources */,
 				7B6104B02CF4C85500FE810B /* Constants.swift in Sources */,
 				A17025A32CF8C18900FF470D /* UserManager.swift in Sources */,
 				7B6104AA2CF4C84400FE810B /* PaperSearchView.swift in Sources */,
 				7B6104AB2CF4C84400FE810B /* SearchView.swift in Sources */,
 				7B084E0F2CF5F3730085A7D8 /* RegisterModel.swift in Sources */,
+				7B3F58D92D00C508006BF1A9 /* PaperDetailResponse.swift in Sources */,
 				7B6104AC2CF4C84400FE810B /* ThesisView.swift in Sources */,
 				7B6104A22CF4C83800FE810B /* MainViewController.swift in Sources */,
 				A1791C402CF775F000507F21 /* NetworkManager.swift in Sources */,
