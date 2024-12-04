@@ -8,56 +8,32 @@
 import SwiftUI
 
 struct PaperSearchView: View {
-    @State private var isExpanded = false  // 리스트 확장 여부를 저장하는 상태 변수
     @State private var path: [Route] = []  // NavigationStack 경로
     @ObservedObject var networkManager = NetworkManager.shared // NetworkManager 연결
     @State private var inputSearch: String = "" // 사용자 입력 검색어 상태
-    @State private var searchTimeout = false // 검색 시간 초과 여부
-    
+
     var body: some View {
         NavigationStack(path: $path) {
             ZStack {
-                // 배경 이미지
                 Image("Cone")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 300, height: 300)
-                    .opacity(0.1) // 반투명 효과
-                    .ignoresSafeArea() // 화면 전체를 덮도록 설정
+                    .opacity(0.1)
+                    .ignoresSafeArea()
                 
-                // 메인 콘텐츠
                 ScrollView(showsIndicators: false) {
-                    VStack(spacing: 0) {
-                        SearchFieldView(path: $path, inputSearch: $inputSearch) //inputSearch 전달
+                    VStack(spacing: 16) { // 각 항목 간 간격을 16으로 설정
+                        SearchFieldView(path: $path, inputSearch: $inputSearch)
                             .padding(.top, 12)
-                            .padding(.bottom, 20)
-                            .onChange(of: inputSearch) { newValue in
-                                if !newValue.isEmpty {
-                                    searchTimeout = false
-                                    isExpanded = false // 새로운 검색 시 리스트 확장 상태 초기화
-                                    startSearchTimeout() // 타이머 시작
-                                }
-                            }
-                        
-                        // 검색 결과 목록
-                        if let searchResponse = networkManager.searchResponse { // 검색 결과 연결
+
+                        if let searchResponse = networkManager.searchResponse {
                             PaperListView(
                                 path: $path,
-                                isExpanded: $isExpanded,
                                 searchResponse: searchResponse,
-                                query: inputSearch // 검색어 전달
+                                query: inputSearch
                             )
-                        } else if searchTimeout {
-                            Text("검색 결과가 없습니다.")
-                                .foregroundColor(Color.red.opacity(0.8))
-                                .padding(.top, 20)
-                        } else if !inputSearch.isEmpty { // 검색 중인 경우
-                            Text("검색 중입니다...")
-                                .foregroundColor(Constants.GrayColorGray600)
-                                .padding(.top, 20)
                         }
-                        
-                        Spacer(minLength: 12)
                     }
                 }
                 .padding(.horizontal, 24)
@@ -66,22 +42,11 @@ struct PaperSearchView: View {
             .background(Color.white.ignoresSafeArea()) // 배경색 설정
             .navigationDestination(for: Route.self) { route in
                 switch route {
-                case .searchView:
-                    SearchView()
-                case .thesisView:
-                    ThesisView()
+                case .thesisView(let articleId):
+                    ThesisView(articleId: articleId ?? "") // 논문 ID를 ThesisView로 전달
                 default:
                     EmptyView()
                 }
-            }
-        }
-    }
-    
-    // MARK: - Helper Functions
-    private func startSearchTimeout() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            if networkManager.searchResponse == nil && !inputSearch.isEmpty {
-                searchTimeout = true
             }
         }
     }
@@ -141,43 +106,8 @@ extension UIApplication {
 // MARK: - PaperListView
 struct PaperListView: View {
     @Binding var path: [Route]
-    @Binding var isExpanded: Bool
-    let searchResponse: SearchResponse // 검색 결과 전달받음
-    let query: String // 검색어 전달받음
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // 제목과 검색 결과 개수
-            HStack {
-                Text("\(query) 검색결과 \(searchResponse.total)건") // 검색어와 결과 개수 표시
-                    .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
-                    .foregroundColor(Constants.GrayColorGray800)
-            }
-            
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 8) {
-                    // 확장 여부에 따라 표시할 레코드 수 조정
-                    let recordsToShow = isExpanded ? searchResponse.records : Array(searchResponse.records.prefix(5))
-                    ForEach(recordsToShow, id: \.url) { record in
-                        PaperRowView(path: $path, record: record) //@@@ 레코드 뷰 생성
-                    }
-                    
-                    if !isExpanded {
-                        ShowMoreButton(isExpanded: $isExpanded)
-                            .padding(.top, 16)
-                    }
-                }
-            }
-            .frame(maxHeight: isExpanded ? .infinity : CGFloat(5 * 120)) // 높이 조정
-            .animation(.easeInOut, value: isExpanded)
-        }
-    }
-}
-
-// MARK: - PaperRowView
-struct PaperRowView: View {
-    @Binding var path: [Route]  // NavigationStack 경로
-    let record: SearchResponse.Record // 논문 데이터 전달받음
+    var searchResponse: SearchResponse
+    var query: String
     
     // 이미지 배열
     private let universityLogos = ["YSU", "SNU", "KU", "KAIST", "POSTECH", "HSU", "SKKU", "HYU"]
@@ -186,12 +116,52 @@ struct PaperRowView: View {
     private var randomLogo: String {
         universityLogos.randomElement() ?? "defaultLogo"
     }
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            // 검색 결과 건수 표시
+            Text("\(query) 검색결과 \(searchResponse.total)건")
+                .font(Font.custom("Pretendard", size: Constants.fontSizeS).weight(Constants.fontWeightMedium))
+                .foregroundColor(Constants.GrayColorGray800)
+                .padding(.horizontal, 16)
+                .padding(.bottom, 10)
+            
+            ScrollView { // 스크롤 가능하도록 ScrollView 추가
+                VStack(spacing: 10) { // 각 항목 간 간격을 넓힘
+                    ForEach(searchResponse.records, id: \.url) { record in
+                        PaperRowView(path: $path, record: record)
+                    }
+                }
+            }
+        }
+    }
     
+    func extractArticleId(from url: String) -> String? {
+        guard let urlComponents = URLComponents(string: url) else { return nil }
+        return urlComponents.queryItems?.first { $0.name == "sereArticleSearchBean.artiId" }?.value
+    }
+}
+
+// MARK: - PaperRowView
+struct PaperRowView: View {
+    @Binding var path: [Route]
+    let record: SearchResponse.Record
+    
+    // 이미지 배열
+    private let universityLogos = ["YSU", "SNU", "KU", "KAIST", "POSTECH", "HSU", "SKKU", "HYU"]
+    
+    // 랜덤 이미지 선택
+    private var randomLogo: String {
+        universityLogos.randomElement() ?? "defaultLogo"
+    }
+
     var body: some View {
         Button(action: {
-            path.append(.thesisView) // 버튼 클릭 시 `thesisView`로 이동
+            if let articleId = extractArticleId(from: record.url) {
+                path.append(.thesisView(articleId: articleId)) // 버튼 클릭 시 `thesisView`로 이동
+            }
         }) {
-            HStack(alignment: .top, spacing: 12) { // HStack 정렬과 간격 설정
+            HStack(alignment: .top, spacing: 12) {
                 Image(randomLogo) // 랜덤 이미지 적용
                     .resizable()
                     .aspectRatio(contentMode: .fit)
@@ -200,20 +170,20 @@ struct PaperRowView: View {
                     .padding(.leading, 16)
                 
                 VStack(alignment: .leading, spacing: 7) { // 텍스트 정렬
-                    HStack(alignment: .center, spacing: Constants.fontSizeXxxs) {
-                        Text(record.category) // 논문 카테고리
-                            .font(
-                                Font.custom("Pretendard", size: Constants.fontSizeXs)
-                                    .weight(Constants.fontWeightSemibold)
-                            )
-                            .foregroundColor(Constants.PrimaryColorPrimary600)
-                    }
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 3)
-                    .background(Constants.PrimaryColorPrimary50)
-                    .cornerRadius(6)
+                    // 카테고리 표시
+                    Text(record.category)
+                        .font(
+                            Font.custom("Pretendard", size: Constants.fontSizeXs)
+                                .weight(Constants.fontWeightSemibold)
+                        )
+                        .foregroundColor(Constants.PrimaryColorPrimary600)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 3)
+                        .background(Constants.PrimaryColorPrimary50)
+                        .cornerRadius(6)
                     
-                    Text(record.localizedTitle) // 적절한 언어의 논문 제목 표시
+                    // 논문 제목 표시
+                    Text(record.localizedTitle)
                         .font(
                             Font.custom("Pretendard", size: Constants.fontSizeS)
                                 .weight(Constants.fontWeightSemibold)
@@ -221,11 +191,11 @@ struct PaperRowView: View {
                         .foregroundColor(Constants.GrayColorGray900)
                         .lineLimit(1) // 한 줄로 제한
                         .truncationMode(.tail) // 초과 텍스트를 "..."으로 표시
-                        .frame(maxWidth: .infinity, alignment: .leading) // 명시적으로 왼쪽 정렬
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading) // 전체를 왼쪽 정렬
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
-            .frame(maxWidth: .infinity, alignment: .leading) // HStack 정렬
+            .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: 100)
             .background(Constants.GrayColorGray50)
             .cornerRadius(6)
@@ -235,6 +205,11 @@ struct PaperRowView: View {
                     .stroke(Constants.BorderColorBorder1, lineWidth: 1)
             )
         }
+    }
+    
+    func extractArticleId(from url: String) -> String? {
+        guard let urlComponents = URLComponents(string: url) else { return nil }
+        return urlComponents.queryItems?.first { $0.name == "sereArticleSearchBean.artiId" }?.value
     }
 }
 

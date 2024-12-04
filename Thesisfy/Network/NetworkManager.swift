@@ -20,6 +20,20 @@ struct RegisterResponse: Codable {
     var message: String?
 }
 
+// 논문 상세 정보
+struct ArticleDetail: Codable {
+    let articleId: String
+    let title: String
+    let abstract: String
+    let authors: String
+    let institution: String
+    let journalName: String
+    let publisherName: String
+    let pubYear: String
+    let articleCategories: String
+    let url: String
+}
+
 // 논문 검색
 struct SearchResponse: Codable {
     let total: String
@@ -113,6 +127,51 @@ struct DeleteAccountRequest: Codable {
 struct DeleteAccountResponse: Codable {
     var message: String? // 성공 메시지
     var error: String?   // 오류 메시지
+}
+
+class ArticleDetailViewModel: ObservableObject {
+    @Published var articleDetail: ArticleDetail?
+    @Published var isLoading = false
+    @Published var errorMessage: String?
+
+    func loadArticleDetail(articleId: String) {
+        isLoading = true
+        errorMessage = nil
+
+        NetworkManager.shared.fetchArticleDetail(articleId: articleId) { result in
+            DispatchQueue.main.async {
+                self.isLoading = false
+                switch result {
+                case .success(let articleDetail):
+                    self.articleDetail = articleDetail
+                case .failure(let error):
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+        }
+    }
+}
+
+// NetworkManager.swift
+extension NetworkManager {
+    // 논문 상세 정보 요청
+    func fetchArticleDetail(articleId: String, completion: @escaping (Result<ArticleDetail, Error>) -> Void) {
+        let url = APIConstants.detailSearchURL
+        let params: [String: Any] = ["id": articleId] // `id` 파라미터로 전달
+
+        AF.request(url, method: .get, parameters: params, encoding: URLEncoding.default)
+            .responseDecodable(of: ArticleDetail.self) { response in
+                switch response.result {
+                case .success(let articleDetail):
+                    completion(.success(articleDetail))
+                case .failure(let error):
+                    if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
+                        print("Raw Error Response: \(rawString)")
+                    }
+                    completion(.failure(error))
+                }
+            }
+    }
 }
 
 // 작성중인 논문 보조
@@ -361,46 +420,3 @@ class NetworkManager: ObservableObject {
                 }
         }
 }
-
-//    func paperSearchBtnTapped(with search: Search) {
-//        let url = APIConstants.searchURL //@@@@@ API URL
-//
-//        // URL에 쿼리 파라미터 추가
-//        let param: [String: String] = [ //@@@@@ 요청 파라미터 구성
-//            "query": search.query,
-////            "key": "YOUR_API_KEY",
-////            "apiCode": "articleSearch"
-//        ]
-//
-//        // GET 요청
-//        AF.request(url, method: .get, parameters: param, encoding: URLEncoding.default) //@@@@@ URL 쿼리 파라미터 인코딩
-//            .response { response in
-//                switch response.result {
-//                case .success(let data):
-//                    guard let data = data else {
-//                        print("Error: No data received from server.") //@@@@@ 데이터 없을 경우
-//                        return
-//                    }
-//
-//                    // JSON 디코딩 시도
-//                    do {
-//                        let decodedResponse = try JSONDecoder().decode(SearchResponse.self, from: data) //@@@@@ JSON 디코딩
-//                        self.searchResponse = decodedResponse
-//                        print("총 결과 수: \(decodedResponse.total)")
-//                        print("첫 번째 논문 제목: \(decodedResponse.records.first?.title ?? "없음")")
-//                    } catch {
-//                        // JSON 디코딩 실패 시 원시 응답 출력
-//                        if let rawString = String(data: data, encoding: .utf8) { //@@@@@ 원시 응답 출력
-//                            print("Raw Response (Not JSON): \(rawString)")
-//                        }
-//                        print("JSON Decoding Error: \(error)")
-//                    }
-//                case .failure(let error):
-//                    // 요청 실패 처리
-//                    print("Request failed: \(error)") //@@@@@ 요청 실패 메시지 출력
-//                    if let data = response.data, let rawString = String(data: data, encoding: .utf8) {
-//                        print("Raw Error Response: \(rawString)") //@@@@@ 실패 시 원시 응답 출력
-//                    }
-//                }
-//            }
-//    }

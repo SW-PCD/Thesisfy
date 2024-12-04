@@ -298,7 +298,7 @@ struct aiRecommendThesisView: View {
                 HStack(spacing: 12) {
                     ForEach(0..<6) { _ in // 각각의 논문 항목 생성
                         Button(action: {
-                            path.append(.thesisView) // ThesisView로 이동
+                            path.append(.thesisView(articleId: nil)) // ThesisView로 이동
                         }) {
                             HStack {
                                 Image("SNU")

@@ -134,7 +134,7 @@ struct paperRowView: View {
     
     var body: some View {
         Button(action: {
-            path.append(.thesisView) // ThesisView로 이동
+            path.append(.thesisView(articleId: nil)) // ThesisView로 이동
         }) {
             HStack {
                 Image("SNU")

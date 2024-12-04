@@ -163,7 +163,7 @@ struct NewNotificationListView: View {
     
     var body: some View {
             Button(action: {
-                path.append(.thesisView) // thesisView로 이동
+                path.append(.thesisView(articleId: nil)) // thesisView로 이동
             }) {
                 HStack {
                     HStack {
@@ -264,7 +264,7 @@ struct CheckedNotificationListView: View {
     
     var body: some View {
         Button(action: {
-            path.append(.thesisView) // thesisView로 이동
+            path.append(.thesisView(articleId: nil)) // thesisView로 이동
         }) {
             HStack {
                 HStack {
